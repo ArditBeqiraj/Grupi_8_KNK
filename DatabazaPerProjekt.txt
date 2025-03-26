@@ -1,0 +1,120 @@
+CREATE TABLE Perdoruesi (
+    user_id SERIAL PRIMARY KEY,
+    emri VARCHAR(50) NOT NULL,
+    mbiemri VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    telefoni VARCHAR(20),
+    roli VARCHAR(20) CHECK (roli IN ('Doktor', 'Moter', 'Admin', 'Pacient','Praktikant')),
+    password TEXT NOT NULL,
+    krijuar TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Pacientet (
+    pacient_id SERIAL PRIMARY KEY,
+    user_id INT UNIQUE REFERENCES Perdoruesi(user_id) ON DELETE CASCADE,
+    datelindja DATE,
+    gjinia VARCHAR(10) CHECK (gjinia IN ('Mashkull', 'Femer')),
+    adresa TEXT,
+    kontakti_emergjent VARCHAR(100)
+);
+
+CREATE TABLE Rekordet (
+    rekord_id SERIAL PRIMARY KEY,
+    pacient_id INT REFERENCES Pacientet(pacient_id) ON DELETE CASCADE,
+    doktor_id INT REFERENCES Perdoruesi(user_id) ON DELETE SET NULL,
+    diagnoza TEXT,
+    udhezimi TEXT,
+    data_vizites TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Seancat (
+    seanca_id SERIAL PRIMARY KEY,
+    pacient_id INT REFERENCES Pacientet(pacient_id) ON DELETE CASCADE,
+    doktor_id INT REFERENCES Perdoruesi(user_id) ON DELETE SET NULL,
+    data_seances TIMESTAMP NOT NULL,
+    statusi VARCHAR(20) CHECK (statusi IN ('Skeduluar', 'Perfunduar', 'Anuluar')),
+    shenime TEXT
+);
+
+CREATE TABLE Sherbimet (
+    sherbimi_id SERIAL PRIMARY KEY,
+    emri_sherbimit VARCHAR(100) NOT NULL,
+    pershkrimi TEXT,
+    cmimi DECIMAL(10,2) NOT NULL CHECK (cmimi >= 0)
+);
+
+CREATE TABLE Faturimi (
+    fatura_id SERIAL PRIMARY KEY,
+    pacient_id INT REFERENCES Pacientet(pacient_id) ON DELETE CASCADE,
+    sherbimi_id INT REFERENCES Sherbimet(sherbimi_id) ON DELETE SET NULL,
+    shuma DECIMAL(10,2) NOT NULL CHECK (shuma >= 0),
+    statusi VARCHAR(20) CHECK (statusi IN ('Ne pritje', 'Paguar', 'Anuluar')),
+    krijuar TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Inventari (
+    produkt_id SERIAL PRIMARY KEY,
+    emri_produktit VARCHAR(100) NOT NULL,
+    sasia INT NOT NULL CHECK (sasia >= 0),
+    furnizuesi VARCHAR(100)
+);
+
+CREATE TABLE Orari (
+    orari_id SERIAL PRIMARY KEY,
+    perdoruesi_id INT REFERENCES Perdoruesi(user_id) ON DELETE CASCADE,
+    fillimi_ndrrimit TIMESTAMP NOT NULL,
+    perfundimi_ndrrimit TIMESTAMP NOT NULL,
+    roli VARCHAR(20) CHECK (roli IN ('Doktor', 'Moter', 'Admin','Praktikant'))
+);
+
+///////////////////////////////////////////////////////////////////////////////////////
+Mbushja me te dhena per testim
+-- Mbushja e tabelës Perdoruesi
+INSERT INTO Perdoruesi (emri, mbiemri, email, telefoni, roli, password) VALUES
+('Arben', 'Hoxha', 'arben.hoxha@example.com', '044123456', 'Doktor', 'password123'),
+('Linda', 'Berisha', 'linda.berisha@example.com', '045654321', 'Moter', 'password456'),
+('Edison', 'Krasniqi', 'edison.krasniqi@example.com', '049987654', 'Admin', 'password789'),
+('Gent', 'Shala', 'gent.shala@example.com', '046555666', 'Pacient', 'password111'),
+('Alma', 'Dervishi', 'alma.dervishi@example.com', '043888999', 'Praktikant', 'password222');
+
+-- Mbushja e tabelës Pacientet (ndryshuar user_id që të mos përsëritet)
+INSERT INTO Pacientet (user_id, datelindja, gjinia, adresa, kontakti_emergjent) VALUES
+(4, '1990-05-20', 'Mashkull', 'Rr. Dardania, Prishtinë', '044999888'),
+(5, '1985-11-15', 'Femer', 'Rr. Bregu i Diellit, Prishtinë', '049666777');
+
+-- Mbushja e tabelës Rekordet (ndryshuar pacient_id që të jenë valid)
+INSERT INTO Rekordet (pacient_id, doktor_id, diagnoza, udhezimi) VALUES
+(1, 1, 'Hipertension', 'Reduktim i kripës në ushqim'),
+(2, 1, 'Astma', 'Përdorimi i inhalatorit dy herë në ditë');
+
+-- Mbushja e tabelës Seancat (ndryshuar pacient_id që të jenë valid)
+INSERT INTO Seancat (pacient_id, doktor_id, data_seances, statusi, shenime) VALUES
+(1, 1, '2025-03-26 10:00:00', 'Skeduluar', 'Vizitë rutinore'),
+(2, 1, '2025-03-27 11:00:00', 'Perfunduar', 'Kontroll për alergji');
+
+-- Mbushja e tabelës Sherbimet
+INSERT INTO Sherbimet (emri_sherbimit, pershkrimi, cmimi) VALUES
+('Analiza e Gjakut', 'Test i plotë i analizave të gjakut', 20.00),
+('Ekografi', 'Kontroll ultrasonografik', 30.00),
+('EKG', 'Elektrokardiogramë për zemrën', 25.00),
+('Fizioterapi', 'Seancë për rehabilitim', 40.00),
+('Kontroll Mjekësor', 'Vizitë e përgjithshme mjekësore', 15.00);
+
+-- Mbushja e tabelës Faturimi (ndryshuar pacient_id që të jenë valid)
+INSERT INTO Faturimi (pacient_id, sherbimi_id, shuma, statusi) VALUES
+(1, 1, 20.00, 'Paguar'),
+(2, 2, 30.00, 'Ne pritje');
+
+-- Mbushja e tabelës Inventari
+INSERT INTO Inventari (emri_produktit, sasia, furnizuesi) VALUES
+('Gjilpëra sterile', 100, 'MedSupply Co.'),
+('Doreza mjekësore', 200, 'SafeMed'),
+('Maska kirurgjikale', 300, 'HealthProtect'),
+('Dezinfektues', 150, 'CleanMed'),
+('Antibiotik Amoksicilin', 50, 'PharmaPlus');
+
+-- Mbushja e tabelës Orari (siguruar që user_id ekziston)
+INSERT INTO Orari (perdoruesi_id, fillimi_ndrrimit, perfundimi_ndrrimit, roli) VALUES
+(1, '2025-03-25 08:00:00', '2025-03-25 16:00:00', 'Doktor'),
+(2, '2025-03-25 16:00:00', '2025-03-25 23:00:00', 'Moter'),
+(3, '2025-03-26 08:00:00', '2025-03-26 16:00:00', 'Admin');
