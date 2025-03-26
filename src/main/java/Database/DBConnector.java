@@ -8,8 +8,8 @@ public class DBConnector {
     private static Connection connection = null;
 
     private static final String url = "jdbc:postgresql://localhost:5432/grupi_8_knk";
-    private static final String user = "postgres";
-    private static final String password = "2005";
+    private static final String user = "";
+    private static final String password = "";
 
     public static Connection getConnection() {
         if (connection == null) {
