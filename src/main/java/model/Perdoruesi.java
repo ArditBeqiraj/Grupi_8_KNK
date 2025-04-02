@@ -1,50 +1,45 @@
 package model;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 
-@Entity
-@Table(name = "perdoruesi")
 public class Perdoruesi {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Integer userId;
-
-    @Column(name = "emri", nullable = false, length = 50)
+    private int user_id;
     private String emri;
-
-    @Column(name = "mbiemri", nullable = false, length = 50)
     private String mbiemri;
-
-    @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
-
-    @Column(name = "telefoni", length = 20)
     private String telefoni;
-
-    @Column(name = "roli", nullable = false, length = 20)
-    @Enumerated(EnumType.STRING)
-    private Roli roli;
-
-    @Column(name = "password", nullable = false)
+    private String roli;
     private String password;
+    private Timestamp krijuar;
 
-    @Column(name = "krijuar", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime krijuar;
-
-    public enum Roli {
-        DOKTOR,
-        MOTER,
-        ADMIN,
-        PACIENT,
-        PRAKTIKANT
+    private Perdoruesi(int user_id, String emri, String mbiemri, String email, String telefoni, String roli, String password, Timestamp krijuar) {
+        this.user_id = user_id;
+        this.emri = emri;
+        this.mbiemri = mbiemri;
+        this.email = email;
+        this.telefoni = telefoni;
+        this.roli = roli;
+        this.password = password;
+        this.krijuar = krijuar;
     }
 
-    // Getter methods
-    public Integer getUserId() {
-        return userId;
+    public static Perdoruesi getInstance(ResultSet resultSet) throws SQLException {
+        int user_id = resultSet.getInt("user_id");
+        String emri = resultSet.getString("emri");
+        String mbiemri = resultSet.getString("mbiemri");
+        String email = resultSet.getString("email");
+        String telefoni = resultSet.getString("telefoni");
+        String roli = resultSet.getString("roli");
+        String password = resultSet.getString("password");
+        Timestamp krijuar = resultSet.getTimestamp("krijuar");
+
+        return new Perdoruesi(user_id, emri, mbiemri, email, telefoni, roli, password, krijuar);
+    }
+
+    public int getUser_id() {
+        return user_id;
     }
 
     public String getEmri() {
@@ -63,7 +58,7 @@ public class Perdoruesi {
         return telefoni;
     }
 
-    public Roli getRoli() {
+    public String getRoli() {
         return roli;
     }
 
@@ -71,8 +66,7 @@ public class Perdoruesi {
         return password;
     }
 
-    public LocalDateTime getKrijuar() {
+    public Timestamp getKrijuar() {
         return krijuar;
     }
 }
-
