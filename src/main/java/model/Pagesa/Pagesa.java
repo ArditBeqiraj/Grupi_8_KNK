@@ -13,9 +13,8 @@ public class Pagesa {
     private String menyra_pageses;
     private String statusi;
     private LocalDateTime krijuar;
-    private Integer regjistruar_nga;
 
-    public Pagesa(int id, int pacient_id, Integer fatura_id, String menyra_pageses, BigDecimal shuma, String statusi, LocalDateTime krijuar, Integer regjistruar_nga) {
+    public Pagesa(int id, int pacient_id, Integer fatura_id, String menyra_pageses, BigDecimal shuma, String statusi, LocalDateTime krijuar) {
         this.id = id;
         this.pacient_id = pacient_id;
         this.fatura_id = fatura_id;
@@ -23,7 +22,6 @@ public class Pagesa {
         this.shuma = shuma;
         this.statusi = statusi;
         this.krijuar = krijuar;
-        this.regjistruar_nga = regjistruar_nga;
     }
     public static Pagesa getInstance(ResultSet resultSet) throws SQLException{
         int id = resultSet.getInt("id");
@@ -34,7 +32,7 @@ public class Pagesa {
         String statusi = resultSet.getString("statusi");
         LocalDateTime krijuar = resultSet.getTimestamp("krijuar").toLocalDateTime();
         Integer regjistruar_nga = resultSet.getObject("regjistruar_nga") !=null ? resultSet.getInt("regjistruar_nga") : null;
-        return new Pagesa(id, pacient_id, fatura_id, menyra_pageses, shuma, statusi, krijuar, regjistruar_nga);
+        return new Pagesa(id, pacient_id, fatura_id, menyra_pageses, shuma, statusi, krijuar);
 
     }
 
@@ -66,7 +64,4 @@ public class Pagesa {
         return krijuar;
     }
 
-    public Integer getRegjistruar_nga() {
-        return regjistruar_nga;
-    }
 }

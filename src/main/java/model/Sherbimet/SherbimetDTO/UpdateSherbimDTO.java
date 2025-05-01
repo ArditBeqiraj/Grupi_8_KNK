@@ -1,20 +1,20 @@
 package model.Sherbimet.SherbimetDTO;
 
 public class UpdateSherbimDTO {
-    private int sherbimi_id;
+    private int id;
     private double cmimi;
 
-    public UpdateSherbimDTO(int sherbimi_id, double cmimi) {
-        this.sherbimi_id = sherbimi_id;
+    public UpdateSherbimDTO(int id, double cmimi) {
+        this.id = id;
         this.cmimi = cmimi;
     }
 
     public int getSherbimi_id() {
-        return sherbimi_id;
+        return id;
     }
 
-    public void setSherbimi_id(int sherbimi_id) {
-        this.sherbimi_id = sherbimi_id;
+    public void setSherbimi_id(int id) {
+        this.id = id;
     }
 
     public double getCmimi() {

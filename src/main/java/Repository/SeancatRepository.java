@@ -19,8 +19,6 @@ public class SeancatRepository extends BaseRepository<Seancat, CreateSeancaDTO, 
     }
 
     public Seancat create(CreateSeancaDTO seancat) {
-        //Kur kemi input nga useri vendosim ?
-        String query2 = "SELECT setval('seancat_seanca_id_seq', COALESCE((SELECT MAX(seanca_id) FROM seancat), 730756100) + 1, false);";
         String query = """
                 INSERT INTO Seancat (pacient_id, doktor_id, data_seances, statusi, shenime)
                 VALUES (?, ?, ?, ?, ?)
@@ -33,7 +31,6 @@ public class SeancatRepository extends BaseRepository<Seancat, CreateSeancaDTO, 
             pstm.setTimestamp(3, seancat.getData_seances());
             pstm.setString(4, seancat.getStatusi());
             pstm.setString(5, seancat.getShenime());
-            statement.executeQuery(query2);
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {
@@ -51,7 +48,7 @@ public class SeancatRepository extends BaseRepository<Seancat, CreateSeancaDTO, 
                 UPDATE Seancat
                 SET data_seances = ?,
                     statusi = ?
-                WHERE seanca_id = ?
+                WHERE id = ?
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);

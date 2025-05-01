@@ -4,7 +4,7 @@ public class UpdateMjekuSpecializimiDTO {
     private int id;
     private int specializimi_id;
 
-    public UpdateMjekuSpecializimiDTO(int id,int specializimi_id){
+    public UpdateMjekuSpecializimiDTO(int id, int specializimi_id){
         this.id=id;
         this.specializimi_id=specializimi_id;
     }

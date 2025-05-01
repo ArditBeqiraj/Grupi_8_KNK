@@ -65,7 +65,7 @@ public class PajisjetMjekesoreRepository {
         return null;
     }
     public PajisjetMjekesore update(UpdatePajisjetMjekesoreDTO dto){
-        String query = "UPDATE PajisjetMjekesore SET emri_pajisjes = ?, pershkrimi = ?, sasia = ?, gjendja = ?, salla_id = ? WHERE pajisja_id = ?";
+        String query = "UPDATE PajisjetMjekesore SET emri_pajisjes = ?, pershkrimi = ?, sasia = ?, gjendja = ?, salla_id = ? WHERE id = ?";
         try {
             PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setString(1, dto.getEmri_pajisjes());

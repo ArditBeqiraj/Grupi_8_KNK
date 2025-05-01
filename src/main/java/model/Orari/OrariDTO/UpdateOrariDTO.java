@@ -4,14 +4,14 @@ import java.sql.Timestamp;
 
 public class UpdateOrariDTO {
 
-    private int orari_id;
+    private int id;
     private Timestamp fillimi_ndrrimit;
     private Timestamp perfundimi_ndrrimit;
 
     public enum Type { FILLIMI, PERFUNDIMI }
 
-    public UpdateOrariDTO(int orari_id, Timestamp timestamp, Type type) {
-        this.orari_id = orari_id;
+    public UpdateOrariDTO(int id, Timestamp timestamp, Type type) {
+        this.id = id;
         if (type == Type.FILLIMI) {
             this.fillimi_ndrrimit = timestamp;
         } else {
@@ -20,11 +20,11 @@ public class UpdateOrariDTO {
     }
 
     public int getOrari_id() {
-        return orari_id;
+        return id;
     }
 
-    public void setOrari_id(int orari_id) {
-        this.orari_id = orari_id;
+    public void setOrari_id(int id) {
+        this.id = id;
     }
 
     public Timestamp getFillimi_ndrrimit() {

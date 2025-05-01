@@ -1,20 +1,20 @@
 package model.Faturimi.FaturimiDTO;
 
 public class UpdateFaturaDTO {
-    private int fatura_id;
+    private int id;
     private String statusi;
 
-    public UpdateFaturaDTO(int fatura_id, String statusi) {
-        this.fatura_id = fatura_id;
+    public UpdateFaturaDTO(int id, String statusi) {
+        this.id = id;
         this.statusi = statusi;
     }
 
     public int getFatura_id() {
-        return fatura_id;
+        return id;
     }
 
-    public void setFatura_id(int fatura_id) {
-        this.fatura_id = fatura_id;
+    public void setFatura_id(int id) {
+        this.id = id;
     }
 
     public String getStatusi() {

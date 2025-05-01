@@ -20,8 +20,6 @@ public class RekordetRepository extends BaseRepository<Rekordet, CreateRekordDTO
     }
 
     public Rekordet create(CreateRekordDTO rekordetDto) {
-        //Kur kemi input nga useri vendosim ?
-        String query2 = "SELECT setval('rekordet_rekord_id_seq', COALESCE((SELECT MAX(rekord_id) FROM rekordet), 630756100) + 1, false);";
         String query = """
                 INSERT INTO Rekordet (pacient_id, doktor_id, diagnoza, udhezimi, data_vizites)
                 VALUES (?, ?, ?, ?, ?)
@@ -34,7 +32,6 @@ public class RekordetRepository extends BaseRepository<Rekordet, CreateRekordDTO
             pstm.setString(3, rekordetDto.getDiagnoza());
             pstm.setString(4, rekordetDto.getUdhezimi());
             pstm.setDate(5, rekordetDto.getData_vizites());
-            statement.executeQuery(query2);
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {

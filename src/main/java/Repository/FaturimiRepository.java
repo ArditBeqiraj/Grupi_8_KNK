@@ -18,8 +18,6 @@ public class FaturimiRepository extends BaseRepository<Faturimi, CreateFaturaDTO
     }
 
     public Faturimi create(CreateFaturaDTO faturaDto) {
-        //Kur kemi input nga useri vendosim ?
-        String query2 = "SELECT setval('faturimi_fatura_id_seq', COALESCE((SELECT MAX(fatura_id) FROM faturimi), 130756100) + 1, false);";
         String query = """
                 INSERT INTO Faturimi (pacient_id, sherbimi_id, shuma, statusi, krijuar)
                 VALUES (?, ?, ?, ?, ?)
@@ -32,7 +30,6 @@ public class FaturimiRepository extends BaseRepository<Faturimi, CreateFaturaDTO
             pstm.setDouble(3, faturaDto.getShuma());
             pstm.setString(4, faturaDto.getStatusi());
             pstm.setDate(5, faturaDto.getKrijuar());
-            statement.executeQuery(query2);
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {
@@ -49,7 +46,7 @@ public class FaturimiRepository extends BaseRepository<Faturimi, CreateFaturaDTO
         String query = """
                 UPDATE Faturimi
                 SET statusi = ?
-                WHERE fatura_id = ?
+                WHERE id = ?
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);

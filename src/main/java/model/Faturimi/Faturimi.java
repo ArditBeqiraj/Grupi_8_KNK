@@ -4,15 +4,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Faturimi {
-    private int fatura_id;
+    private int id;
     private int pacient_id;
     private int sherbimi_id;
     private double shuma;
     private String statusi;
     private java.sql.Date krijuar;
 
-    private Faturimi(int fatura_id, int pacient_id, int sherbimi_id, double shuma, String statusi, java.sql.Date krijuar) {
-        this.fatura_id = fatura_id;
+    private Faturimi(int id, int pacient_id, int sherbimi_id, double shuma, String statusi, java.sql.Date krijuar) {
+        this.id = id;
         this.pacient_id = pacient_id;
         this.sherbimi_id = sherbimi_id;
         this.shuma = shuma;
@@ -21,18 +21,18 @@ public class Faturimi {
     }
 
     public static Faturimi getInstance(ResultSet resultSet) throws SQLException {
-        int fatura_id = resultSet.getInt("fatura_id");
+        int id = resultSet.getInt("id");
         int pacient_id = resultSet.getInt("pacient_id");
         int sherbimi_id = resultSet.getInt("sherbimi_id");
         double shuma = resultSet.getDouble("shuma");
         String statusi = resultSet.getString("statusi");
         java.sql.Date krijuar = resultSet.getDate("krijuar");
 
-        return new Faturimi(fatura_id, pacient_id, sherbimi_id, shuma, statusi, krijuar);
+        return new Faturimi(id, pacient_id, sherbimi_id, shuma, statusi, krijuar);
     }
 
     public int getFatura_id() {
-        return fatura_id;
+        return id;
     }
 
     public int getPacient_id() {

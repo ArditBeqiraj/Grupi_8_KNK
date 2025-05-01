@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class Perdoruesi {
-    private int user_id;
+    private int id;
     private String emri;
     private String mbiemri;
     private String email;
@@ -14,8 +14,8 @@ public class Perdoruesi {
     private String password;
     private Timestamp krijuar;
 
-    private Perdoruesi(int user_id, String emri, String mbiemri, String email, String telefoni, String roli, String password, Timestamp krijuar) {
-        this.user_id = user_id;
+    private Perdoruesi(int id, String emri, String mbiemri, String email, String telefoni, String roli, String password, Timestamp krijuar) {
+        this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
         this.email = email;
@@ -26,7 +26,7 @@ public class Perdoruesi {
     }
 
     public static Perdoruesi getInstance(ResultSet resultSet) throws SQLException {
-        int user_id = resultSet.getInt("user_id");
+        int id = resultSet.getInt("id");
         String emri = resultSet.getString("emri");
         String mbiemri = resultSet.getString("mbiemri");
         String email = resultSet.getString("email");
@@ -35,11 +35,11 @@ public class Perdoruesi {
         String password = resultSet.getString("password");
         Timestamp krijuar = resultSet.getTimestamp("krijuar");
 
-        return new Perdoruesi(user_id, emri, mbiemri, email, telefoni, roli, password, krijuar);
+        return new Perdoruesi(id, emri, mbiemri, email, telefoni, roli, password, krijuar);
     }
 
     public int getUser_id() {
-        return user_id;
+        return id;
     }
 
     public String getEmri() {

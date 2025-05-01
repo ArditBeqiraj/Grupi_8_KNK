@@ -11,9 +11,8 @@ public class Mjeket {
     private String nr_telefoni;
     private String email;
     private String specializimi_kryesor;
-    private String statusi;
 
-    private Mjeket(int id, String emri, String mbiemri, String nr_licences, String nr_telefoni, String email, String specializimi_kryesor, String statusi) {
+    private Mjeket(int id, String emri, String mbiemri, String nr_licences, String nr_telefoni, String email, String specializimi_kryesor) {
         this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
@@ -21,7 +20,6 @@ public class Mjeket {
         this.nr_telefoni = nr_telefoni;
         this.email = email;
         this.specializimi_kryesor = specializimi_kryesor;
-        this.statusi = statusi;
     }
     public static Mjeket getInstance(ResultSet resultSet) throws SQLException{
         int id = resultSet.getInt("id");
@@ -31,8 +29,7 @@ public class Mjeket {
         String nr_telefoni = resultSet.getString("nr_telefoni");
         String email = resultSet.getString("email");
         String specializimi_kryesor = resultSet.getString("specializimi_kryesor");
-        String statusi = resultSet.getString("statusi");
-        return new Mjeket(id,emri,mbiemri,nr_licences,nr_telefoni,email,specializimi_kryesor,statusi);
+        return new Mjeket(id,emri,mbiemri,nr_licences,nr_telefoni,email,specializimi_kryesor);
 
     }
 
@@ -64,7 +61,4 @@ public class Mjeket {
         return specializimi_kryesor;
     }
 
-    public String getStatusi() {
-        return statusi;
-    }
 }

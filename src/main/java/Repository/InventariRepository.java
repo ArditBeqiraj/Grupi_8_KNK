@@ -20,8 +20,6 @@ public class InventariRepository extends BaseRepository<Inventari, CreateInventa
     }
 
     public Inventari create(CreateInventariDTO inventariDto) {
-        //Kur kemi input nga useri vendosim ?
-        String query2 = "SELECT setval('inventari_produkt_id_seq', COALESCE((SELECT MAX(produkt_id) FROM inventari), 330756100) + 1, false);";
         String query = """
                 INSERT INTO Inventari (emri_produktit, sasia, furnizuesi)
                 VALUES (?, ?, ?)
@@ -32,7 +30,6 @@ public class InventariRepository extends BaseRepository<Inventari, CreateInventa
             pstm.setString(1, inventariDto.getEmri_produktit());
             pstm.setDouble(2, inventariDto.getSasia());
             pstm.setString(3, inventariDto.getFurnizuesi());
-            statement.executeQuery(query2);
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {
@@ -49,7 +46,7 @@ public class InventariRepository extends BaseRepository<Inventari, CreateInventa
         String query = """
                 UPDATE Inventari
                 SET sasia = ?
-                WHERE produkt_id = ?
+                WHERE id = ?
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);

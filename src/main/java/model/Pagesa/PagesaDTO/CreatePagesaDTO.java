@@ -8,15 +8,13 @@ public class CreatePagesaDTO {
     private BigDecimal shuma;
     private String menyra_pageses;
     private String statusi;
-    private Integer regjistruar_nga;
 
-    public CreatePagesaDTO(int pacient_id, Integer fatura_id, BigDecimal shuma, String menyra_pageses, String statusi, Integer regjistruar_nga) {
+    public CreatePagesaDTO(int pacient_id, Integer fatura_id, BigDecimal shuma, String menyra_pageses, String statusi) {
         this.pacient_id = pacient_id;
         this.fatura_id = fatura_id;
         this.shuma = shuma;
         this.menyra_pageses = menyra_pageses;
         this.statusi = statusi;
-        this.regjistruar_nga = regjistruar_nga;
     }
 
     public int getPacient_id() {
@@ -59,11 +57,4 @@ public class CreatePagesaDTO {
         this.statusi = statusi;
     }
 
-    public Integer getRegjistruar_nga() {
-        return regjistruar_nga;
-    }
-
-    public void setRegjistruar_nga(Integer regjistruar_nga) {
-        this.regjistruar_nga = regjistruar_nga;
-    }
 }

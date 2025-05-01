@@ -2,11 +2,13 @@ package model.Mjeket.MjeketDTO;
 
 public class UpdateMjeketDTO {
     private int id;
-    private String statusi;
+    private String nr_telefoni;
+    private String email;
 
-    public UpdateMjeketDTO(int id,String statusi){
+    public UpdateMjeketDTO(int id, String nr_telefoni, String email){
         this.id=id;
-        this.statusi=statusi;
+        this.nr_telefoni = nr_telefoni;
+        this.email = email;
     }
 
     public int getId() {
@@ -17,11 +19,19 @@ public class UpdateMjeketDTO {
         this.id = id;
     }
 
-    public String getStatusi() {
-        return statusi;
+    public String getNr_telefoni() {
+        return nr_telefoni;
     }
 
-    public void setStatusi(String statusi) {
-        this.statusi = statusi;
+    public void setNr_telefoni(String nr_telefoni) {
+        this.nr_telefoni = nr_telefoni;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

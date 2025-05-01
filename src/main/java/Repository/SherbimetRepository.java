@@ -19,8 +19,6 @@ public class SherbimetRepository extends BaseRepository<Sherbimet, CreateSherbim
     }
 
     public Sherbimet create(CreateSherbimDTO sherbimDTO) {
-        //Kur kemi input nga useri vendosim ?
-        String query2 = "SELECT setval('sherbimet_sherbimi_id_seq', COALESCE((SELECT MAX(sherbimi_id) FROM sherbimet), 830756100) + 1, false);";
         String query = """
                 INSERT INTO sherbimet (emri_sherbimit, pershkrimi, cmimi)
                 VALUES (?, ?, ?)
@@ -31,7 +29,6 @@ public class SherbimetRepository extends BaseRepository<Sherbimet, CreateSherbim
             pstm.setString(1, sherbimDTO.getEmri_sherbimit());
             pstm.setString(2, sherbimDTO.getPershkrimi());
             pstm.setDouble(3, sherbimDTO.getCmimi());
-            statement.executeQuery(query2);
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {
@@ -48,7 +45,7 @@ public class SherbimetRepository extends BaseRepository<Sherbimet, CreateSherbim
         String query = """
                 UPDATE Sherbimet
                 SET cmimi = ?
-                WHERE sherbimi_id = ?
+                WHERE id = ?
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);

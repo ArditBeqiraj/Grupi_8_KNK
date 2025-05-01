@@ -1,14 +1,14 @@
 package model.Pacientet.PacientetDTO;
 
 public class UpdatePacientetDTO {
-    private int pacient_id;
+    private int id;
     private String adresa;
     private String kontakti_emergjent;
 
     public enum Type { adresa, kontakti_emergjent }
 
-    public UpdatePacientetDTO(int pacient_id, String update, Type type) {
-        this.pacient_id = pacient_id;
+    public UpdatePacientetDTO(int id, String update, Type type) {
+        this.id = id;
         if (type == Type.adresa) {
             this.adresa = update;
         } else {
@@ -17,11 +17,11 @@ public class UpdatePacientetDTO {
     }
 
     public int getPacient_id() {
-        return pacient_id;
+        return id;
     }
 
-    public void setPacient_id(int pacient_id) {
-        this.pacient_id = pacient_id;
+    public void setPacient_id(int id) {
+        this.id = id;
     }
 
     public String getAdresa() {

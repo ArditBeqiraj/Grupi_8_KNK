@@ -7,15 +7,13 @@ public class CreateMjeketDTO {
     private String nr_telefoni;
     private String email;
     private String specializimi_kryesor;
-    private String statusi;
-    public CreateMjeketDTO(String emri, String mbiemri, String nr_licences, String nr_telefoni, String email, String specializimi_kryesor, String statusi) {
+    public CreateMjeketDTO(String emri, String mbiemri, String nr_licences, String nr_telefoni, String email, String specializimi_kryesor) {
         this.emri = emri;
         this.mbiemri = mbiemri;
         this.nr_licences = nr_licences;
         this.nr_telefoni = nr_telefoni;
         this.email = email;
         this.specializimi_kryesor = specializimi_kryesor;
-        this.statusi = statusi;
     }
 
     public String getEmri() {
@@ -42,7 +40,4 @@ public class CreateMjeketDTO {
         return specializimi_kryesor;
     }
 
-    public String getStatusi() {
-        return statusi;
-    }
 }

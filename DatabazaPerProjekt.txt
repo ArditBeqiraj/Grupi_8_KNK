@@ -1,5 +1,5 @@
 CREATE TABLE Perdoruesi (
-    user_id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     emri VARCHAR(50) NOT NULL,
     mbiemri VARCHAR(50) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE Perdoruesi (
 );
 
 CREATE TABLE Pacientet (
-    pacient_id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     user_id INT UNIQUE REFERENCES Perdoruesi(user_id) ON DELETE CASCADE,
     datelindja DATE,
     gjinia VARCHAR(10) CHECK (gjinia IN ('Mashkull', 'Femer')),
@@ -19,7 +19,7 @@ CREATE TABLE Pacientet (
 );
 
 CREATE TABLE Rekordet (
-    rekord_id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     pacient_id INT REFERENCES Pacientet(pacient_id) ON DELETE CASCADE,
     doktor_id INT REFERENCES Perdoruesi(user_id) ON DELETE SET NULL,
     diagnoza TEXT,
@@ -28,7 +28,7 @@ CREATE TABLE Rekordet (
 );
 
 CREATE TABLE Seancat (
-    seanca_id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     pacient_id INT REFERENCES Pacientet(pacient_id) ON DELETE CASCADE,
     doktor_id INT REFERENCES Perdoruesi(user_id) ON DELETE SET NULL,
     data_seances TIMESTAMP NOT NULL,
@@ -37,14 +37,14 @@ CREATE TABLE Seancat (
 );
 
 CREATE TABLE Sherbimet (
-    sherbimi_id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     emri_sherbimit VARCHAR(100) NOT NULL,
     pershkrimi TEXT,
     cmimi DECIMAL(10,2) NOT NULL CHECK (cmimi >= 0)
 );
 
 CREATE TABLE Faturimi (
-    fatura_id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     pacient_id INT REFERENCES Pacientet(pacient_id) ON DELETE CASCADE,
     sherbimi_id INT REFERENCES Sherbimet(sherbimi_id) ON DELETE SET NULL,
     shuma DECIMAL(10,2) NOT NULL CHECK (shuma >= 0),
@@ -53,18 +53,76 @@ CREATE TABLE Faturimi (
 );
 
 CREATE TABLE Inventari (
-    produkt_id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     emri_produktit VARCHAR(100) NOT NULL,
     sasia INT NOT NULL CHECK (sasia >= 0),
     furnizuesi VARCHAR(100)
 );
 
 CREATE TABLE Orari (
-    orari_id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     perdoruesi_id INT REFERENCES Perdoruesi(user_id) ON DELETE CASCADE,
     fillimi_ndrrimit TIMESTAMP NOT NULL,
     perfundimi_ndrrimit TIMESTAMP NOT NULL,
     roli VARCHAR(20) CHECK (roli IN ('Doktor', 'Moter', 'Admin','Praktikant'))
+);
+
+CREATE TABLE Mjeket (
+    id SERIAL PRIMARY KEY,
+    emri VARCHAR(20),
+    mbiemri VARCHAR(20),
+    nr_licenses VARCHAR(20),
+    nr_telefoni VARCHAR(20),
+    email VARCHAR(20),
+    specializimi_kryesor VARCHAR(20)
+);
+
+CREATE TABLE MjekuSpecializimi (
+    id SERIAL PRIMARY KEY;
+    mjeku_id INT REFERENCES Mjeket(id) on DELETE CASCADE,
+    specializimi_id REFERENCES Specializimet(id) on DELETE CASCADE
+);
+
+CREATE TABLE Terminet (
+    id SERIAL PRIMARY KEY,
+    id_pacient INT references Pacientet(id) on DELETE CASCADE,
+    id_mjek INT references Mjeket(id) on DELETE CASCADE,
+    id_salle INT references Sallat(id) on DELETE CASCADE,
+    data DATE,
+    statusi VARCHAR(20),
+    shenime VARCHAR(100)
+);
+
+CREATE TABLE Specializimet (
+    id SERIAL PRIMARY KEY,
+    emri_specializimit VARCHAR(20)
+);
+
+CREATE TABLE Salla (
+    id SERIAL PRIMARY KEY,
+    emri_salles VARCHAR(20),
+    tipi VARCHAR(20),
+    kapaciteti INT,
+    statusi VARCHAR(20)
+);
+
+CREATE TABLE PajisjetMjekesore (
+    id SERIAL PRIMARY KEY,
+    emri_pajisjes VARCHAR(20),
+    pershkrimi VARCHAR(100),
+    sasia INT,
+    gjendja VARCHAR(50),
+    salla_id INT references Sallat(id) on DELETE CASCADE
+);
+
+CREATE TABLE Pagesa (
+    id SERIAL PRIMARY KEY,
+    pacient_id references Pacientet(id) on DELETE CASCADE,
+    fatura_id references Faturimi(id) on DELETE CASCADE,
+    shuma INT,
+    menyra_pageses VARCHAR(20),
+    statusi VARCHAR(20),
+    krijuar DATE
 );
 
 ///////////////////////////////////////////////////////////////////////////////////////

@@ -48,7 +48,6 @@ public class PagesaRepository {
             pstmt.setBigDecimal(3, dto.getShuma());
             pstmt.setString(4, dto.getMenyra_pageses());
             pstmt.setString(5, dto.getStatusi());
-            if (dto.getRegjistruar_nga() != null) pstmt.setInt(6, dto.getRegjistruar_nga()); else pstmt.setNull(6, Types.INTEGER);
             pstmt.execute();
             ResultSet res = pstmt.getGeneratedKeys();
             if (res.next()) {
@@ -74,7 +73,7 @@ public class PagesaRepository {
         }
 
         if (column != null && value != null) {
-            String query = "UPDATE pagesa SET " + column + " = ? WHERE pagesa_id = ?";
+            String query = "UPDATE pagesa SET " + column + " = ? WHERE id = ?";
             try (PreparedStatement pstmt = connection.prepareStatement(query)) {
                 pstmt.setObject(1, value);
                 pstmt.setInt(2, dto.getid());

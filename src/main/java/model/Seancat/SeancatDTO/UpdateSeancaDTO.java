@@ -3,26 +3,26 @@ package model.Seancat.SeancatDTO;
 import java.sql.Timestamp;
 
 public class UpdateSeancaDTO {
-    private int seanca_id;
+    private int id;
     private Timestamp data_seances;
     private String statusi;
 
-    public UpdateSeancaDTO(int seanca_id, Timestamp data_seances) {
-        this.seanca_id = seanca_id;
+    public UpdateSeancaDTO(int id, Timestamp data_seances) {
+        this.id = id;
         this.data_seances = data_seances;
     }
 
-    public UpdateSeancaDTO(int seanca_id, String statusi) {
-        this.seanca_id = seanca_id;
+    public UpdateSeancaDTO(int id, String statusi) {
+        this.id = id;
         this.statusi = statusi;
     }
 
     public int getSeanca_id() {
-        return seanca_id;
+        return id;
     }
 
-    public void setSeanca_id(int seanca_id) {
-        this.seanca_id = seanca_id;
+    public void setSeanca_id(int id) {
+        this.id = id;
     }
 
     public Timestamp getData_seances() {

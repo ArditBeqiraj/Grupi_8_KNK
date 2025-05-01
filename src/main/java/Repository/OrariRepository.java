@@ -19,8 +19,6 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDTO, Updat
     }
 
     public Orari create(CreateOrariDTO orariDto) {
-        //Kur kemi input nga useri vendosim ?
-        String query2 = "SELECT setval('orari_orari_id_seq', COALESCE((SELECT MAX(orari_id) FROM orari), 430756100) + 1, false);";
         String query = """
                 INSERT INTO Orari (perdoruesi_id, fillimi_ndrrimit, perfundimi_ndrrimit, roli)
                 VALUES (?, ?, ?, ?)
@@ -32,7 +30,6 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDTO, Updat
             pstm.setTimestamp(2, orariDto.getFillimi_ndrrimit());
             pstm.setTimestamp(3, orariDto.getPerfundimi_ndrrimit());
             pstm.setString(4, orariDto.getRoli());
-            statement.executeQuery(query2);
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {

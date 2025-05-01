@@ -1,20 +1,20 @@
 package model.Inventari.InventariDTO;
 
 public class UpdateInventariDTO {
-    private int produkt_id;
+    private int id;
     private int sasia;
 
-    public UpdateInventariDTO(int produkt_id, int sasia) {
-        this.produkt_id = produkt_id;
+    public UpdateInventariDTO(int id, int sasia) {
+        this.id = id;
         this.sasia = sasia;
     }
 
     public int getProdukt_id() {
-        return produkt_id;
+        return id;
     }
 
-    public void setProdukt_id(int produkt_id) {
-        this.produkt_id = produkt_id;
+    public void setProdukt_id(int id) {
+        this.id = id;
     }
 
     public int getSasia() {

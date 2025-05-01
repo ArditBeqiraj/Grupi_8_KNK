@@ -20,8 +20,6 @@ public class PacientetRepository extends BaseRepository<Pacientet, CreatePacient
     }
 
     public Pacientet create(CreatePacientetDTO pacientetDto) {
-        //Kur kemi input nga useri vendosim ?
-        String query2 = "SELECT setval('pacientet_pacient_id_seq', COALESCE((SELECT MAX(pacient_id) FROM pacientet), 530756100) + 1, false);";
         String query = """
                 INSERT INTO Pacientet (user_id, datelindja, gjinia, adresa, kontakti_emergjent)
                 VALUES (?, ?, ?, ?, ?)
@@ -34,7 +32,6 @@ public class PacientetRepository extends BaseRepository<Pacientet, CreatePacient
             pstm.setString(3, pacientetDto.getGjinia());
             pstm.setString(4, pacientetDto.getAdresa());
             pstm.setString(5, pacientetDto.getKontakti_emergjent());
-            statement.executeQuery(query2);
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {
@@ -52,7 +49,7 @@ public class PacientetRepository extends BaseRepository<Pacientet, CreatePacient
                 UPDATE Pacientet
                 SET adresa = ?,
                     kontakti_emergjent = ?
-                WHERE pacient_id = ?
+                WHERE id = ?
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
