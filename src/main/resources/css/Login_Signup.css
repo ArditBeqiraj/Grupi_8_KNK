@@ -1,0 +1,41 @@
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: transparent transparent #333 transparent;
+    -fx-padding: 4 0 4 0;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused {
+    -fx-border-color: transparent transparent #007BFF transparent;
+}
+
+.button {
+    -fx-background-color: #03DAC6;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+    -fx-background-color: #0056b3;
+}
+
+.harruar {
+
+}
+
+.button:focused {
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.4), 8, 0.5, 0, 0);
+}
+
+.text-field {
+    -fx-text-fill: #fff;
+}
