@@ -1,8 +1,6 @@
 package Repository;
 
 import Database.DBConnector;
-import model.Pacientet.Pacientet;
-import model.Pacientet.PacientetDTO.UpdatePacientetDTO;
 import model.Perdoruesi.Perdoruesi;
 import model.Perdoruesi.PerdoruesiDTO.CreatePerdoruesiDTO;
 import model.Perdoruesi.PerdoruesiDTO.UpdatePerdoruesiDTO;
@@ -90,20 +88,24 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
         String query = """
                 UPDATE Perdoruesi
                 SET email = ?,
-                    telefoni = ?,
-                    password = ?
+                    telefoni = ?
                 WHERE id = ?
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setString(1, perdoruesiDTO.getEmail());
             pstm.setString(2, perdoruesiDTO.getTelefoni());
-            pstm.setString(3, perdoruesiDTO.getPassword());
-            pstm.setInt(4, perdoruesiDTO.getUser_id());
+            pstm.setInt(3, perdoruesiDTO.getUser_id());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return this.getById(perdoruesiDTO.getUser_id());
+    }
+
+    public boolean updatePassword(int id, String password, String salt) throws SQLException {
+        String query = "UPDATE perdoruesi SET salt = ?, password = ? WHERE id = ?";
+        Statement statement = this.connection.createStatement();
+        return statement.execute(query);
     }
 }

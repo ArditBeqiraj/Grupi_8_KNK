@@ -10,16 +10,18 @@ public class CreatePerdoruesiDTO {
     private String email;
     private String telefoni;
     private String roli;
-    private String password;
+    private String salt;
+    private String hashedpassword;
     private Timestamp krijuar = new Timestamp(date.getTime());
 
-    public CreatePerdoruesiDTO(String emri, String mbiemri, String email, String telefoni, String roli, String password, Timestamp krijuar) {
+    public CreatePerdoruesiDTO(String emri, String mbiemri, String email, String telefoni, String roli, String salt, String hashedpassword, Timestamp krijuar) {
         this.emri = emri;
         this.mbiemri = mbiemri;
         this.email = email;
         this.telefoni = telefoni;
         this.roli = roli;
-        this.password = password;
+        this.salt = salt;
+        this.hashedpassword = hashedpassword;
         this.krijuar = krijuar;
     }
 
@@ -64,11 +66,11 @@ public class CreatePerdoruesiDTO {
     }
 
     public String getPassword() {
-        return password;
+        return hashedpassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String hashedpassword) {
+        this.hashedpassword = hashedpassword;
     }
 
     public Timestamp getKrijuar() {
@@ -79,4 +81,11 @@ public class CreatePerdoruesiDTO {
         this.krijuar = krijuar;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 }

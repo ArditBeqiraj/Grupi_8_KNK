@@ -11,17 +11,19 @@ public class Perdoruesi {
     private String email;
     private String telefoni;
     private String roli;
-    private String password;
+    private String salt;
+    private String hashedpassword;
     private Timestamp krijuar;
 
-    private Perdoruesi(int id, String emri, String mbiemri, String email, String telefoni, String roli, String password, Timestamp krijuar) {
+    private Perdoruesi(int id, String emri, String mbiemri, String email, String telefoni, String roli, String salt, String hashedpassword, Timestamp krijuar) {
         this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
         this.email = email;
         this.telefoni = telefoni;
         this.roli = roli;
-        this.password = password;
+        this.salt = salt;
+        this.hashedpassword = hashedpassword;
         this.krijuar = krijuar;
     }
 
@@ -32,10 +34,11 @@ public class Perdoruesi {
         String email = resultSet.getString("email");
         String telefoni = resultSet.getString("telefoni");
         String roli = resultSet.getString("roli");
-        String password = resultSet.getString("password");
+        String salt = resultSet.getString("salt");
+        String hashedpassword = resultSet.getString("hashedpassword");
         Timestamp krijuar = resultSet.getTimestamp("krijuar");
 
-        return new Perdoruesi(id, emri, mbiemri, email, telefoni, roli, password, krijuar);
+        return new Perdoruesi(id, emri, mbiemri, email, telefoni, roli, salt, hashedpassword, krijuar);
     }
 
     public int getUser_id() {
@@ -63,10 +66,26 @@ public class Perdoruesi {
     }
 
     public String getPassword() {
-        return password;
+        return hashedpassword;
     }
 
     public Timestamp getKrijuar() {
         return krijuar;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getHashedpassword() {
+        return hashedpassword;
+    }
+
+    public void setHashedpassword(String hashedpassword) {
+        this.hashedpassword = hashedpassword;
     }
 }

@@ -4,9 +4,8 @@ public class UpdatePerdoruesiDTO {
     private int id;
     private String email;
     private String telefoni;
-    private String password;
 
-    public enum Type { EMAIL, TELEFONI, PASSWORD }
+    public enum Type { EMAIL, TELEFONI}
 
     public UpdatePerdoruesiDTO(int id, String update, Type type) {
         this.id = id;
@@ -14,8 +13,6 @@ public class UpdatePerdoruesiDTO {
             this.email = update;
         } else if (type == Type.TELEFONI){
             this.telefoni = update;
-        } else {
-            this.password = update;
         }
     }
 
@@ -43,11 +40,5 @@ public class UpdatePerdoruesiDTO {
         this.telefoni = telefoni;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
