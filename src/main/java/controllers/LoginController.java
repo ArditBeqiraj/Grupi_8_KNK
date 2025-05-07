@@ -11,7 +11,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.sql.SQLException;
-import services.Navigator;
+
+import model.Perdoruesi.PerdoruesiDTO.LoginPerdoruesiDto;
+import services.PerdoruesiService;
+import services.SceneManager;
+import utils.Validator;
 
 public class LoginController {
     @FXML
@@ -30,10 +34,12 @@ public class LoginController {
                 try {
                     handleLoginStudent();
                     if (txtErrorMessage.getText().isEmpty()) {
-                        Navigator.navigate(event, Navigator.DASHBOARD_STUDENT);
+                        SceneManager.load(SceneManager.ADMINHOME_PAGE);
                     }
                 } catch (SQLException sqle) {
                     sqle.printStackTrace();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
             }
         };
@@ -43,10 +49,10 @@ public class LoginController {
     }
 
     @FXML
-    private void handleLoginStudentClick(MouseEvent event) throws SQLException {
+    private void handleLoginStudentClick(MouseEvent event) throws Exception {
         handleLoginStudent();
         if (txtErrorMessage.getText().isEmpty()) {
-            Navigator.navigate(event, Navigator.DASHBOARD_STUDENT);
+            SceneManager.load(SceneManager.ADMINHOME_PAGE);
         }
     }
 
@@ -57,12 +63,12 @@ public class LoginController {
             return;
         }
 
-        LoginUserDto loginUserDto = new LoginUserDto(
+        LoginPerdoruesiDto loginUserDto = new LoginPerdoruesiDto(
                 Validator.clearSpaces(this.txtStudentId.getText()),
                 Validator.clearSpaces(this.pwdPassword.getText())
         );
 
-        boolean isLogin = UserService.login(loginUserDto);
+        boolean isLogin = PerdoruesiService.login(loginUserDto);
 
         if(!isLogin) {
             txtErrorMessage.setText("Username or password is incorrect");
