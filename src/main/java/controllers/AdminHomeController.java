@@ -138,9 +138,10 @@ public class AdminHomeController implements Initializable {
             return;
         }
 
-        String check = "SELECT * FROM perdoruesi WHERE email = ?";
+        String check = "SELECT * FROM perdoruesi WHERE email = ? AND ID != ?";
         try (PreparedStatement checkStmt = DBConnector.getConnection().prepareStatement(check)) {
             checkStmt.setString(1, shtoStaf_Email.getText());
+            checkStmt.setString(2, shtoStaf_UserID.getText());
             ResultSet resultSet = checkStmt.executeQuery();
 
             if (resultSet.next()) {
@@ -185,7 +186,7 @@ public class AdminHomeController implements Initializable {
 
             int userId = Integer.valueOf(shtoStaf_UserID.getText());
             perdoruesiRepository.delete(Integer.valueOf(shtoStaf_UserID.getText()));
-            shtoStafLista.removeIf(p -> p.getUser_id() == userId);
+            shtoStafLista.removeIf(p -> p.getId() == userId);
             shtoStaf_Tabela.setItems(shtoStafLista);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -282,7 +283,7 @@ public class AdminHomeController implements Initializable {
 
         if ((num -1) < -1) {return;}
 
-        shtoStaf_UserID.setText(String.valueOf(perdoruesi.getUser_id()));
+        shtoStaf_UserID.setText(String.valueOf(perdoruesi.getId()));
         shtoStaf_Emri.setText(perdoruesi.getEmri());
         shtoStaf_Mbiemri.setText(perdoruesi.getMbiemri());
         shtoStaf_Email.setText(perdoruesi.getEmail());

@@ -66,6 +66,6 @@ public class PerdoruesiService {
         }
 
 
-        return new PerdoruesiRepository().updatePassword(perdoruesi.getUser_id(), newHashedPassword, salt);
+        return new PerdoruesiRepository().updatePassword(perdoruesi.getId(), newHashedPassword, salt);
     }
 }

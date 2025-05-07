@@ -56,7 +56,7 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
 
     public Perdoruesi create(CreatePerdoruesiDTO perdoruesiDTO) {
         //Kur kemi input nga useri vendosim ?
-        String query2 = "SELECT setval('perdoruesi_id_seq', COALESCE((SELECT MAX(id) FROM perdoruesi), 230756100) + 1, false);";
+        String query2 = "SELECT setval('id_seq', COALESCE((SELECT MAX(id) FROM perdoruesi), 230756100) + 1, false);";
         String query = """
                 INSERT INTO Perdoruesi (emri, mbiemri, email, telefoni, roli, password, confirmpassword, krijuar)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -70,7 +70,8 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
             pstm.setString(4, perdoruesiDTO.getTelefoni());
             pstm.setString(5, perdoruesiDTO.getRoli());
             pstm.setString(6, perdoruesiDTO.getPassword());
-            pstm.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+            pstm.setString(7, perdoruesiDTO.getPassword());
+            pstm.setTimestamp(8, new Timestamp(System.currentTimeMillis()));
             statement.executeQuery(query2);
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();

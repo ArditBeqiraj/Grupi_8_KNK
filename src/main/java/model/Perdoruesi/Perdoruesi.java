@@ -1,5 +1,7 @@
 package model.Perdoruesi;
 
+import services.PasswordHasher;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -34,14 +36,14 @@ public class Perdoruesi {
         String email = resultSet.getString("email");
         String telefoni = resultSet.getString("telefoni");
         String roli = resultSet.getString("roli");
-        String salt = resultSet.getString("salt");
-        String hashedpassword = resultSet.getString("hashedpassword");
+        String salt = PasswordHasher.generateSalt();
+        String hashedpassword = PasswordHasher.generateSaltedHash("1234", salt);
         Timestamp krijuar = resultSet.getTimestamp("krijuar");
 
         return new Perdoruesi(id, emri, mbiemri, email, telefoni, roli, salt, hashedpassword, krijuar);
     }
 
-    public int getUser_id() {
+    public int getId() {
         return id;
     }
 
@@ -88,4 +90,6 @@ public class Perdoruesi {
     public void setHashedpassword(String hashedpassword) {
         this.hashedpassword = hashedpassword;
     }
+    
+    
 }
