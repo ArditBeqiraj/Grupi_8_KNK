@@ -1,178 +1,158 @@
+-- 1. Krijimi i tabelës Perdoruesi me kolonën confirmpassword të shtuar
 CREATE TABLE Perdoruesi (
-    id SERIAL PRIMARY KEY,
-    emri VARCHAR(50) NOT NULL,
-    mbiemri VARCHAR(50) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    telefoni VARCHAR(20),
-    roli VARCHAR(20) CHECK (roli IN ('Doktor', 'Moter', 'Admin', 'Pacient','Praktikant')),
-    password TEXT NOT NULL,
-    krijuar TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                            id SERIAL PRIMARY KEY,
+                            emri VARCHAR(50) NOT NULL,
+                            mbiemri VARCHAR(50) NOT NULL,
+                            email VARCHAR(100) UNIQUE NOT NULL,
+                            telefoni VARCHAR(20),
+                            roli VARCHAR(20) CHECK (roli IN ('Doktor', 'Moter', 'Admin', 'Pacient', 'Praktikant')),
+                            password TEXT NOT NULL,
+                            krijuar TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                            confirmpassword TEXT
 );
 
+-- 2. Tabela tjera
 CREATE TABLE Pacientet (
-    id SERIAL PRIMARY KEY,
-    user_id INT UNIQUE REFERENCES Perdoruesi(user_id) ON DELETE CASCADE,
-    datelindja DATE,
-    gjinia VARCHAR(10) CHECK (gjinia IN ('Mashkull', 'Femer')),
-    adresa TEXT,
-    kontakti_emergjent VARCHAR(100)
+                           id SERIAL PRIMARY KEY,
+                           user_id INT UNIQUE REFERENCES Perdoruesi(id) ON DELETE CASCADE,
+                           datelindja DATE,
+                           gjinia VARCHAR(10) CHECK (gjinia IN ('Mashkull', 'Femer')),
+                           adresa TEXT,
+                           kontakti_emergjent VARCHAR(100)
 );
 
 CREATE TABLE Rekordet (
-    id SERIAL PRIMARY KEY,
-    pacient_id INT REFERENCES Pacientet(pacient_id) ON DELETE CASCADE,
-    doktor_id INT REFERENCES Perdoruesi(user_id) ON DELETE SET NULL,
-    diagnoza TEXT,
-    udhezimi TEXT,
-    data_vizites TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                          id SERIAL PRIMARY KEY,
+                          pacient_id INT REFERENCES Pacientet(id) ON DELETE CASCADE,
+                          doktor_id INT REFERENCES Perdoruesi(id) ON DELETE SET NULL,
+                          diagnoza TEXT,
+                          udhezimi TEXT,
+                          data_vizites TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Seancat (
-    id SERIAL PRIMARY KEY,
-    pacient_id INT REFERENCES Pacientet(pacient_id) ON DELETE CASCADE,
-    doktor_id INT REFERENCES Perdoruesi(user_id) ON DELETE SET NULL,
-    data_seances TIMESTAMP NOT NULL,
-    statusi VARCHAR(20) CHECK (statusi IN ('Skeduluar', 'Perfunduar', 'Anuluar')),
-    shenime TEXT
+                         id SERIAL PRIMARY KEY,
+                         pacient_id INT REFERENCES Pacientet(id) ON DELETE CASCADE,
+                         doktor_id INT REFERENCES Perdoruesi(id) ON DELETE SET NULL,
+                         data_seances TIMESTAMP NOT NULL,
+                         statusi VARCHAR(20) CHECK (statusi IN ('Skeduluar', 'Perfunduar', 'Anuluar')),
+                         shenime TEXT
 );
 
 CREATE TABLE Sherbimet (
-    id SERIAL PRIMARY KEY,
-    emri_sherbimit VARCHAR(100) NOT NULL,
-    pershkrimi TEXT,
-    cmimi DECIMAL(10,2) NOT NULL CHECK (cmimi >= 0)
+                           id SERIAL PRIMARY KEY,
+                           emri_sherbimit VARCHAR(100) NOT NULL,
+                           pershkrimi TEXT,
+                           cmimi DECIMAL(10,2) NOT NULL CHECK (cmimi >= 0)
 );
 
 CREATE TABLE Faturimi (
-    id SERIAL PRIMARY KEY,
-    pacient_id INT REFERENCES Pacientet(pacient_id) ON DELETE CASCADE,
-    sherbimi_id INT REFERENCES Sherbimet(sherbimi_id) ON DELETE SET NULL,
-    shuma DECIMAL(10,2) NOT NULL CHECK (shuma >= 0),
-    statusi VARCHAR(20) CHECK (statusi IN ('Ne pritje', 'Paguar', 'Anuluar')),
-    krijuar TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                          id SERIAL PRIMARY KEY,
+                          pacient_id INT REFERENCES Pacientet(id) ON DELETE CASCADE,
+                          sherbimi_id INT REFERENCES Sherbimet(id) ON DELETE SET NULL,
+                          shuma DECIMAL(10,2) NOT NULL CHECK (shuma >= 0),
+                          statusi VARCHAR(20) CHECK (statusi IN ('Ne pritje', 'Paguar', 'Anuluar')),
+                          krijuar TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Inventari (
-    id SERIAL PRIMARY KEY,
-    emri_produktit VARCHAR(100) NOT NULL,
-    sasia INT NOT NULL CHECK (sasia >= 0),
-    furnizuesi VARCHAR(100)
+                           id SERIAL PRIMARY KEY,
+                           emri_produktit VARCHAR(100) NOT NULL,
+                           sasia INT NOT NULL CHECK (sasia >= 0),
+                           furnizuesi VARCHAR(100)
 );
 
 CREATE TABLE Orari (
-    id SERIAL PRIMARY KEY,
-    perdoruesi_id INT REFERENCES Perdoruesi(user_id) ON DELETE CASCADE,
-    fillimi_ndrrimit TIMESTAMP NOT NULL,
-    perfundimi_ndrrimit TIMESTAMP NOT NULL,
-    roli VARCHAR(20) CHECK (roli IN ('Doktor', 'Moter', 'Admin','Praktikant'))
+                       id SERIAL PRIMARY KEY,
+                       perdoruesi_id INT REFERENCES Perdoruesi(id) ON DELETE CASCADE,
+                       fillimi_ndrrimit TIMESTAMP NOT NULL,
+                       perfundimi_ndrrimit TIMESTAMP NOT NULL,
+                       roli VARCHAR(20) CHECK (roli IN ('Doktor', 'Moter', 'Admin', 'Praktikant'))
 );
 
 CREATE TABLE Mjeket (
-    id SERIAL PRIMARY KEY,
-    emri VARCHAR(20),
-    mbiemri VARCHAR(20),
-    nr_licenses VARCHAR(20),
-    nr_telefoni VARCHAR(20),
-    email VARCHAR(20),
-    specializimi_kryesor VARCHAR(20)
-);
-
-CREATE TABLE MjekuSpecializimi (
-    id SERIAL PRIMARY KEY;
-    mjeku_id INT REFERENCES Mjeket(id) on DELETE CASCADE,
-    specializimi_id REFERENCES Specializimet(id) on DELETE CASCADE
-);
-
-CREATE TABLE Terminet (
-    id SERIAL PRIMARY KEY,
-    id_pacient INT references Pacientet(id) on DELETE CASCADE,
-    id_mjek INT references Mjeket(id) on DELETE CASCADE,
-    id_salle INT references Sallat(id) on DELETE CASCADE,
-    data DATE,
-    statusi VARCHAR(20),
-    shenime VARCHAR(100)
+                        id SERIAL PRIMARY KEY,
+                        emri VARCHAR(20),
+                        mbiemri VARCHAR(20),
+                        nr_licenses VARCHAR(20),
+                        nr_telefoni VARCHAR(20),
+                        email VARCHAR(50),
+                        specializimi_kryesor VARCHAR(50)
 );
 
 CREATE TABLE Specializimet (
-    id SERIAL PRIMARY KEY,
-    emri_specializimit VARCHAR(20)
+                               id SERIAL PRIMARY KEY,
+                               emri_specializimit VARCHAR(50)
 );
 
-CREATE TABLE Salla (
-    id SERIAL PRIMARY KEY,
-    emri_salles VARCHAR(20),
-    tipi VARCHAR(20),
-    kapaciteti INT,
-    statusi VARCHAR(20)
+CREATE TABLE MjekuSpecializimi (
+                                   id SERIAL PRIMARY KEY,
+                                   mjeku_id INT REFERENCES Mjeket(id) ON DELETE CASCADE,
+                                   specializimi_id INT REFERENCES Specializimet(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Sallat (
+                        id SERIAL PRIMARY KEY,
+                        emri_salles VARCHAR(50),
+                        tipi VARCHAR(50),
+                        kapaciteti INT,
+                        statusi VARCHAR(20)
 );
 
 CREATE TABLE PajisjetMjekesore (
-    id SERIAL PRIMARY KEY,
-    emri_pajisjes VARCHAR(20),
-    pershkrimi VARCHAR(100),
-    sasia INT,
-    gjendja VARCHAR(50),
-    salla_id INT references Sallat(id) on DELETE CASCADE
+                                   id SERIAL PRIMARY KEY,
+                                   emri_pajisjes VARCHAR(50),
+                                   pershkrimi VARCHAR(100),
+                                   sasia INT,
+                                   gjendja VARCHAR(50),
+                                   salla_id INT REFERENCES Sallat(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Terminet (
+                          id SERIAL PRIMARY KEY,
+                          id_pacient INT REFERENCES Pacientet(id) ON DELETE CASCADE,
+                          id_mjek INT REFERENCES Mjeket(id) ON DELETE CASCADE,
+                          id_salle INT REFERENCES Sallat(id) ON DELETE CASCADE,
+                          data DATE,
+                          statusi VARCHAR(20),
+                          shenime VARCHAR(100)
 );
 
 CREATE TABLE Pagesa (
-    id SERIAL PRIMARY KEY,
-    pacient_id references Pacientet(id) on DELETE CASCADE,
-    fatura_id references Faturimi(id) on DELETE CASCADE,
-    shuma INT,
-    menyra_pageses VARCHAR(20),
-    statusi VARCHAR(20),
-    krijuar DATE
+                        id SERIAL PRIMARY KEY,
+                        pacient_id INT REFERENCES Pacientet(id) ON DELETE CASCADE,
+                        fatura_id INT REFERENCES Faturimi(id) ON DELETE CASCADE,
+                        shuma INT,
+                        menyra_pageses VARCHAR(20),
+                        statusi VARCHAR(20),
+                        krijuar DATE
 );
 
-///////////////////////////////////////////////////////////////////////////////////////
-Mbushja me te dhena per testim
--- Mbushja e tabelës Perdoruesi
-INSERT INTO Perdoruesi (emri, mbiemri, email, telefoni, roli, password) VALUES
-('Arben', 'Hoxha', 'arben.hoxha@example.com', '044123456', 'Doktor', 'password123'),
-('Linda', 'Berisha', 'linda.berisha@example.com', '045654321', 'Moter', 'password456'),
-('Edison', 'Krasniqi', 'edison.krasniqi@example.com', '049987654', 'Admin', 'password789'),
-('Gent', 'Shala', 'gent.shala@example.com', '046555666', 'Pacient', 'password111'),
-('Alma', 'Dervishi', 'alma.dervishi@example.com', '043888999', 'Praktikant', 'password222');
+-- 3. Të dhëna testuese
+INSERT INTO Perdoruesi (emri, mbiemri, email, telefoni, roli, password, confirmpassword) VALUES
+('Arben', 'Hoxha', 'arben.hoxha@example.com', '044123456', 'Doktor', 'password123', 'password123'),
+('Linda', 'Berisha', 'linda.berisha@example.com', '045654321', 'Moter', 'password456', 'password456'),
+('Edison', 'Krasniqi', 'edison.krasniqi@example.com', '049987654', 'Admin', 'password789', 'password789'),
+('Gent', 'Shala', 'gent.shala@example.com', '046555666', 'Pacient', 'password111', 'password111'),
 
--- Mbushja e tabelës Pacientet (ndryshuar user_id që të mos përsëritet)
+('Alma', 'Dervishi', 'alma.dervishi@example.com', '043888999', 'Praktikant', 'password222', 'password222');
+
 INSERT INTO Pacientet (user_id, datelindja, gjinia, adresa, kontakti_emergjent) VALUES
 (4, '1990-05-20', 'Mashkull', 'Rr. Dardania, Prishtinë', '044999888'),
 (5, '1985-11-15', 'Femer', 'Rr. Bregu i Diellit, Prishtinë', '049666777');
 
--- Mbushja e tabelës Rekordet (ndryshuar pacient_id që të jenë valid)
 INSERT INTO Rekordet (pacient_id, doktor_id, diagnoza, udhezimi) VALUES
 (1, 1, 'Hipertension', 'Reduktim i kripës në ushqim'),
 (2, 1, 'Astma', 'Përdorimi i inhalatorit dy herë në ditë');
 
--- Mbushja e tabelës Seancat (ndryshuar pacient_id që të jenë valid)
 INSERT INTO Seancat (pacient_id, doktor_id, data_seances, statusi, shenime) VALUES
 (1, 1, '2025-03-26 10:00:00', 'Skeduluar', 'Vizitë rutinore'),
 (2, 1, '2025-03-27 11:00:00', 'Perfunduar', 'Kontroll për alergji');
 
--- Mbushja e tabelës Sherbimet
 INSERT INTO Sherbimet (emri_sherbimit, pershkrimi, cmimi) VALUES
 ('Analiza e Gjakut', 'Test i plotë i analizave të gjakut', 20.00),
-('Ekografi', 'Kontroll ultrasonografik', 30.00),
-('EKG', 'Elektrokardiogramë për zemrën', 25.00),
-('Fizioterapi', 'Seancë për rehabilitim', 40.00),
-('Kontroll Mjekësor', 'Vizitë e përgjithshme mjekësore', 15.00);
+('Ekografi', 'Kontroll ultrasonografik', 30.00);
 
--- Mbushja e tabelës Faturimi (ndryshuar pacient_id që të jenë valid)
 INSERT INTO Faturimi (pacient_id, sherbimi_id, shuma, statusi) VALUES
 (1, 1, 20.00, 'Paguar'),
 (2, 2, 30.00, 'Ne pritje');
-
--- Mbushja e tabelës Inventari
-INSERT INTO Inventari (emri_produktit, sasia, furnizuesi) VALUES
-('Gjilpëra sterile', 100, 'MedSupply Co.'),
-('Doreza mjekësore', 200, 'SafeMed'),
-('Maska kirurgjikale', 300, 'HealthProtect'),
-('Dezinfektues', 150, 'CleanMed'),
-('Antibiotik Amoksicilin', 50, 'PharmaPlus');
-
--- Mbushja e tabelës Orari (siguruar që user_id ekziston)
-INSERT INTO Orari (perdoruesi_id, fillimi_ndrrimit, perfundimi_ndrrimit, roli) VALUES
-(1, '2025-03-25 08:00:00', '2025-03-25 16:00:00', 'Doktor'),
-(2, '2025-03-25 16:00:00', '2025-03-25 23:00:00', 'Moter'),
-(3, '2025-03-26 08:00:00', '2025-03-26 16:00:00', 'Admin');

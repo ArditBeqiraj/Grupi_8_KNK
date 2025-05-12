@@ -15,7 +15,7 @@ public class testDBConnector {
             ResultSet resultSet = statement.executeQuery("select * from grupi_8_knk.public.perdoruesi ;");
 
             while (resultSet.next()) {
-                int id = resultSet.getInt("user_id");
+                int id = resultSet.getInt("id");
                 String emri = resultSet.getString("emri");
                 String mbiemri = resultSet.getString("mbiemri");
 

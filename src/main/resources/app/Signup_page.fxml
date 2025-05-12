@@ -20,13 +20,13 @@
         <PasswordField layoutX="211.0" layoutY="266.0" prefHeight="26.0" prefWidth="226.0" promptText="Konfirmo fjalëkalimin:" stylesheets="@../css/Login_Signup.css" />
         <Button id="button" layoutX="177.0" layoutY="304.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="263.0" stylesheets="@../css/Login_Signup.css" text="Vazhdoni" />
         <Button layoutX="337.0" layoutY="355.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Kyçuni" textFill="#03dac6" underline="true" />
-        <FontAwesomeIconView fill="#bb86fc" glyphName="USER" layoutX="179.0" layoutY="129.0" selectionFill="BLACK" size="30" wrappingWidth="23.064461708068848" />
-        <FontAwesomeIconView fill="#bb86fc" glyphName="LOCK" layoutX="179.0" layoutY="248.0" size="30" wrappingWidth="23.064461708068848" />
+        <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="179.0" layoutY="129.0" selectionFill="BLACK" size="30" text="" wrappingWidth="23.064461708068848" />
+        <FontAwesomeIconView fill="WHITE" glyphName="LOCK" layoutX="179.0" layoutY="248.0" size="30" text="" wrappingWidth="23.064461708068848" />
         <Label layoutX="206.0" layoutY="360.0" text="Posedoni një llogari?" textFill="WHITE" />
-        <FontAwesomeIconView fill="#bb86fc" glyphName="LOCK" layoutX="179.0" layoutY="289.0" size="30" wrappingWidth="23.064461708068848" />
-        <FontAwesomeIconView fill="#bb86fc" glyphName="PHONE" layoutX="178.0" layoutY="166.0" size="30" wrappingWidth="23.064461708068848" />
+        <FontAwesomeIconView fill="WHITE" glyphName="LOCK" layoutX="179.0" layoutY="289.0" size="30" text="" wrappingWidth="23.064461708068848" />
+        <FontAwesomeIconView fill="WHITE" glyphName="PHONE" layoutX="178.0" layoutY="166.0" size="30" text="" wrappingWidth="23.064461708068848" />
         <TextField id="text-field" editable="false" layoutX="210.0" layoutY="143.0" prefHeight="28.0" prefWidth="55.0" stylesheets="@../css/Login_Signup.css" text="+383" />
-        <FontAwesomeIconView fill="#bb86fc" glyphName="MARS" layoutX="178.0" layoutY="210.0" size="30" wrappingWidth="23.064461708068848" />
+        <FontAwesomeIconView fill="WHITE" glyphName="MARS" layoutX="178.0" layoutY="210.0" size="30" wrappingWidth="23.064461708068848" />
         <FontAwesomeIconView fill="WHITE" glyphName="VENUS" layoutX="312.0" layoutY="210.0" size="30" wrappingWidth="23.064461708068848" />
     </children>
 </AnchorPane>
