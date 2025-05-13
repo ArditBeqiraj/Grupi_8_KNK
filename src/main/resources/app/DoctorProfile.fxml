@@ -44,9 +44,9 @@
                       </VBox>
                   </children>
               </AnchorPane>
-            <AnchorPane layoutX="219.0" layoutY="52.0" prefHeight="496.0" prefWidth="734.0" style="-fx-background-color: lightyellow;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+            <AnchorPane layoutX="219.0" layoutY="52.0" prefHeight="496.0" prefWidth="734.0" style="-fx-background-color: #D1D9E6;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <HBox alignment="CENTER" layoutX="27.0" layoutY="14.0" spacing="10.0" AnchorPane.bottomAnchor="74.40000000000009" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="27.199999999999932" AnchorPane.topAnchor="14.0">
+                  <HBox alignment="CENTER" layoutX="27.0" layoutY="14.0" spacing="10.0" AnchorPane.bottomAnchor="74.40000000000009" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="410.0" prefWidth="402.0" spacing="70.0" HBox.hgrow="ALWAYS">
                            <children>
@@ -57,7 +57,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField maxWidth="250.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                    <TextField style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -74,21 +74,21 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField maxWidth="250.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                    <TextField style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </TextField>
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefHeight="43.0" prefWidth="242.0" spacing="3.0" VBox.vgrow="ALWAYS">
+                              <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefHeight="43.0" prefWidth="248.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                  <children>
                                     <Label text="Specializations">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField maxWidth="250.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                    <TextField style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -109,7 +109,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField maxWidth="250.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                    <TextField style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -126,7 +126,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField maxWidth="250.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                    <TextField style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -140,7 +140,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextField maxWidth="250.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                    <TextField style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -154,11 +154,11 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="442.0" layoutY="429.0" prefHeight="55.0" prefWidth="250.0" spacing="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <HBox alignment="CENTER" layoutY="432.0" prefHeight="55.0" prefWidth="696.0" spacing="10.0" AnchorPane.bottomAnchor="12.000000000000057" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Change Password" HBox.hgrow="ALWAYS"/>
-                        <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Edit" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Submit" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Change Password" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Edit" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Submit" />
                      </children>
                   </HBox>
                </children>

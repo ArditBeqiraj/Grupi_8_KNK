@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #F5F7FA;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #D1D9E6;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="174.4" prefHeight="86.0" prefWidth="926.0" style="-fx-background-color: #F5F7FA;" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -38,7 +38,7 @@
                <children>
                   <VBox alignment="CENTER">
                      <children>
-                        <FontAwesomeIconView fill="#a69797" glyphName="USER" size="100" />
+                        <FontAwesomeIconView fill="#3e8e7e" glyphName="USER" size="100" />
                         <Label minHeight="0.0" text="Dr Name">
                            <font>
                               <Font size="15.0" />
@@ -48,10 +48,10 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="421.0" prefWidth="174.0" spacing="25.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10;" text="Home" />
-                        <Button layoutX="72.0" layoutY="292.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10;" text="My Profile" />
-                        <Button layoutX="72.0" layoutY="324.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10;" text="Patients" />
-                        <Button layoutX="72.0" layoutY="327.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10;" text="Appointments" />
+                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="Home" />
+                        <Button layoutX="72.0" layoutY="292.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="My Profile" />
+                        <Button layoutX="72.0" layoutY="324.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="Patients" />
+                        <Button layoutX="72.0" layoutY="327.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="Appointments" />
                      </children>
                      <padding>
                         <Insets top="50.0" />
@@ -73,11 +73,13 @@
                               <Label text="Total Patient" textFill="WHITE">
                                  <font>
                                     <Font size="17.0" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
                               <Label text="600" textFill="WHITE">
                                  <font>
                                     <Font size="17.00000001" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                      </children>
@@ -90,11 +92,13 @@
                               <Label text="Operation" textFill="WHITE">
                                  <font>
                                     <Font size="17.0" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
                               <Label text="400" textFill="WHITE">
                                  <font>
                                     <Font size="17.0" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                      </children>
@@ -107,11 +111,13 @@
                                 <Label text="Appointments" textFill="WHITE">
                                  <font>
                                     <Font size="17.0" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
                                 <Label text="80" textFill="WHITE">
                                  <font>
                                     <Font size="17.0" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
                             </children>
                         </VBox>
                      </children>
@@ -153,7 +159,7 @@
                   </VBox>
                   <AnchorPane layoutX="22.0" layoutY="30.0" prefHeight="62.0" prefWidth="351.0" style="-fx-background-color: #3E8E7E; -fx-background-radius: 15;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <children>
-                        <HBox layoutX="14.0" layoutY="18.0" spacing="120.0">
+                        <HBox alignment="CENTER" layoutX="14.0" layoutY="18.0" spacing="120.0">
                            <children>
                               <Label text="My calendar" textFill="WHITE" />
                               <DatePicker prefHeight="26.0" prefWidth="131.0" />
