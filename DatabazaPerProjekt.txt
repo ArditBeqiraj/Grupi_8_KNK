@@ -1,14 +1,14 @@
 -- 1. Krijimi i tabelës Perdoruesi me kolonën confirmpassword të shtuar
 CREATE TABLE Perdoruesi (
-                            id SERIAL PRIMARY KEY,
-                            emri VARCHAR(50) NOT NULL,
-                            mbiemri VARCHAR(50) NOT NULL,
-                            email VARCHAR(100) UNIQUE NOT NULL,
-                            telefoni VARCHAR(20),
-                            roli VARCHAR(20) CHECK (roli IN ('Doktor', 'Moter', 'Admin', 'Pacient', 'Praktikant')),
-                            password TEXT NOT NULL,
-                            krijuar TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                            confirmpassword TEXT
+    id SERIAL PRIMARY KEY,
+    emri VARCHAR(50) NOT NULL,
+    mbiemri VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    telefoni VARCHAR(20),
+    roli VARCHAR(20) CHECK (roli IN ('Doktor', 'Moter', 'Admin', 'Pacient', 'Praktikant')),
+    hashedpassword TEXT NOT NULL,
+    salt TEXT NOT NULL,
+    krijuar TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 2. Tabela tjera
@@ -127,32 +127,3 @@ CREATE TABLE Pagesa (
                         statusi VARCHAR(20),
                         krijuar DATE
 );
-
--- 3. Të dhëna testuese
-INSERT INTO Perdoruesi (emri, mbiemri, email, telefoni, roli, password, confirmpassword) VALUES
-('Arben', 'Hoxha', 'arben.hoxha@example.com', '044123456', 'Doktor', 'password123', 'password123'),
-('Linda', 'Berisha', 'linda.berisha@example.com', '045654321', 'Moter', 'password456', 'password456'),
-('Edison', 'Krasniqi', 'edison.krasniqi@example.com', '049987654', 'Admin', 'password789', 'password789'),
-('Gent', 'Shala', 'gent.shala@example.com', '046555666', 'Pacient', 'password111', 'password111'),
-
-('Alma', 'Dervishi', 'alma.dervishi@example.com', '043888999', 'Praktikant', 'password222', 'password222');
-
-INSERT INTO Pacientet (user_id, datelindja, gjinia, adresa, kontakti_emergjent) VALUES
-(4, '1990-05-20', 'Mashkull', 'Rr. Dardania, Prishtinë', '044999888'),
-(5, '1985-11-15', 'Femer', 'Rr. Bregu i Diellit, Prishtinë', '049666777');
-
-INSERT INTO Rekordet (pacient_id, doktor_id, diagnoza, udhezimi) VALUES
-(1, 1, 'Hipertension', 'Reduktim i kripës në ushqim'),
-(2, 1, 'Astma', 'Përdorimi i inhalatorit dy herë në ditë');
-
-INSERT INTO Seancat (pacient_id, doktor_id, data_seances, statusi, shenime) VALUES
-(1, 1, '2025-03-26 10:00:00', 'Skeduluar', 'Vizitë rutinore'),
-(2, 1, '2025-03-27 11:00:00', 'Perfunduar', 'Kontroll për alergji');
-
-INSERT INTO Sherbimet (emri_sherbimit, pershkrimi, cmimi) VALUES
-('Analiza e Gjakut', 'Test i plotë i analizave të gjakut', 20.00),
-('Ekografi', 'Kontroll ultrasonografik', 30.00);
-
-INSERT INTO Faturimi (pacient_id, sherbimi_id, shuma, statusi) VALUES
-(1, 1, 20.00, 'Paguar'),
-(2, 2, 30.00, 'Ne pritje');

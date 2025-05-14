@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class PerdoruesiService {
+
     public Perdoruesi create(Perdoruesi perdoruesi) {
         String salt = PasswordHasher.generateSalt();
         String password = PasswordHasher.generateSaltedHash("12345", salt);
@@ -24,14 +25,13 @@ public class PerdoruesiService {
                 password,
                 new Timestamp(System.currentTimeMillis())
         );
-        Perdoruesi perdoruesi1 = new PerdoruesiRepository().create(createStudentData);
-        return perdoruesi1;
+        return new PerdoruesiRepository().create(createStudentData);
     }
 
     public static boolean login(LoginPerdoruesiDto loginData) {
         Perdoruesi perdoruesi = new PerdoruesiRepository().getByEmail(loginData.getEmail());
 
-        if(perdoruesi == null){
+        if (perdoruesi == null) {
             return false;
         }
 
@@ -47,24 +47,32 @@ public class PerdoruesiService {
         return true;
     }
 
+    // ✅ Metoda që po përdoret nga ChangePasswordController
+    public boolean updatePassword(int userId, String newPassword) {
+        String newSalt = PasswordHasher.generateSalt();
+        String newHashedPassword = PasswordHasher.generateSaltedHash(newPassword, newSalt);
+
+        return new PerdoruesiRepository().updatePassword(userId, newHashedPassword, newSalt);
+    }
+
+    // Metodë tjetër që mund të përdoret diku tjetër
     public boolean updatePassword(PerdoruesiChangePasswordDto saveData) throws SQLException {
         String email = PerdoruesiSession.getPerdoruesi().getEmail();
         Perdoruesi perdoruesi = new PerdoruesiRepository().getByEmail(email);
 
-        if (perdoruesi == null){
+        if (perdoruesi == null) {
             return false;
         }
 
         String oldPassword = saveData.getOldPassword();
         String newPassword = saveData.getNewPassword();
 
-        String salt = PasswordHasher.generateSalt();
-        String newHashedPassword = PasswordHasher.generateSaltedHash(newPassword, salt);
-
-        if(!PasswordHasher.compareSaltedHash(oldPassword, perdoruesi.getSalt(), perdoruesi.getHashedpassword())){
+        if (!PasswordHasher.compareSaltedHash(oldPassword, perdoruesi.getSalt(), perdoruesi.getHashedpassword())) {
             return false;
         }
 
+        String salt = PasswordHasher.generateSalt();
+        String newHashedPassword = PasswordHasher.generateSaltedHash(newPassword, salt);
 
         return new PerdoruesiRepository().updatePassword(perdoruesi.getId(), newHashedPassword, salt);
     }
