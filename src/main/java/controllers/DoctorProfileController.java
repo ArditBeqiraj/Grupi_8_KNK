@@ -1,8 +1,16 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import services.SceneManager;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class DoctorProfileController {
 
@@ -33,16 +41,21 @@ public class DoctorProfileController {
     @FXML
     private Button changePasswordButton;
 
-    // Ky metodë aktivizon fushat për redaktim
+    private static boolean checkEdit = false;
+
     @FXML
     private void handleEditAction() {
-        setFieldsEditable(true);
+       if(checkEdit){
+           checkEdit=false;
+        setFieldsEditable(checkEdit);
+       }else{
+           checkEdit=true;
+           setFieldsEditable(checkEdit);
+       }
     }
 
-    // Ky metodë ruan të dhënat (mund të lidhet me databazë më vonë)
     @FXML
     private void handleSubmitAction() {
-        // Shembull i thjeshtë: marrja e të dhënave
         String name = nameField.getText();
         String surname = surnameField.getText();
         String licenseNumber = licenseNumberField.getText();
@@ -50,7 +63,6 @@ public class DoctorProfileController {
         String email = emailField.getText();
         String specializations = specializationsField.getText();
 
-        // Mund të shtosh këtu validime ose ruajtje në databazë
         System.out.println("Doctor Info Updated:");
         System.out.println("Name: " + name);
         System.out.println("Surname: " + surname);
@@ -59,10 +71,9 @@ public class DoctorProfileController {
         System.out.println("Email: " + email);
         System.out.println("Specializations: " + specializations);
 
-        setFieldsEditable(false); // Pas submit-it, i bëjmë të pa-editueshme
+        setFieldsEditable(false);
     }
 
-    // Funksion ndihmës për të aktivizuar ose çaktivizuar fushat
     private void setFieldsEditable(boolean editable) {
         nameField.setEditable(editable);
         surnameField.setEditable(editable);
@@ -72,9 +83,21 @@ public class DoctorProfileController {
         specializationsField.setEditable(editable);
     }
 
-    // Mund të shtosh një metodë initialize nëse do të ngarkosh të dhëna ekzistuese
     @FXML
     public void initialize() {
-        setFieldsEditable(false); // Fushat nuk janë të editueshme në fillim
+        setFieldsEditable(false);
+    }
+
+    @FXML
+    private void handleEditButtonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/app/ChangePassword.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Change Password");
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
+
+
     }
 }

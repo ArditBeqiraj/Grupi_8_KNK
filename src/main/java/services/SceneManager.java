@@ -7,6 +7,8 @@ import javafx.scene.layout.Pane;
 
 public class SceneManager {
     public final static String ADMINHOME_PAGE = "AdminHome_page.fxml";
+    public final static String CHANGE_PASSWORD_POPUP = "ChangePassword.fxml"; //na vyn me ndreq
+
 
     private static SceneManager sceneManager;
     private Scene scene;

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -11,121 +10,100 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/23.0.1"
-           xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="controllers.DoctorProfileController">
+<StackPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorProfileController">
     <children>
-        <AnchorPane maxHeight="600.0" maxWidth="1100.0" prefHeight="600.0" prefWidth="1100.0"
-                    style="-fx-background-color: #F5F7FA;">
+        <AnchorPane maxHeight="600.0" maxWidth="1100.0" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #F5F7FA;">
             <children>
-                <fx:include source="DoctorSidebar.fxml"/>
+                <fx:include source="DoctorSidebar.fxml" />
 
 
-                <AnchorPane layoutX="219.0" layoutY="52.0" prefHeight="496.0" prefWidth="734.0"
-                            style="-fx-background-color: #D1D9E6;"
-                            AnchorPane.topAnchor="50.0" AnchorPane.bottomAnchor="50.0"
-                            AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="50.0">
+                <AnchorPane layoutX="219.0" layoutY="52.0" prefHeight="496.0" prefWidth="734.0" style="-fx-background-color: #D1D9E6;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                     <children>
-                        <HBox alignment="CENTER" spacing="10.0"
-                              AnchorPane.topAnchor="14.0" AnchorPane.bottomAnchor="74.4"
-                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <HBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="74.4" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                             <children>
-                                <VBox alignment="CENTER" spacing="70.0" prefHeight="410.0" prefWidth="402.0" HBox.hgrow="ALWAYS">
+                                <VBox alignment="CENTER" prefHeight="410.0" prefWidth="402.0" spacing="70.0" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <VBox alignment="CENTER_LEFT" spacing="3.0" maxWidth="270.0" prefWidth="270.0" VBox.vgrow="ALWAYS">
+                                        <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="270.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
                                                 <Label text="Name">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
-                                                <TextField fx:id="nameField"
-                                                           style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                                <TextField fx:id="nameField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                                     <font><Font size="15.0" /></font>
                                                 </TextField>
                                             </children>
                                         </VBox>
-                                        <VBox alignment="CENTER_LEFT" spacing="3.0" maxWidth="270.0" prefWidth="270.0" VBox.vgrow="ALWAYS">
+                                        <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="270.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
                                                 <Label text="License Number">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
-                                                <TextField fx:id="licenseNumberField"
-                                                           style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                                <TextField fx:id="licenseNumberField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                                     <font><Font size="15.0" /></font>
                                                 </TextField>
                                             </children>
                                         </VBox>
-                                        <VBox alignment="CENTER_LEFT" spacing="3.0" maxWidth="270.0" prefWidth="248.0" VBox.vgrow="ALWAYS">
+                                        <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="248.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
                                                 <Label text="Specializations">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
-                                                <TextField fx:id="specializationsField"
-                                                           style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                                <TextField fx:id="specializationsField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                                     <font><Font size="15.0" /></font>
                                                 </TextField>
                                             </children>
                                         </VBox>
                                     </children>
                                     <padding>
-                                        <Insets top="50.0" bottom="50.0" />
+                                        <Insets bottom="50.0" top="50.0" />
                                     </padding>
                                 </VBox>
 
-                                <VBox alignment="CENTER" spacing="70.0" prefHeight="410.0" prefWidth="402.0" HBox.hgrow="ALWAYS">
+                                <VBox alignment="CENTER" prefHeight="410.0" prefWidth="402.0" spacing="70.0" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <VBox alignment="CENTER_LEFT" spacing="3.0" maxWidth="270.0" prefWidth="270.0" VBox.vgrow="ALWAYS">
+                                        <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="270.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
                                                 <Label text="Surname">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
-                                                <TextField fx:id="surnameField"
-                                                           style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                                <TextField fx:id="surnameField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                                     <font><Font size="15.0" /></font>
                                                 </TextField>
                                             </children>
                                         </VBox>
-                                        <VBox alignment="CENTER_LEFT" spacing="3.0" maxWidth="270.0" prefWidth="270.0" VBox.vgrow="ALWAYS">
+                                        <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="270.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
                                                 <Label text="Phone Number">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
-                                                <TextField fx:id="phoneNumberField"
-                                                           style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                                <TextField fx:id="phoneNumberField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                                     <font><Font size="15.0" /></font>
                                                 </TextField>
                                             </children>
                                         </VBox>
-                                        <VBox alignment="CENTER_LEFT" spacing="3.0" maxWidth="270.0" prefWidth="270.0" VBox.vgrow="ALWAYS">
+                                        <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="270.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
                                                 <Label text="Email">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
-                                                <TextField fx:id="emailField"
-                                                           style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
+                                                <TextField fx:id="emailField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
                                                     <font><Font size="15.0" /></font>
                                                 </TextField>
                                             </children>
                                         </VBox>
                                     </children>
                                     <padding>
-                                        <Insets top="50.0" bottom="50.0" />
+                                        <Insets bottom="50.0" top="50.0" />
                                     </padding>
                                 </VBox>
                             </children>
                         </HBox>
 
-                        <HBox alignment="CENTER" spacing="10.0" prefHeight="55.0" prefWidth="696.0"
-                              AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <HBox alignment="CENTER" prefHeight="55.0" prefWidth="696.0" spacing="10.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                             <children>
-                                <Button fx:id="changePasswordButton" mnemonicParsing="false" prefHeight="30.0"
-                                        style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;"
-                                        text="Change Password" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="editButton" onAction="#handleEditAction" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0"
-                                        style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;"
-                                        text="Edit" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="submitButton" onAction="#handleSubmitAction" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0"
-                                        style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;"
-                                        text="Submit" />
+                                <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#handleEditButtonClick" prefHeight="30.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Change Password" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEditAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Edit" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmitAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Submit" />
                             </children>
                         </HBox>
                     </children>

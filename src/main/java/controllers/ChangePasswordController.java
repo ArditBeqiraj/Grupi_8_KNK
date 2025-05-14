@@ -28,7 +28,6 @@ public class ChangePasswordController {
 
     private final PerdoruesiService perdoruesiService = new PerdoruesiService();
 
-    // Ky do të vendoset nga jashtë kur e hap formën për ndryshim fjalëkalimi
     private Perdoruesi loggedInUser;
 
     public void setLoggedInUser(Perdoruesi user) {

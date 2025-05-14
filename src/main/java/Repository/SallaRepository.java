@@ -15,7 +15,7 @@ public class SallaRepository {
     }
     public ArrayList<Salla> getAll(){
         ArrayList<Salla> sallat = new ArrayList<>();
-        String query = "SELECT * FROM salla";
+        String query = "SELECT * FROM sallat";
         try {
             Statement stm = connection.createStatement();
             ResultSet resultSet = stm.executeQuery(query);
@@ -27,8 +27,9 @@ public class SallaRepository {
         }
         return sallat;
     }
+
     public Salla getById(int id){
-        String query = "SELECT * FROM salla WHERE id = ?";
+        String query = "SELECT * FROM sallat WHERE id = ?";
         try {
             PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setInt(1,id);
@@ -44,7 +45,7 @@ public class SallaRepository {
     }
     public Salla create(CreateSallaDTO dto){
         String query = """
-                INSERT INTO salla (emri_salles, tipi, kapaciteti, statusi)
+                INSERT INTO sallat (emri_salles, tipi, kapaciteti, statusi)
                 VALUES (?, ?, ?, ?)
                 """;
         try {
@@ -65,7 +66,7 @@ public class SallaRepository {
     }
     public Salla update(UpdateSallaDTO dto){
         String query = """
-                UPDATE salla
+                UPDATE sallat
                 SET emri_salles = ?, tipi = ?, kapaciteti = ?, statusi = ?
                 WHERE id = ?
                 """;
@@ -90,7 +91,7 @@ public class SallaRepository {
         return null;
     }
     public boolean delete(int id){
-        String query = "DELETE FROM salla WHERE id = ?";
+        String query = "DELETE FROM sallat WHERE id = ?";
         try {
             PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setInt(1,id);

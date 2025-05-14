@@ -47,7 +47,6 @@ public class PerdoruesiService {
         return true;
     }
 
-    // ✅ Metoda që po përdoret nga ChangePasswordController
     public boolean updatePassword(int userId, String newPassword) {
         String newSalt = PasswordHasher.generateSalt();
         String newHashedPassword = PasswordHasher.generateSaltedHash(newPassword, newSalt);
@@ -55,7 +54,6 @@ public class PerdoruesiService {
         return new PerdoruesiRepository().updatePassword(userId, newHashedPassword, newSalt);
     }
 
-    // Metodë tjetër që mund të përdoret diku tjetër
     public boolean updatePassword(PerdoruesiChangePasswordDto saveData) throws SQLException {
         String email = PerdoruesiSession.getPerdoruesi().getEmail();
         Perdoruesi perdoruesi = new PerdoruesiRepository().getByEmail(email);

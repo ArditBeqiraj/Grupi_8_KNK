@@ -28,7 +28,7 @@ public class PajisjetMjekesoreRepository {
         return pajisjet;
     }
     public PajisjetMjekesore getById(int id){
-        String query = "SELECT * FROM PajisjetMjekesore WHERE pajisja_id = ?";
+        String query = "SELECT * FROM PajisjetMjekesore WHERE id = ?";
         try {
             PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setInt(1,id);
@@ -41,6 +41,7 @@ public class PajisjetMjekesoreRepository {
         }
         return null;
     }
+
     public PajisjetMjekesore create(CreatePajisjetMjekesoreDTO dto){
         String query = "INSERT INTO PajisjetMjekesore (emri_pajisjes, pershkrimi, sasia, gjendja, salla_id) VALUES (?, ?, ?, ?, ?)";
         try {
@@ -89,7 +90,7 @@ public class PajisjetMjekesoreRepository {
         return null;
     }
     public boolean delete(int id){
-        String query = "DELETE FROM PajisjetMjekesore WHERE pajisja_id = ?";
+        String query = "DELETE FROM PajisjetMjekesore WHERE id = ?";
         try {
             PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setInt(1,id);
