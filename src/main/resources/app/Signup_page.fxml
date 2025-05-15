@@ -6,20 +6,24 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupController">
     <children>
-        <TextField id="text-field" layoutX="191.0" layoutY="61.0" prefHeight="28.0" prefWidth="116.0" promptText="Emri:" stylesheets="@../css/Login_Signup.css" />
-        <TextField id="text-field" layoutX="334.0" layoutY="61.0" prefHeight="28.0" prefWidth="116.0" promptText="Mbiemri:" stylesheets="@../css/Login_Signup.css" />
-        <TextField id="text-field" layoutX="212.0" layoutY="106.0" prefHeight="26.0" prefWidth="226.0" promptText="Email Adresa:" stylesheets="@../css/Login_Signup.css" />
-        <TextField id="text-field" layoutX="270.0" layoutY="143.0" prefHeight="28.0" prefWidth="170.0" promptText="4xxxxxxx" stylesheets="@../css/Login_Signup.css" />
-        <RadioButton layoutX="226.0" layoutY="191.0" mnemonicParsing="false" text="Mashkull" textFill="#b5b5b5" />
-        <RadioButton layoutX="348.0" layoutY="191.0" mnemonicParsing="false" text="Femër" textFill="#b5b5b5" />
-        <PasswordField id="label" layoutX="212.0" layoutY="225.0" prefHeight="26.0" prefWidth="226.0" promptText="Fjalëkalimi:" stylesheets="@../css/Login_Signup.css" />
-        <PasswordField layoutX="211.0" layoutY="266.0" prefHeight="26.0" prefWidth="226.0" promptText="Konfirmo fjalëkalimin:" stylesheets="@../css/Login_Signup.css" />
-        <Button id="button" layoutX="177.0" layoutY="304.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="263.0" stylesheets="@../css/Login_Signup.css" text="Vazhdoni" />
-        <Button layoutX="337.0" layoutY="355.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Kyçuni" textFill="#03dac6" underline="true" />
+        <TextField id="text-field" fx:id="txtEmri" layoutX="191.0" layoutY="61.0" prefHeight="28.0" prefWidth="116.0" promptText="Emri:" stylesheets="@../css/Login_Signup.css" />
+        <TextField id="text-field" fx:id="txtMbiemri" layoutX="334.0" layoutY="61.0" prefHeight="28.0" prefWidth="116.0" promptText="Mbiemri:" stylesheets="@../css/Login_Signup.css" />
+        <TextField id="text-field" fx:id="txtEmail" layoutX="212.0" layoutY="106.0" prefHeight="26.0" prefWidth="226.0" promptText="Email Adresa:" stylesheets="@../css/Login_Signup.css" />
+        <TextField id="text-field" fx:id="txtNumri" layoutX="270.0" layoutY="143.0" prefHeight="28.0" prefWidth="170.0" promptText="4xxxxxxx" stylesheets="@../css/Login_Signup.css" />
+        <RadioButton fx:id="radioMashkull" layoutX="226.0" layoutY="191.0" mnemonicParsing="false" text="Mashkull" textFill="#b5b5b5">
+            <toggleGroup>
+                <ToggleGroup fx:id="gjinia" />
+            </toggleGroup></RadioButton>
+        <RadioButton fx:id="radioFemer" layoutX="348.0" layoutY="191.0" mnemonicParsing="false" text="Femër" textFill="#b5b5b5" toggleGroup="$gjinia" />
+        <PasswordField id="label" fx:id="pwdPassword" layoutX="212.0" layoutY="225.0" prefHeight="26.0" prefWidth="226.0" promptText="Fjalëkalimi:" stylesheets="@../css/Login_Signup.css" />
+        <PasswordField fx:id="pwdConfirmPaswword" layoutX="211.0" layoutY="266.0" prefHeight="26.0" prefWidth="226.0" promptText="Konfirmo fjalëkalimin:" stylesheets="@../css/Login_Signup.css" />
+        <Button id="button" fx:id="btnSIgnup" layoutX="177.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="39.0" prefWidth="263.0" stylesheets="@../css/Login_Signup.css" text="Vazhdoni" />
+        <Button fx:id="btnSingIn" layoutX="337.0" layoutY="355.0" mnemonicParsing="false" onAction="#gotoLoginPage" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Kyçuni" textFill="#03dac6" underline="true" />
         <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="179.0" layoutY="129.0" selectionFill="BLACK" size="30" text="" wrappingWidth="23.064461708068848" />
         <FontAwesomeIconView fill="WHITE" glyphName="LOCK" layoutX="179.0" layoutY="248.0" size="30" text="" wrappingWidth="23.064461708068848" />
         <Label layoutX="206.0" layoutY="360.0" text="Posedoni një llogari?" textFill="WHITE" />
@@ -28,5 +32,9 @@
         <TextField id="text-field" editable="false" layoutX="210.0" layoutY="143.0" prefHeight="28.0" prefWidth="55.0" stylesheets="@../css/Login_Signup.css" text="+383" />
         <FontAwesomeIconView fill="WHITE" glyphName="MARS" layoutX="178.0" layoutY="210.0" size="30" wrappingWidth="23.064461708068848" />
         <FontAwesomeIconView fill="WHITE" glyphName="VENUS" layoutX="312.0" layoutY="210.0" size="30" wrappingWidth="23.064461708068848" />
+        <TextField id="text-field" fx:id="passwordtxt" layoutX="213.0" layoutY="224.0" prefHeight="26.0" prefWidth="226.0" stylesheets="@../css/Login_Signup.css" visible="false" />
+        <TextField id="text-field" fx:id="confirmpasswordtxt" layoutX="212.0" layoutY="265.0" prefHeight="26.0" prefWidth="226.0" stylesheets="@../css/Login_Signup.css" visible="false" />
+        <FontAwesomeIconView fx:id="showpassword" fill="WHITE" glyphName="EYE" layoutX="416.0" layoutY="242.0" onMouseClicked="#changeVisibility" />
+        <FontAwesomeIconView fx:id="showconfirmpassword" fill="WHITE" glyphName="EYE" layoutX="416.0" layoutY="284.0" onMouseClicked="#changeVisibilityConfirm" />
     </children>
 </AnchorPane>
