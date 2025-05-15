@@ -80,6 +80,9 @@ public class AdminHomeController implements Initializable {
     private Button shtoStaf_btn;
 
     @FXML
+    private Button shtoStaf_btn1;
+
+    @FXML
     private TableColumn<Perdoruesi, String> shtoStaf_col_Email;
 
     @FXML
@@ -105,6 +108,9 @@ public class AdminHomeController implements Initializable {
 
     @FXML
     private TextField shtoStaf_UserID;
+
+    @FXML
+    private AnchorPane shtoStaf_Forma1;
 
 
     private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
@@ -199,7 +205,7 @@ public class AdminHomeController implements Initializable {
 
     public void shtoNeDatabaz() throws SQLException {
         String salt = PasswordHasher.generateSalt();
-        String password = PasswordHasher.generateSaltedHash("12345", salt);
+        String password = PasswordHasher.generateSaltedHash(shtoStaf_Emri.getText() + shtoStaf_Mbiemri.getText(), salt);
         CreatePerdoruesiDTO createPerdoruesiDTO = new CreatePerdoruesiDTO(shtoStaf_Emri.getText(), shtoStaf_Mbiemri.getText(), shtoStaf_Email.getText(), shtoStaf_Telefoni.getText(), shtoStaf_Roli.getValue(), salt, password, timestamp);
         PerdoruesiRepository perdoruesiRepository = new PerdoruesiRepository();
         if (shtoStaf_Emri.getText().isEmpty() || shtoStaf_Mbiemri.getText().isEmpty() || shtoStaf_Email.getText().isEmpty() || shtoStaf_Telefoni.getText().isEmpty() || shtoStaf_Roli.getValue().isEmpty()) {
@@ -295,13 +301,25 @@ public class AdminHomeController implements Initializable {
         if (actionEvent.getSource() == home_btn) {
             home_form.setVisible(true);
             shtoStaf_Forma.setVisible(false);
+            shtoStaf_Forma1.setVisible(false);
             home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #2b303c, #525968)");
             shtoStaf_btn.setStyle("-fx-background-color: transparent");
+            shtoStaf_btn1.setStyle("-fx-background-color: transparent");
         } else if (actionEvent.getSource() == shtoStaf_btn) {
             home_form.setVisible(false);
             shtoStaf_Forma.setVisible(true);
+            shtoStaf_Forma1.setVisible(false);
             shtoStaf_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #2b303c, #525969)");
-
+            home_btn.setStyle("-fx-background-color: transparent");
+            shtoStaf_btn1.setStyle("-fx-background-color: transparent");
+            shtoStaf_Roli.getItems().addAll("Doktor", "Moter", "Praktikant");
+            ShtoStafListaData();
+        } else if (actionEvent.getSource() == shtoStaf_btn1) {
+            home_form.setVisible(false);
+            shtoStaf_Forma.setVisible(false);
+            shtoStaf_Forma1.setVisible(true);
+            shtoStaf_btn.setStyle("-fx-background-color: transparent");
+            shtoStaf_btn1.setStyle("-fx-background-color:linear-gradient(to bottom right, #2b303c, #525969)");
             home_btn.setStyle("-fx-background-color: transparent");
             shtoStaf_Roli.getItems().addAll("Doktor", "Moter", "Praktikant");
             ShtoStafListaData();

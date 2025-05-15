@@ -17,7 +17,7 @@ public class Perdoruesi {
     private String hashedpassword;
     private Timestamp krijuar;
 
-    private Perdoruesi(int id, String emri, String mbiemri, String email, String telefoni, String roli, String salt, String hashedpassword, Timestamp krijuar) {
+    public Perdoruesi(int id, String emri, String mbiemri, String email, String telefoni, String roli, String salt, String hashedpassword, Timestamp krijuar) {
         this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
@@ -36,8 +36,8 @@ public class Perdoruesi {
         String email = resultSet.getString("email");
         String telefoni = resultSet.getString("telefoni");
         String roli = resultSet.getString("roli");
-        String salt = PasswordHasher.generateSalt();
-        String hashedpassword = PasswordHasher.generateSaltedHash("1234", salt);
+        String salt = resultSet.getString("salt");
+        String hashedpassword = resultSet.getString("hashedpassword");
         Timestamp krijuar = resultSet.getTimestamp("krijuar");
 
         return new Perdoruesi(id, emri, mbiemri, email, telefoni, roli, salt, hashedpassword, krijuar);
@@ -90,6 +90,6 @@ public class Perdoruesi {
     public void setHashedpassword(String hashedpassword) {
         this.hashedpassword = hashedpassword;
     }
-    
-    
+
+
 }

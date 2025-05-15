@@ -1,8 +1,9 @@
 module com.example.demo {
-    requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
     requires java.persistence;
+    requires de.jensd.fx.glyphs.fontawesome;
+    requires javafx.controls;
 
     exports controllers;
     exports test;

@@ -4,22 +4,26 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import services.SceneManager;
+import model.Perdoruesi.Perdoruesi;
+import services.PasswordHasher;
+import services.PerdoruesiService;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/app/AdminHome_page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1100, 600);
-        SceneManager.initialize(scene);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+        Navigator.navigate(stage, Navigator.LOGIN_PAGE, "Login");
     }
 
-    public static void main(String[] args) {
-        launch();
-    }
+//    public static void main(String[] args) {
+//        String salt = PasswordHasher.generateSalt();
+//        Perdoruesi perdoruesi = new Perdoruesi(230756101, "Arbnor", "Tasholli",
+//                "noltasholli@gmail.com", "044123123", "Admin", salt,
+//                PasswordHasher.generateSaltedHash("arbnori123", salt), new Timestamp(System.currentTimeMillis()));
+//
+//        PerdoruesiService perdoruesiService = new PerdoruesiService();
+//        perdoruesiService.create(perdoruesi);
+//    }
 }

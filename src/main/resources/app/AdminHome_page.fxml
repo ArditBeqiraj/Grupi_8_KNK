@@ -57,7 +57,7 @@
                                             </graphic>
                                         </Button>
                                         <FontAwesomeIconView fill="#fff9f9" glyphName="USER" layoutX="103.0" layoutY="64.0" scaleX="8.0" scaleY="8.0" />
-                                        <Button fx:id="shtoStaf_btn" layoutX="11.0" layoutY="227.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Shto staf">
+                                        <Button fx:id="shtoStaf_btn" layoutX="11.0" layoutY="227.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Stafi">
                                             <graphic>
                                                 <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="1.5em" />
                                             </graphic>
@@ -76,6 +76,11 @@
                                                 <Font size="16.0" />
                                             </font>
                                         </Label>
+                              <Button fx:id="shtoStaf_btn1" layoutX="13.0" layoutY="289.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Pacientet">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="1.5em" />
+                                 </graphic>
+                              </Button>
                                     </children>
                                 </AnchorPane>
                             </children>
@@ -167,7 +172,7 @@
                                                 </BarChart>
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane fx:id="shtoStaf_Forma" layoutX="43.0" layoutY="43.0" prefHeight="520.0" prefWidth="888.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <AnchorPane fx:id="shtoStaf_Forma" layoutX="43.0" layoutY="43.0" prefHeight="520.0" prefWidth="888.5" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
                                                 <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="497.0" prefWidth="866.0" stylesheets="@../css/admin_homepage.css">
                                                     <children>
@@ -242,6 +247,42 @@
                                                 </AnchorPane>
                                             </children>
                                         </AnchorPane>
+                              <AnchorPane fx:id="shtoStaf_Forma1" layoutX="-7.0" prefHeight="520.0" prefWidth="888.5">
+                                 <children>
+                                    <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="497.0" prefWidth="866.0" stylesheets="@../css/admin_homepage.css">
+                                       <children>
+                                          <AnchorPane layoutX="-1.0" prefHeight="262.0" prefWidth="866.0" stylesheets="@../css/admin_homepage.css">
+                                             <styleClass>
+                                                <String fx:value="white-background" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                             <children>
+                                                <TableView fx:id="shtoStaf_Tabela1" layoutX="20.0" layoutY="49.0" onMouseClicked="#addEmployeeSelect" prefHeight="424.0" prefWidth="827.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="shtoStaf_col_pacientID1" prefWidth="74.2459716796875" text="Pacient_ID" />
+                                                      <TableColumn fx:id="shtoStaf_col_emri1" prefWidth="88.2540283203125" text="Emri" />
+                                                      <TableColumn fx:id="shtoStaf_col_Mbiemri1" prefWidth="81.03890991210938" text="Mbiemri" />
+                                                      <TableColumn fx:id="shtoStaf_col_Email1" prefWidth="114.1156005859375" text="Email" />
+                                                      <TableColumn fx:id="shtoStaf_col_Telefoni1" prefWidth="102.3843994140625" text="Telefoni" />
+                                                      <TableColumn fx:id="shtoStaf_col_Datelindja" prefWidth="88.97027587890625" text="Datelindja" />
+                                                      <TableColumn fx:id="shtoStaf_col_Gjinia" prefWidth="73.631591796875" text="Gjinia" />
+                                                       <TableColumn fx:id="shtoStaf_col_Adresa" prefWidth="82.01605224609375" text="Adresa" />
+                                                       <TableColumn fx:id="shtoStaf_col_Kontakti" prefWidth="119.54132080078125" text="Kontakti Emergjent" />
+
+
+                                                   </columns>
+                                                </TableView>
+                                                <TextField fx:id="shtoStaf_search1" layoutX="29.0" layoutY="16.0" promptText="Kerko" styleClass="search" stylesheets="@../css/admin_homepage.css" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="white-background" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
                                     </children>
                                 </AnchorPane>
                             </children>
