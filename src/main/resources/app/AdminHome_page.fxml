@@ -28,7 +28,7 @@
                             <children>
                                 <AnchorPane layoutX="366.0" layoutY="-30.0" prefHeight="120.0" prefWidth="1100.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                 <FontAwesomeIconView glyphName="USERS" layoutX="57.0" layoutY="41.0" scaleX="4.0" scaleY="4.0" />
-                                <Label layoutX="133.0" layoutY="26.0" text="Menaxhimi i stafit">
+                                <Label layoutX="133.0" layoutY="26.0" text="Admin Dashboard">
                                     <font>
                                         <Font size="20.0" />
                                     </font>
@@ -45,21 +45,21 @@
                             <children>
                                 <AnchorPane layoutX="31.0" layoutY="54.0" prefHeight="400.0" prefWidth="231.0" styleClass="nav-form" stylesheets="@../css/admin_homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <Label layoutX="35.0" layoutY="114.0" text="Mire se vini Arbnor!" textFill="WHITE">
+                                        <Label layoutX="35.0" layoutY="114.0" text="Mire se vini Admin!" textFill="WHITE">
                                             <font>
                                                 <Font size="20.0" />
                                             </font>
                                         </Label>
                                         <Line endX="100.0" layoutX="111.0" layoutY="152.0" startX="-100.0" stroke="WHITE" />
-                                        <Button fx:id="home_btn" layoutX="11.0" layoutY="166.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Home">
+                                        <Button fx:id="home_btn" layoutX="13.0" layoutY="166.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Home">
                                             <graphic>
                                                 <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="1.5em" />
                                             </graphic>
                                         </Button>
                                         <FontAwesomeIconView fill="#fff9f9" glyphName="USER" layoutX="103.0" layoutY="64.0" scaleX="8.0" scaleY="8.0" />
-                                        <Button fx:id="shtoStaf_btn" layoutX="11.0" layoutY="227.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Stafi">
+                                        <Button fx:id="shtoStaf_btn" layoutX="13.0" layoutY="227.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Stafi">
                                             <graphic>
-                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="1.5em" />
+                                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="1.5em" />
                                             </graphic>
                                         </Button>
                                         <Button fx:id="shkyqu" layoutX="22.0" layoutY="461.0" mnemonicParsing="false" onAction="#handleLogOut" stylesheets="@../css/admin_homepage.css" textFill="WHITE">
@@ -76,9 +76,9 @@
                                                 <Font size="16.0" />
                                             </font>
                                         </Label>
-                              <Button fx:id="shtoStaf_btn1" layoutX="13.0" layoutY="289.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Pacientet">
+                              <Button fx:id="shtoStaf_btn1" layoutX="13.0" layoutY="288.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Pacientet">
                                  <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="1.5em" />
+                                    <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="1.5em" />
                                  </graphic>
                               </Button>
                                     </children>
@@ -143,7 +143,7 @@
                                           </AnchorPane>
                                                     </children>
                                                 </AnchorPane>
-                                                <BarChart layoutX="14.0" layoutY="147.0" prefHeight="319.0" prefWidth="832.0" title="Grafiku">
+                                                <BarChart fx:id="home_chart" layoutX="14.0" layoutY="147.0" prefHeight="319.0" prefWidth="832.0" title="Grafiku">
                                                     <xAxis>
                                                         <CategoryAxis side="BOTTOM" />
                                                     </xAxis>

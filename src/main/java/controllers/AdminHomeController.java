@@ -13,10 +13,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.chart.BarChart;
 
 import javafx.event.ActionEvent;
 
@@ -38,6 +40,9 @@ import services.PasswordHasher;
 import services.PerdoruesiService;
 
 public class AdminHomeController implements Initializable {
+
+    @FXML
+    private BarChart<?, ?> home_chart;
 
     @FXML
     private Label totalEmployees;
@@ -353,6 +358,7 @@ public class AdminHomeController implements Initializable {
             shtoStaf_btn1.setStyle("-fx-background-color: transparent");
             totalEmployees();
             totalPacientet();
+            homeChart();
         } else if (actionEvent.getSource() == shtoStaf_btn) {
             home_form.setVisible(false);
             shtoStaf_Forma.setVisible(true);
@@ -624,16 +630,24 @@ public class AdminHomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #2b303c, #525968)");
             ShtoStafListaData();
             ShtoPacientListaData();
             addEmployeeSearch();
             addEmployeeSearch1();
             totalEmployees();
             totalPacientet();
+            homeChart();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         shtoStaf_Roli.getItems().addAll("Doktor", "Moter", "Praktikant");
+    }
+
+    public void homeChart() {
+        home_chart.getData().clear();
+        XYChart.Series chart = perdoruesiRepository.homeChart();
+        home_chart.getData().add(chart);
     }
 }

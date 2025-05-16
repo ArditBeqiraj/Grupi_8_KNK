@@ -1,6 +1,7 @@
 package Repository;
 
 import Database.DBConnector;
+import javafx.scene.chart.XYChart;
 import model.Perdoruesi.Perdoruesi;
 import model.Perdoruesi.PerdoruesiDTO.CreatePerdoruesiDTO;
 import model.Perdoruesi.PerdoruesiDTO.UpdatePerdoruesiDTO;
@@ -148,6 +149,33 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public XYChart.Series homeChart() {
+        String sql = """
+        SELECT DATE(krijuar) AS created_date, COUNT(id)
+        FROM perdoruesi
+        WHERE roli IN ('Doktor', 'Moter', 'Praktikant')
+        GROUP BY created_date
+        ORDER BY created_date ASC
+        LIMIT 7
+        """;
+        try {
+            XYChart.Series chart = new XYChart.Series();
+
+            Statement statement = this.connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+
+            while (result.next()) {
+                chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
+            }
+
+            return chart;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
