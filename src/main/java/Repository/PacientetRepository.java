@@ -1,13 +1,10 @@
 package Repository;
 
-import Database.DBConnector;
-import model.Inventari.Inventari;
 import model.Pacientet.Pacientet;
 import model.Pacientet.PacientetDTO.CreatePacientetDTO;
 import model.Pacientet.PacientetDTO.UpdatePacientetDTO;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class PacientetRepository extends BaseRepository<Pacientet, CreatePacientetDTO, UpdatePacientetDTO>{
 

@@ -120,7 +120,7 @@ public class SignupController {
     }
 
     @FXML
-    private void handleSignUp(ActionEvent ae) throws SQLException, IOException {
+    private void handleSignUp(ActionEvent ae) throws Exception {
         loginSignupService.handleSignUp(ae,txtEmri, txtMbiemri, txtEmail, txtNumri, gjinia, pwdPassword, pwdConfirmPaswword);
     }
 

@@ -12,6 +12,7 @@ module com.example.demo {
     exports services;
     exports utils;
 
+    opens model.Pacientet to javafx.base;
     opens model.Perdoruesi to javafx.base;
     opens test to javafx.fxml;
     opens app to javafx.fxml;

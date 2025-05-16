@@ -1,9 +1,13 @@
 package controllers;
 
 import Database.DBConnector;
+import Repository.PacientetRepository;
 import Repository.PerdoruesiRepository;
+import app.Navigator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +19,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.input.MouseEvent;
 
 import javafx.event.ActionEvent;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,9 +31,11 @@ import java.util.regex.Pattern;
 
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Pacientet.Pacientet;
 import model.Perdoruesi.Perdoruesi;
 import model.Perdoruesi.PerdoruesiDTO.CreatePerdoruesiDTO;
 import services.PasswordHasher;
+import services.PerdoruesiService;
 
 public class AdminHomeController implements Initializable {
 
@@ -111,6 +119,23 @@ public class AdminHomeController implements Initializable {
 
     @FXML
     private AnchorPane shtoStaf_Forma1;
+
+    private PerdoruesiService perdoruesiService = new PerdoruesiService();
+
+    @FXML
+    private void handleLogOut(ActionEvent me) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Konfirmimi");
+        alert.setHeaderText(null);
+        alert.setContentText("A jeni të sigurt se doni të shkyçeni?");
+
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.isPresent() && option.get() == ButtonType.OK) {
+            perdoruesiService.LogOut();
+            Navigator.navigate(me, Navigator.LOGIN_PAGE, "Login");
+        }
+    }
 
 
     private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
@@ -200,6 +225,7 @@ public class AdminHomeController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Perdoruesi u fshi me sukses");
             alert.showAndWait();
+            ResetData();
         }
     }
 
@@ -314,6 +340,7 @@ public class AdminHomeController implements Initializable {
             shtoStaf_btn1.setStyle("-fx-background-color: transparent");
             shtoStaf_Roli.getItems().addAll("Doktor", "Moter", "Praktikant");
             ShtoStafListaData();
+            addEmployeeSearch();
         } else if (actionEvent.getSource() == shtoStaf_btn1) {
             home_form.setVisible(false);
             shtoStaf_Forma.setVisible(false);
@@ -323,6 +350,7 @@ public class AdminHomeController implements Initializable {
             home_btn.setStyle("-fx-background-color: transparent");
             shtoStaf_Roli.getItems().addAll("Doktor", "Moter", "Praktikant");
             ShtoStafListaData();
+            addEmployeeSearch1();
         }
     }
 
@@ -384,10 +412,200 @@ public class AdminHomeController implements Initializable {
         stage.setIconified(true);
     }
 
+
+
+
+
+
+
+
+
+    @FXML
+    private TextField shtoStaf_search1;
+
+    @FXML
+    private TableView<Pacientet> shtoStaf_Tabela1;
+
+    @FXML
+    private TableColumn<Pacientet, String> shtoStaf_col_pacientID1;
+
+    @FXML
+    private TableColumn<Pacientet, String> shtoStaf_col_emri1;
+
+    @FXML
+    private TableColumn<Pacientet, String> shtoStaf_col_Mbiemri1;
+
+    @FXML
+    private TableColumn<Pacientet, String> shtoStaf_col_Email1;
+
+    @FXML
+    private TableColumn<Pacientet, String> shtoStaf_col_Telefoni1;
+
+    @FXML
+    private TableColumn<Pacientet, String> shtoStaf_col_Datelindja;
+
+    @FXML
+    private TableColumn<Pacientet, String> shtoStaf_col_Gjinia;
+
+    @FXML
+    private TableColumn<Pacientet, String> shtoStaf_col_Adresa;
+
+    @FXML
+    private TableColumn<Pacientet, String> shtoStaf_col_Kontakti;
+
+    public ObservableList<Pacientet> addPacient () throws SQLException {
+        ObservableList<Pacientet> StafLista = FXCollections.observableArrayList();
+        String query = """
+        SELECT 
+            p.id AS pacient_id,
+            p.user_id,
+            p.datelindja,
+            p.gjinia,
+            p.adresa,
+            p.kontakti_emergjent,
+            u.id,
+            u.emri,
+            u.mbiemri,
+            u.email,
+            u.telefoni,
+            u.roli,
+            u.salt,
+            u.hashedpassword,
+            u.krijuar
+        FROM 
+            Pacientet p
+        INNER JOIN 
+            Perdoruesi u ON p.user_id = u.id
+    """;
+
+        PreparedStatement preparedStatement = DBConnector.getConnection().prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Pacientet pacienti = Pacientet.getInstance(resultSet);
+
+            Perdoruesi perdoruesi = Perdoruesi.getInstance(resultSet);
+
+            pacienti.setPerdoruesi(perdoruesi);
+
+            StafLista.add(pacienti);
+        }
+
+        return StafLista;
+    }
+
+
+    private ObservableList<Pacientet> shtoPacientlista;
+    public void ShtoPacientListaData() throws SQLException {
+        shtoPacientlista = addPacient();
+
+        shtoStaf_col_pacientID1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        shtoStaf_col_emri1.setCellValueFactory(new PropertyValueFactory<>("emri"));
+        shtoStaf_col_Mbiemri1.setCellValueFactory(new PropertyValueFactory<>("mbiemri"));
+        shtoStaf_col_Email1.setCellValueFactory(new PropertyValueFactory<>("email"));
+        shtoStaf_col_Telefoni1.setCellValueFactory(new PropertyValueFactory<>("telefoni"));
+        shtoStaf_col_Datelindja.setCellValueFactory(new PropertyValueFactory<>("datelindja"));
+        shtoStaf_col_Gjinia.setCellValueFactory(new PropertyValueFactory<>("gjinia"));
+        shtoStaf_col_Adresa.setCellValueFactory(new PropertyValueFactory<>("adresa"));
+        shtoStaf_col_Kontakti.setCellValueFactory(new PropertyValueFactory<>("kontakti_emergjent"));
+
+        shtoStaf_Tabela1.setItems(shtoPacientlista);
+    }
+
+    public void addEmployeeSearch() {
+        FilteredList<Perdoruesi> filter = new FilteredList<>(shtoStafLista, e -> true);
+
+        shtoStaf_search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filter.setPredicate(predicateEmployeeData -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (String.valueOf(predicateEmployeeData.getId()).contains(searchKey)) {
+                    return true;
+                }
+
+                String emri = predicateEmployeeData.getEmri();
+                if (emri != null && emri.toLowerCase().contains(searchKey)) {
+                    return true;
+                }
+
+                String mbiemri = predicateEmployeeData.getMbiemri();
+                if (mbiemri != null && mbiemri.toLowerCase().contains(searchKey)) {
+                    return true;
+                }
+
+                String email = predicateEmployeeData.getEmail();
+                if (email != null && email.toLowerCase().contains(searchKey)) {
+                    return true;
+                }
+
+                String telefoni = predicateEmployeeData.getTelefoni();
+                if (telefoni != null && telefoni.toLowerCase().contains(searchKey)) {
+                    return true;
+                }
+
+                String roli = predicateEmployeeData.getRoli();
+                if (roli != null && roli.toLowerCase().contains(searchKey)) {
+                    return true;
+                }
+
+                Timestamp krijuar = predicateEmployeeData.getKrijuar();
+                if (krijuar != null && krijuar.toString().toLowerCase().contains(searchKey)) {
+                    return true;
+                }
+
+                return false;
+            });
+        });
+
+        SortedList<Perdoruesi> sortList = new SortedList<>(filter);
+        sortList.comparatorProperty().bind(shtoStaf_Tabela.comparatorProperty());
+        shtoStaf_Tabela.setItems(sortList);
+    }
+
+    public void addEmployeeSearch1() {
+        FilteredList<Pacientet> filter = new FilteredList<>(shtoPacientlista, e -> true);
+
+        shtoStaf_search1.textProperty().addListener((observable, oldValue, newValue) -> {
+            filter.setPredicate(PacientData -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (String.valueOf(PacientData.getId()).toLowerCase().contains(searchKey)) return true;
+                if (PacientData.getEmri() != null && PacientData.getEmri().toLowerCase().contains(searchKey)) return true;
+                if (PacientData.getMbiemri() != null && PacientData.getMbiemri().toLowerCase().contains(searchKey)) return true;
+                if (PacientData.getEmail() != null && PacientData.getEmail().toLowerCase().contains(searchKey)) return true;
+                if (PacientData.getTelefoni() != null && PacientData.getTelefoni().toLowerCase().contains(searchKey)) return true;
+                if (PacientData.getDatelindja() != null && PacientData.getDatelindja().toString().toLowerCase().contains(searchKey)) return true;
+                if (PacientData.getGjinia() != null && PacientData.getGjinia().toLowerCase().contains(searchKey)) return true;
+                if (PacientData.getAdresa() != null && PacientData.getAdresa().toLowerCase().contains(searchKey)) return true;
+                if (PacientData.getKontakti_emergjent() != null && PacientData.getKontakti_emergjent().toLowerCase().contains(searchKey)) return true;
+
+                return false;
+            });
+        });
+
+        SortedList<Pacientet> sortList = new SortedList<>(filter);
+        sortList.comparatorProperty().bind(shtoStaf_Tabela1.comparatorProperty());
+        shtoStaf_Tabela1.setItems(sortList);
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             ShtoStafListaData();
+            ShtoPacientListaData();
+            addEmployeeSearch();
+            addEmployeeSearch1();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

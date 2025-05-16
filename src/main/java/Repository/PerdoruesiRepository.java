@@ -35,8 +35,8 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
 
     public Perdoruesi getByEmail(String email) {
         String query = "SELECT * FROM perdoruesi WHERE email = ? LIMIT 1";
-        try (Connection conn = DBConnector.getConnection();
-             PreparedStatement pst = conn.prepareStatement(query)) {
+        try (
+             PreparedStatement pst = this.connection.prepareStatement(query)) {
 
             pst.setString(1, email);
             ResultSet result = pst.executeQuery();

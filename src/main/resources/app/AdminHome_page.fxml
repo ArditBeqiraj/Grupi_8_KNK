@@ -62,7 +62,7 @@
                                                 <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="1.5em" />
                                             </graphic>
                                         </Button>
-                                        <Button fx:id="shkyqu" layoutX="22.0" layoutY="461.0" mnemonicParsing="false" onAction="#shkyqu" stylesheets="@../css/admin_homepage.css" textFill="WHITE">
+                                        <Button fx:id="shkyqu" layoutX="22.0" layoutY="461.0" mnemonicParsing="false" onAction="#handleLogOut" stylesheets="@../css/admin_homepage.css" textFill="WHITE">
                                             <graphic>
                                                 <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="1.7em" />
                                             </graphic>
@@ -172,7 +172,7 @@
                                                 </BarChart>
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane fx:id="shtoStaf_Forma" layoutX="43.0" layoutY="43.0" prefHeight="520.0" prefWidth="888.5" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <AnchorPane fx:id="shtoStaf_Forma" layoutX="43.0" layoutY="43.0" prefHeight="520.0" prefWidth="888.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
                                                 <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="497.0" prefWidth="866.0" stylesheets="@../css/admin_homepage.css">
                                                     <children>
@@ -247,7 +247,7 @@
                                                 </AnchorPane>
                                             </children>
                                         </AnchorPane>
-                              <AnchorPane fx:id="shtoStaf_Forma1" layoutX="-7.0" prefHeight="520.0" prefWidth="888.5">
+                              <AnchorPane fx:id="shtoStaf_Forma1" layoutX="-7.0" prefHeight="520.0" prefWidth="888.5" visible="false">
                                  <children>
                                     <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="497.0" prefWidth="866.0" stylesheets="@../css/admin_homepage.css">
                                        <children>
@@ -259,7 +259,7 @@
                                              <children>
                                                 <TableView fx:id="shtoStaf_Tabela1" layoutX="20.0" layoutY="49.0" onMouseClicked="#addEmployeeSelect" prefHeight="424.0" prefWidth="827.0">
                                                    <columns>
-                                                      <TableColumn fx:id="shtoStaf_col_pacientID1" prefWidth="74.2459716796875" text="Pacient_ID" />
+                                                      <TableColumn fx:id="shtoStaf_col_pacientID1" prefWidth="74.2459716796875" text="User_ID" />
                                                       <TableColumn fx:id="shtoStaf_col_emri1" prefWidth="88.2540283203125" text="Emri" />
                                                       <TableColumn fx:id="shtoStaf_col_Mbiemri1" prefWidth="81.03890991210938" text="Mbiemri" />
                                                       <TableColumn fx:id="shtoStaf_col_Email1" prefWidth="114.1156005859375" text="Email" />

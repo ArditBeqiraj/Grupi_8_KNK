@@ -1,6 +1,7 @@
 package services;
 
 import Repository.PerdoruesiRepository;
+import app.SessionManager;
 import model.Perdoruesi.Perdoruesi;
 import model.Perdoruesi.PerdoruesiDTO.CreatePerdoruesiDTO;
 import model.Perdoruesi.PerdoruesiDTO.LoginPerdoruesiDto;
@@ -67,5 +68,9 @@ public class PerdoruesiService {
 
 
         return new PerdoruesiRepository().updatePassword(perdoruesi.getId(), newHashedPassword, salt);
+    }
+
+    public void LogOut() {
+        SessionManager.setPerdoruesi(null);
     }
 }

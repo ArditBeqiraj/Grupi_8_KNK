@@ -19,6 +19,12 @@ public class CreatePacientetDTO {
         this.kontakti_emergjent = kontakti_emergjent;
     }
 
+    public CreatePacientetDTO(int user_id, String gjinia) {
+        this.user_id = user_id;
+        this.datelindja = datelindja;
+        this.gjinia = gjinia;
+    }
+
     public int getUser_id() {
         return user_id;
     }
@@ -28,8 +34,10 @@ public class CreatePacientetDTO {
     }
 
     public Date getDatelindja() {
-        return java.sql.Date.valueOf(datelindja);
+        if (this.datelindja == null) return null;
+        return Date.valueOf(this.datelindja);
     }
+
 
     public void setDatelindja(LocalDate datelindja) {
         this.datelindja = datelindja;
@@ -44,7 +52,8 @@ public class CreatePacientetDTO {
     }
 
     public String getAdresa() {
-        return adresa;
+        if (this.adresa == null) return null;
+        return this.adresa;
     }
 
     public void setAdresa(String adresa) {
@@ -52,7 +61,8 @@ public class CreatePacientetDTO {
     }
 
     public String getKontakti_emergjent() {
-        return kontakti_emergjent;
+        if (this.kontakti_emergjent == null) return null;
+        return this.kontakti_emergjent;
     }
 
     public void setKontakti_emergjent(String kontakti_emergjent) {

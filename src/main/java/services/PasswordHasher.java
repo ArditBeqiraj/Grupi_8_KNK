@@ -35,7 +35,6 @@ public class PasswordHasher {
 
     public static boolean compareSaltedHash(String password, String salt, String saltedHash) {
         String generatedPasswordHash = generateSaltedHash(password,salt);
-        System.out.println(password);
         return generatedPasswordHash.equals(saltedHash);
     }
 

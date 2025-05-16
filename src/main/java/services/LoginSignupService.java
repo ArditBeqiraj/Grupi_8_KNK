@@ -7,13 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Pacientet.PacientetDTO.CreatePacientetDTO;
 import model.Perdoruesi.Perdoruesi;
 import model.Perdoruesi.PerdoruesiDTO.CreatePerdoruesiDTO;
 import model.Perdoruesi.PerdoruesiDTO.LoginPerdoruesiDto;
@@ -27,7 +25,6 @@ public class LoginSignupService {
 
     public void handleLoginClick(ActionEvent ae, String email, String password) throws SQLException, IOException {
         LoginPerdoruesiDto loginPerdoruesiData = new LoginPerdoruesiDto(email, password);
-
         if (PerdoruesiService.login(loginPerdoruesiData)) {
             PerdoruesiRepository repo = new PerdoruesiRepository();
             SessionManager.setPerdoruesi(repo.getByEmail(email));
@@ -74,12 +71,13 @@ public class LoginSignupService {
         pwdConfirmPassword.clear();
     }
 
-    public void handleSignUp(ActionEvent ae, TextField txtEmri, TextField txtMbeimri, TextField txtEmail, TextField txtnumri, ToggleGroup gjinia, PasswordField pwdPassword, PasswordField pwdConfirmPassword) throws SQLException, IOException {
+    public void handleSignUp(ActionEvent ae, TextField txtEmri, TextField txtMbeimri, TextField txtEmail, TextField txtnumri, ToggleGroup gjinia, PasswordField pwdPassword, PasswordField pwdConfirmPassword) throws Exception {
         String emri = txtEmri.getText();
         String mbiemri = txtMbeimri.getText();
         String email = txtEmail.getText();
         String numri = txtnumri.getText();
-        String gender = gjinia.toString();
+        RadioButton selectedRadioButton = (RadioButton) gjinia.getSelectedToggle();
+        String gender = selectedRadioButton.getText();
         String password = pwdPassword.getText();
         String confirmPassword = pwdConfirmPassword.getText();
 
@@ -126,6 +124,12 @@ public class LoginSignupService {
 
         PerdoruesiRepository perdoruesiRepository = new PerdoruesiRepository();
         Perdoruesi perdoruesi = perdoruesiRepository.create(createPerdoruesiDTO);
+
+        CreatePacientetDTO createPacientetDTO = new CreatePacientetDTO(perdoruesi.getId(), gender);
+
+        System.out.println(gender);
+        PacientetService pacientetService = new PacientetService();
+        pacientetService.create(createPacientetDTO);
 
 
         Navigator.navigate(ae, Navigator.LOGIN_PAGE, "Login");
