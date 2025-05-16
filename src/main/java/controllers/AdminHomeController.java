@@ -172,60 +172,51 @@ public class AdminHomeController implements Initializable {
                 shtoStaf_Telefoni.getText().isEmpty() ||
                 shtoStaf_Roli.getValue() == null || shtoStaf_Roli.getValue().isEmpty()) {
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Gabim");
-            alert.setHeaderText(null);
-            alert.setContentText("Të gjitha fushat duhet të mbushen.");
-            alert.showAndWait();
+            showErrorAlert("Të gjitha fushat duhet të mbushen.");
             return;
         }
 
-        if (!this.isValidEmail(shtoStaf_Email.getText())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Gabim");
-            alert.setHeaderText(null);
-            alert.setContentText("Ju lutemi futni një email të vlefshëm.");
-            alert.showAndWait();
+        if (!isValidEmail(shtoStaf_Email.getText())) {
+            showErrorAlert("Ju lutemi futni një email të vlefshëm.");
             return;
         }
 
-        String check = "SELECT * FROM perdoruesi WHERE email = ? AND ID = ?";
-        try (PreparedStatement checkStmt = DBConnector.getConnection().prepareStatement(check)) {
-            checkStmt.setString(1, shtoStaf_Email.getText());
-            checkStmt.setInt(2, Integer.parseInt(shtoStaf_UserID.getText()));
-            ResultSet resultSet = checkStmt.executeQuery();
+        Perdoruesi perdoruesi = new Perdoruesi();
+        perdoruesi.setId(Integer.parseInt(shtoStaf_UserID.getText()));
+        perdoruesi.setEmri(shtoStaf_Emri.getText());
+        perdoruesi.setMbiemri(shtoStaf_Mbiemri.getText());
+        perdoruesi.setEmail(shtoStaf_Email.getText());
+        perdoruesi.setTelefoni(shtoStaf_Telefoni.getText());
+        perdoruesi.setRoli(shtoStaf_Roli.getValue());
 
-            if (resultSet.next()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Gabim");
-                alert.setHeaderText(null);
-                alert.setContentText("Përdoruesi me emailin: \"" + shtoStaf_Email.getText() + "\" ekziston.");
-                alert.showAndWait();
-                return;
-            }
-        }
+        boolean updated = perdoruesiService.updateStaf(perdoruesi);
 
-        String query = "UPDATE perdoruesi SET emri = ?, mbiemri = ?, email = ?, telefoni = ?, roli = ? WHERE ID = ?";
-        try (PreparedStatement stmt = DBConnector.getConnection().prepareStatement(query)) {
-            stmt.setString(1, shtoStaf_Emri.getText());
-            stmt.setString(2, shtoStaf_Mbiemri.getText());
-            stmt.setString(3, shtoStaf_Email.getText());
-            stmt.setString(4, shtoStaf_Telefoni.getText());
-            stmt.setString(5, shtoStaf_Roli.getValue());
-            stmt.setInt(6, Integer.parseInt(shtoStaf_UserID.getText()));
-
-            stmt.executeUpdate();
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        if (updated) {
             shtoStafLista = addStaf();
             shtoStaf_Tabela.setItems(shtoStafLista);
-            alert.setTitle("Sukses");
-            alert.setHeaderText(null);
-            alert.setContentText("Përdoruesi u përditësua me sukses.");
-            alert.showAndWait();
+            showInfoAlert("Përdoruesi u përditësua me sukses.");
             ResetData();
+        } else {
+            showErrorAlert("Përdoruesi me emailin: \"" + perdoruesi.getEmail() + "\" ekziston.");
         }
     }
+
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Gabim");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showInfoAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sukses");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
 
 
@@ -481,45 +472,14 @@ public class AdminHomeController implements Initializable {
     @FXML
     private TableColumn<Pacientet, String> shtoStaf_col_Kontakti;
 
-    public ObservableList<Pacientet> addPacient () throws SQLException {
-        ObservableList<Pacientet> StafLista = FXCollections.observableArrayList();
-        String query = """
-        SELECT 
-            p.id AS pacient_id,
-            p.user_id,
-            p.datelindja,
-            p.gjinia,
-            p.adresa,
-            p.kontakti_emergjent,
-            u.id,
-            u.emri,
-            u.mbiemri,
-            u.email,
-            u.telefoni,
-            u.roli,
-            u.salt,
-            u.hashedpassword,
-            u.krijuar
-        FROM 
-            Pacientet p
-        INNER JOIN 
-            Perdoruesi u ON p.user_id = u.id
-    """;
-
-        PreparedStatement preparedStatement = DBConnector.getConnection().prepareStatement(query);
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        while (resultSet.next()) {
-            Pacientet pacienti = Pacientet.getInstance(resultSet);
-
-            Perdoruesi perdoruesi = Perdoruesi.getInstance(resultSet);
-
-            pacienti.setPerdoruesi(perdoruesi);
-
-            StafLista.add(pacienti);
+    public ObservableList<Pacientet> addPacient() {
+        try {
+            return perdoruesiService.fetchAllPacientet();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Show error alert or handle gracefully
+            return FXCollections.observableArrayList();
         }
-
-        return StafLista;
     }
 
 

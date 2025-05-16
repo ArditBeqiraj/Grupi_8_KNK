@@ -1,7 +1,10 @@
 package Repository;
 
 import Database.DBConnector;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
+import model.Pacientet.Pacientet;
 import model.Perdoruesi.Perdoruesi;
 import model.Perdoruesi.PerdoruesiDTO.CreatePerdoruesiDTO;
 import model.Perdoruesi.PerdoruesiDTO.UpdatePerdoruesiDTO;
@@ -85,22 +88,42 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
         return null;
     }
 
-    public Perdoruesi update(UpdatePerdoruesiDTO perdoruesiDTO) {
-        String query = """
-            UPDATE perdoruesi
-            SET email = ?, telefoni = ?
-            WHERE id = ?
-        """;
-        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
-            pstm.setString(1, perdoruesiDTO.getEmail());
-            pstm.setString(2, perdoruesiDTO.getTelefoni());
-            pstm.setInt(3, perdoruesiDTO.getUser_id());
-            pstm.executeUpdate();
+    public boolean emailExistsForOtherUser(String email, int userId) {
+        String query = "SELECT 1 FROM perdoruesi WHERE email = ? AND ID != ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, email);
+            stmt.setInt(2, userId);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // true if found
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return this.getById(perdoruesiDTO.getUser_id());
+        return false;
     }
+
+    public Perdoruesi update(Perdoruesi perdoruesi) {
+        String query = "UPDATE perdoruesi SET emri = ?, mbiemri = ?, email = ?, telefoni = ?, roli = ? WHERE ID = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, perdoruesi.getEmri());
+            stmt.setString(2, perdoruesi.getMbiemri());
+            stmt.setString(3, perdoruesi.getEmail());
+            stmt.setString(4, perdoruesi.getTelefoni());
+            stmt.setString(5, perdoruesi.getRoli());
+            stmt.setInt(6, perdoruesi.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return getById(perdoruesi.getId());
+    }
+
+    public Perdoruesi update(UpdatePerdoruesiDTO updatePerdoruesiDTO) {
+        return null;
+    };
+
 
     public boolean updatePassword(int id, String hashedPassword, String salt) {
         String query = "UPDATE perdoruesi SET salt = ?, hashedpassword = ? WHERE id = ?";
@@ -178,4 +201,44 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
         return null;
     }
 
+    public ObservableList<Pacientet> getAllPacientet() throws SQLException {
+        ObservableList<Pacientet> pacientList = FXCollections.observableArrayList();
+
+        String query = """
+            SELECT 
+                p.id AS pacient_id,
+                p.user_id,
+                p.datelindja,
+                p.gjinia,
+                p.adresa,
+                p.kontakti_emergjent,
+                u.id,
+                u.emri,
+                u.mbiemri,
+                u.email,
+                u.telefoni,
+                u.roli,
+                u.salt,
+                u.hashedpassword,
+                u.krijuar
+            FROM 
+                Pacientet p
+            INNER JOIN 
+                Perdoruesi u ON p.user_id = u.id
+        """;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                Pacientet pacienti = Pacientet.getInstance(resultSet);
+                Perdoruesi perdoruesi = Perdoruesi.getInstance(resultSet);
+                pacienti.setPerdoruesi(perdoruesi);
+
+                pacientList.add(pacienti);
+            }
+        }
+
+        return pacientList;
+    }
 }

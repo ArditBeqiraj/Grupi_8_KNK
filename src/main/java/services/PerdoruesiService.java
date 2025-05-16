@@ -2,6 +2,8 @@ package services;
 
 import Repository.PerdoruesiRepository;
 import app.SessionManager;
+import javafx.collections.ObservableList;
+import model.Pacientet.Pacientet;
 import model.Perdoruesi.Perdoruesi;
 import model.Perdoruesi.PerdoruesiDTO.CreatePerdoruesiDTO;
 import model.Perdoruesi.PerdoruesiDTO.LoginPerdoruesiDto;
@@ -11,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 public class PerdoruesiService {
+    private PerdoruesiRepository perdoruesiRepository = new PerdoruesiRepository();
     public Perdoruesi create(Perdoruesi perdoruesi) {
         String salt = PasswordHasher.generateSalt();
         String password = perdoruesi.getPassword();
@@ -69,6 +72,21 @@ public class PerdoruesiService {
 
         return new PerdoruesiRepository().updatePassword(perdoruesi.getId(), newHashedPassword, salt);
     }
+
+    public boolean updateStaf(Perdoruesi perdoruesi) {
+        boolean emailExists = perdoruesiRepository.emailExistsForOtherUser(perdoruesi.getEmail(), perdoruesi.getId());
+        if (emailExists) {
+            return false;
+        }
+
+        perdoruesiRepository.update(perdoruesi);
+        return true;
+    }
+
+    public ObservableList<Pacientet> fetchAllPacientet() throws SQLException {
+        return perdoruesiRepository.getAllPacientet();
+    }
+
 
     public void LogOut() {
         SessionManager.setPerdoruesi(null);

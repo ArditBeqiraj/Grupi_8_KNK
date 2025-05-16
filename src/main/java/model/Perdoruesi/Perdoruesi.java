@@ -29,6 +29,10 @@ public class Perdoruesi {
         this.krijuar = krijuar;
     }
 
+    public Perdoruesi() {
+        return;
+    }
+
     public static Perdoruesi getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String emri = resultSet.getString("emri");
@@ -92,4 +96,31 @@ public class Perdoruesi {
     }
 
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setEmri(String emri) {
+        this.emri = emri;
+    }
+
+    public void setMbiemri(String mbiemri) {
+        this.mbiemri = mbiemri;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefoni(String telefoni) {
+        this.telefoni = telefoni;
+    }
+
+    public void setRoli(String roli) {
+        this.roli = roli;
+    }
+
+    public void setKrijuar(Timestamp krijuar) {
+        this.krijuar = krijuar;
+    }
 }
