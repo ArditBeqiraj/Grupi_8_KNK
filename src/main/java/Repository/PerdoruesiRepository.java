@@ -113,4 +113,41 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
             return false;
         }
     }
+
+    public int totalEmployees() {
+        String sql = "SELECT COUNT(id) AS total FROM perdoruesi WHERE roli IN ('Doktor', 'Moter', 'Praktikant')";
+        int countData = 0;
+        try {
+            Statement statement = this.connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+
+            while (result.next()) {
+                countData = result.getInt("total");
+            }
+            return countData;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int totalPacient() {
+        String sql = "SELECT COUNT(id) AS total FROM pacientet";
+        int countData = 0;
+        try {
+            Statement statement = this.connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+
+            while (result.next()) {
+                countData = result.getInt("total");
+            }
+            return countData;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

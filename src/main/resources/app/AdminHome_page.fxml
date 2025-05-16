@@ -91,7 +91,7 @@
                             <children>
                                 <AnchorPane layoutX="67.0" layoutY="57.0" prefHeight="504.0" prefWidth="888.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <AnchorPane fx:id="home_form" layoutX="9.0" layoutY="9.0" prefHeight="484.0" prefWidth="867.0" stylesheets="@../css/admin_homepage.css" visible="false">
+                                        <AnchorPane fx:id="home_form" layoutX="9.0" layoutY="9.0" prefHeight="484.0" prefWidth="867.0" stylesheets="@../css/admin_homepage.css" visible="true">
                                             <styleClass>
                                                 <String fx:value="white-background" />
                                                 <String fx:value="shadow" />
@@ -103,7 +103,7 @@
                                                         <String fx:value="shadow" />
                                                     </styleClass>
                                                     <children>
-                                                        <AnchorPane layoutX="33.0" layoutY="15.0" prefHeight="99.0" prefWidth="246.0" stylesheets="@../css/admin_homepage.css">
+                                                        <AnchorPane layoutX="113.0" layoutY="15.0" prefHeight="99.0" prefWidth="246.0" stylesheets="@../css/admin_homepage.css">
                                                             <styleClass>
                                                                 <String fx:value="nav-form" />
                                                                 <String fx:value="card" />
@@ -115,51 +115,32 @@
                                                                         <Font size="17.0" />
                                                                     </font>
                                                                 </Label>
-                                                                <Label layoutX="226.0" layoutY="11.0" text="0" textFill="WHITE">
+                                                                <Label fx:id="totalEmployees" layoutX="226.0" layoutY="11.0" text="0" textFill="WHITE">
                                                                     <font>
                                                                         <Font size="17.0" />
                                                                     </font>
                                                                 </Label>
                                                             </children>
                                                         </AnchorPane>
-                                                        <AnchorPane layoutX="316.0" layoutY="15.0" prefHeight="99.0" prefWidth="246.0" stylesheets="@../css/admin_homepage.css">
-                                                            <styleClass>
-                                                                <String fx:value="nav-form" />
-                                                                <String fx:value="card" />
-                                                            </styleClass>
-                                                            <children>
-                                                                <FontAwesomeIconView fill="WHITE" glyphName="CHECK" layoutX="16.0" layoutY="67.0" size="4em" />
-                                                                <Label layoutX="86.0" layoutY="38.0" text="Nr. i stafit prezent" textFill="WHITE">
-                                                                    <font>
-                                                                        <Font size="17.0" />
-                                                                    </font>
-                                                                </Label>
-                                                                <Label layoutX="226.0" layoutY="11.0" text="0" textFill="WHITE">
-                                                                    <font>
-                                                                        <Font size="17.0" />
-                                                                    </font>
-                                                                </Label>
-                                                            </children>
-                                                        </AnchorPane>
-                                                        <AnchorPane layoutX="594.0" layoutY="15.0" prefHeight="99.0" prefWidth="246.0" stylesheets="@../css/admin_homepage.css">
-                                                            <styleClass>
-                                                                <String fx:value="nav-form" />
-                                                                <String fx:value="card" />
-                                                            </styleClass>
-                                                            <children>
-                                                                <FontAwesomeIconView fill="WHITE" glyphName="MINUS" layoutX="16.0" layoutY="66.0" size="4em" />
-                                                                <Label layoutX="86.0" layoutY="37.0" text="Nr. i stafit joprezent" textFill="WHITE">
-                                                                    <font>
-                                                                        <Font size="17.0" />
-                                                                    </font>
-                                                                </Label>
-                                                                <Label layoutX="226.0" layoutY="10.0" text="0" textFill="WHITE">
-                                                                    <font>
-                                                                        <Font size="17.0" />
-                                                                    </font>
-                                                                </Label>
-                                                            </children>
-                                                        </AnchorPane>
+                                          <AnchorPane layoutX="483.0" layoutY="15.0" prefHeight="99.0" prefWidth="246.0" stylesheets="@../css/admin_homepage.css">
+                                             <styleClass>
+                                                <String fx:value="nav-form" />
+                                                <String fx:value="card" />
+                                             </styleClass>
+                                             <children>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="16.0" layoutY="67.0" size="4em" />
+                                                <Label layoutX="108.0" layoutY="41.0" text="Nr. i pacienteve" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="totalPacient" layoutX="226.0" layoutY="11.0" text="0" textFill="WHITE">
+                                                   <font>
+                                                      <Font size="17.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
                                                     </children>
                                                 </AnchorPane>
                                                 <BarChart layoutX="14.0" layoutY="147.0" prefHeight="319.0" prefWidth="832.0" title="Grafiku">
@@ -172,7 +153,7 @@
                                                 </BarChart>
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane fx:id="shtoStaf_Forma" layoutX="43.0" layoutY="43.0" prefHeight="520.0" prefWidth="888.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <AnchorPane fx:id="shtoStaf_Forma" layoutX="43.0" layoutY="43.0" prefHeight="520.0" prefWidth="888.5" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
                                                 <AnchorPane layoutX="11.0" layoutY="10.0" prefHeight="497.0" prefWidth="866.0" stylesheets="@../css/admin_homepage.css">
                                                     <children>

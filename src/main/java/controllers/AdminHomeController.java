@@ -40,6 +40,12 @@ import services.PerdoruesiService;
 public class AdminHomeController implements Initializable {
 
     @FXML
+    private Label totalEmployees;
+
+    @FXML
+    private Label totalPacient;
+
+    @FXML
     private Button home_btn;
 
     @FXML
@@ -120,6 +126,7 @@ public class AdminHomeController implements Initializable {
     @FXML
     private AnchorPane shtoStaf_Forma1;
 
+    private PerdoruesiRepository perdoruesiRepository = new PerdoruesiRepository();
     private PerdoruesiService perdoruesiService = new PerdoruesiService();
 
     @FXML
@@ -135,6 +142,14 @@ public class AdminHomeController implements Initializable {
             perdoruesiService.LogOut();
             Navigator.navigate(me, Navigator.LOGIN_PAGE, "Login");
         }
+    }
+
+    public void totalEmployees() {
+        totalEmployees.setText(String.valueOf(perdoruesiRepository.totalEmployees()));
+    }
+
+    public void totalPacientet() {
+        totalPacient.setText(String.valueOf(perdoruesiRepository.totalPacient()));
     }
 
 
@@ -169,10 +184,10 @@ public class AdminHomeController implements Initializable {
             return;
         }
 
-        String check = "SELECT * FROM perdoruesi WHERE email = ? AND ID != ?";
+        String check = "SELECT * FROM perdoruesi WHERE email = ? AND ID = ?";
         try (PreparedStatement checkStmt = DBConnector.getConnection().prepareStatement(check)) {
             checkStmt.setString(1, shtoStaf_Email.getText());
-            checkStmt.setString(2, shtoStaf_UserID.getText());
+            checkStmt.setInt(2, Integer.parseInt(shtoStaf_UserID.getText()));
             ResultSet resultSet = checkStmt.executeQuery();
 
             if (resultSet.next()) {
@@ -192,17 +207,21 @@ public class AdminHomeController implements Initializable {
             stmt.setString(3, shtoStaf_Email.getText());
             stmt.setString(4, shtoStaf_Telefoni.getText());
             stmt.setString(5, shtoStaf_Roli.getValue());
-            stmt.setString(6, shtoStaf_UserID.getText());
+            stmt.setInt(6, Integer.parseInt(shtoStaf_UserID.getText()));
 
             stmt.executeUpdate();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            shtoStafLista = addStaf();
+            shtoStaf_Tabela.setItems(shtoStafLista);
             alert.setTitle("Sukses");
             alert.setHeaderText(null);
             alert.setContentText("Përdoruesi u përditësua me sukses.");
             alert.showAndWait();
+            ResetData();
         }
     }
+
 
 
     public void shtoStafDelete() {
@@ -273,7 +292,9 @@ public class AdminHomeController implements Initializable {
     public void ResetData () {
         shtoStaf_UserID.setText("");
         shtoStaf_Emri.setText("");
+        shtoStaf_Emri.setEditable(true);
         shtoStaf_Mbiemri.setText("");
+        shtoStaf_Mbiemri.setEditable(true);
         shtoStaf_Email.setText("");
         shtoStaf_Telefoni.setText("");
         shtoStaf_Roli.getSelectionModel().clearSelection();
@@ -281,9 +302,6 @@ public class AdminHomeController implements Initializable {
 
     public ObservableList<Perdoruesi> addStaf () throws SQLException {
         ObservableList<Perdoruesi> StafLista = FXCollections.observableArrayList();
-        String query = "SELECT * FROM perdoruesi WHERE roli IN ('Doktor', 'Moter', 'Praktikant')";
-        PreparedStatement preparedStatement = DBConnector.getConnection().prepareStatement(query);
-        ResultSet resultSet = preparedStatement.executeQuery();
         PerdoruesiRepository perdoruesiRepository = new PerdoruesiRepository();
         ArrayList<Perdoruesi> arrayStaf = perdoruesiRepository.getAllStaf();
 
@@ -317,7 +335,9 @@ public class AdminHomeController implements Initializable {
 
         shtoStaf_UserID.setText(String.valueOf(perdoruesi.getId()));
         shtoStaf_Emri.setText(perdoruesi.getEmri());
+        shtoStaf_Emri.setEditable(false);
         shtoStaf_Mbiemri.setText(perdoruesi.getMbiemri());
+        shtoStaf_Mbiemri.setEditable(false);
         shtoStaf_Email.setText(perdoruesi.getEmail());
         shtoStaf_Telefoni.setText(perdoruesi.getTelefoni());
         shtoStaf_Roli.setValue(perdoruesi.getRoli());
@@ -331,6 +351,8 @@ public class AdminHomeController implements Initializable {
             home_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #2b303c, #525968)");
             shtoStaf_btn.setStyle("-fx-background-color: transparent");
             shtoStaf_btn1.setStyle("-fx-background-color: transparent");
+            totalEmployees();
+            totalPacientet();
         } else if (actionEvent.getSource() == shtoStaf_btn) {
             home_form.setVisible(false);
             shtoStaf_Forma.setVisible(true);
@@ -606,6 +628,8 @@ public class AdminHomeController implements Initializable {
             ShtoPacientListaData();
             addEmployeeSearch();
             addEmployeeSearch1();
+            totalEmployees();
+            totalPacientet();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
