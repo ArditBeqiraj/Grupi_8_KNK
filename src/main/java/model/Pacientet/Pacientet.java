@@ -8,45 +8,51 @@ import java.time.LocalDate;
 
 public class Pacientet {
     private int id;
-    private int user_id;
+    private int userId;
     private LocalDate datelindja;
     private String gjinia;
     private String adresa;
-    private String kontakti_emergjent;
+    private String kontaktiEmergjent;
+    private Integer mjekuFamiljarId;
     private Perdoruesi perdoruesi;
 
-    private Pacientet(int id, int user_id, LocalDate datelindja, String gjinia, String adresa, String kontakti_emergjent) {
+    private Pacientet(int id, int userId, LocalDate datelindja, String gjinia, String adresa, String kontaktiEmergjent, Integer mjekuFamiljarId) {
         this.id = id;
-        this.user_id = user_id;
+        this.userId = userId;
         this.datelindja = datelindja;
         this.gjinia = gjinia;
         this.adresa = adresa;
-        this.kontakti_emergjent = kontakti_emergjent;
+        this.kontaktiEmergjent = kontaktiEmergjent;
+        this.mjekuFamiljarId = mjekuFamiljarId;
     }
 
     public static Pacientet getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
-        int user_id = resultSet.getInt("user_id");
-        String gjinia = resultSet.getString("gjinia");
+        int userId = resultSet.getInt("user_id");
+
         java.sql.Date datelindjaSql = resultSet.getDate("datelindja");
         LocalDate datelindja = (datelindjaSql != null) ? datelindjaSql.toLocalDate() : null;
+
+        String gjinia = resultSet.getString("gjinia");
 
         String adresa = resultSet.getString("adresa");
         if (resultSet.wasNull()) adresa = null;
 
-        String kontakti_emergjent = resultSet.getString("kontakti_emergjent");
-        if (resultSet.wasNull()) kontakti_emergjent = null;
+        String kontaktiEmergjent = resultSet.getString("kontakti_emergjent");
+        if (resultSet.wasNull()) kontaktiEmergjent = null;
 
-        return new Pacientet(id, user_id, datelindja, gjinia, adresa, kontakti_emergjent);
+        Integer mjekuFamiljarId = resultSet.getObject("mjeku_familjar_id", Integer.class);
+
+        return new Pacientet(id, userId, datelindja, gjinia, adresa, kontaktiEmergjent, mjekuFamiljarId);
     }
 
-
+    // GETTERS
     public int getId() {
         return id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
     public LocalDate getDatelindja() {
@@ -61,8 +67,12 @@ public class Pacientet {
         return adresa;
     }
 
-    public String getKontakti_emergjent() {
-        return kontakti_emergjent;
+    public String getKontaktiEmergjent() {
+        return kontaktiEmergjent;
+    }
+
+    public Integer getMjekuFamiljarId() {
+        return mjekuFamiljarId;
     }
 
     public Perdoruesi getPerdoruesi() {

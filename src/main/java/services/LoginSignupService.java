@@ -33,10 +33,10 @@ public class LoginSignupService {
                 if (user.getRoli().equals("Admin")) {
                     Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD, "Admin Dashboard");
                     System.out.println("Po hapet admini");
-                } else if (user.getRoli().equals("Pacient")) {
-                    Navigator.navigate(ae, Navigator.DOCTOR_PPROFILE, "Pacienti");
+                } else if (user.getRoli().equals("Doktor")) {
+                    Navigator.navigate(ae, Navigator.DOCTOR_HOME, "Doktor");
                 } else {
-                    Navigator.navigate(ae, Navigator.STAFF_HOME, "Stafi");
+                    Navigator.navigate(ae, Navigator.STAFF_HOME, "Pacient");
                 }
             }
         }
@@ -133,6 +133,58 @@ public class LoginSignupService {
 
 
         Navigator.navigate(ae, Navigator.LOGIN_PAGE, "Login");
+    }
+
+    private void showError(String message) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/fill.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.setTitle(message);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleChangePassword(String currentPassword, String newPassword, String confirmPassword) {
+        Perdoruesi currentUser = SessionManager.getPerdoruesi();
+        if (currentUser == null) {
+            System.out.println("No user in session.");
+            return;
+        }
+
+        boolean isCorrectPassword = PasswordHasher.compareSaltedHash(
+                currentPassword,
+                currentUser.getSalt(),
+                currentUser.getPassword()
+        );
+
+        if (!isCorrectPassword) {
+            showError("Current password is incorrect.");
+            return;
+        }
+
+        if (!newPassword.equals(confirmPassword)) {
+            showError("New passwords do not match.");
+            return;
+        }
+
+        String newSalt = PasswordHasher.generateSalt();
+        String newSaltedHash = PasswordHasher.generateSaltedHash(newPassword, newSalt);
+
+        try {
+            PerdoruesiRepository repo = new PerdoruesiRepository();
+            repo.updatePassword(currentUser.getId(), newSalt, newSaltedHash);
+            System.out.println("Password changed successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showError("Database error while changing password.");
+        }
     }
 
 }

@@ -10,14 +10,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorProfileController">
+<StackPane maxHeight="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorProfileController">
     <children>
-        <AnchorPane maxHeight="600.0" maxWidth="1100.0" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #F5F7FA;">
+        <AnchorPane maxHeight="500.0" maxWidth="1100.0" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #F5F7FA;">
             <children>
-                <fx:include source="DoctorSidebar.fxml" />
+                    <fx:include source="DoctorSidebar.fxml" />
+                    
 
 
-                <AnchorPane layoutX="219.0" layoutY="52.0" prefHeight="496.0" prefWidth="734.0" style="-fx-background-color: #D1D9E6;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+                <AnchorPane layoutX="219.0" layoutY="52.0" prefHeight="496.0" prefWidth="734.0" style="-fx-background-color: #D1D9E6;" AnchorPane.bottomAnchor="37.5" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="37.5">
                     <children>
                         <HBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="74.4" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                             <children>

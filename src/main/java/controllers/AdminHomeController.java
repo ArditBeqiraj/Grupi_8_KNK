@@ -575,7 +575,7 @@ public class AdminHomeController implements Initializable {
                 if (PacientData.getDatelindja() != null && PacientData.getDatelindja().toString().toLowerCase().contains(searchKey)) return true;
                 if (PacientData.getGjinia() != null && PacientData.getGjinia().toLowerCase().contains(searchKey)) return true;
                 if (PacientData.getAdresa() != null && PacientData.getAdresa().toLowerCase().contains(searchKey)) return true;
-                if (PacientData.getKontakti_emergjent() != null && PacientData.getKontakti_emergjent().toLowerCase().contains(searchKey)) return true;
+                if (PacientData.getKontaktiEmergjent() != null && PacientData.getKontaktiEmergjent().toLowerCase().contains(searchKey)) return true;
 
                 return false;
             });

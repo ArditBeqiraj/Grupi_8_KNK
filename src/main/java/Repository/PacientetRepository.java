@@ -3,16 +3,19 @@ package Repository;
 import model.Pacientet.Pacientet;
 import model.Pacientet.PacientetDTO.CreatePacientetDTO;
 import model.Pacientet.PacientetDTO.UpdatePacientetDTO;
+import model.Perdoruesi.Perdoruesi;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PacientetRepository extends BaseRepository<Pacientet, CreatePacientetDTO, UpdatePacientetDTO>{
+public class PacientetRepository extends BaseRepository<Pacientet, CreatePacientetDTO, UpdatePacientetDTO> {
 
-    public PacientetRepository () {
+    public PacientetRepository() {
         super("Pacientet");
     }
 
-    public Pacientet fromResultSet(ResultSet result) throws SQLException{
+    public Pacientet fromResultSet(ResultSet result) throws SQLException {
         return Pacientet.getInstance(result);
     }
 
@@ -22,8 +25,7 @@ public class PacientetRepository extends BaseRepository<Pacientet, CreatePacient
                 VALUES (?, ?, ?, ?, ?)
                 """;
         try {
-            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS /*1*/);
-            Statement statement = this.connection.createStatement();
+            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, pacientetDto.getUser_id());
             pstm.setDate(2, pacientetDto.getDatelindja());
             pstm.setString(3, pacientetDto.getGjinia());
@@ -51,12 +53,51 @@ public class PacientetRepository extends BaseRepository<Pacientet, CreatePacient
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setString(1, pacientDto.getAdresa());
-            pstm.setString(2, pacientDto.getKontakti_emergjent());
-            pstm.setInt(3, pacientDto.getPacient_id());
+            pstm.setString(2, pacientDto.getKontaktiEmergjent());
+            pstm.setInt(3, pacientDto.getPatientid());
             pstm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return this.getById(pacientDto.getPacient_id());
+        return this.getById(pacientDto.getPatientid());
     }
+
+
+    public List<Pacientet> getAllWithPerdoruesiByDoctorId(int doctorId) {
+        List<Pacientet> pacientetList = new ArrayList<>();
+
+        String query = """
+        SELECT pa.*, 
+               p.emri, p.mbiemri, p.email, p.telefoni
+        FROM Pacientet pa
+        JOIN Perdoruesi p ON pa.user_id = p.id
+        WHERE pa.mjeku_familjar_id = ?
+        """;
+
+        try (PreparedStatement pstm = connection.prepareStatement(query)) {
+            pstm.setInt(1, doctorId);
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    Pacientet pacient = Pacientet.getInstance(rs);
+
+                    Perdoruesi perdoruesi = new Perdoruesi(
+                            rs.getInt("user_id"),
+                            rs.getString("emri"),
+                            rs.getString("mbiemri"),
+                            rs.getString("email"),
+                            rs.getString("telefoni"),
+                            null, null, null, null
+                    );
+
+                    pacient.setPerdoruesi(perdoruesi);
+                    pacientetList.add(pacient);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pacientetList;
+    }
+
 }

@@ -1,15 +1,9 @@
 package app;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Perdoruesi.Perdoruesi;
-import services.PasswordHasher;
-import services.PerdoruesiService;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
 public class HelloApplication extends Application {
     @Override

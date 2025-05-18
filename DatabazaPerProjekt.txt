@@ -18,7 +18,8 @@ CREATE TABLE Pacientet (
                            datelindja DATE,
                            gjinia VARCHAR(10) CHECK (gjinia IN ('Mashkull', 'Femer')),
                            adresa TEXT,
-                           kontakti_emergjent VARCHAR(100)
+                           kontakti_emergjent VARCHAR(100),
+                           mjeku_familjar_id INT REFERENCES Mjeket(id) on DELETE SET NULL
 );
 
 CREATE TABLE Rekordet (

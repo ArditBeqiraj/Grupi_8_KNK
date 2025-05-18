@@ -24,10 +24,10 @@
                 </VBox>
                 <VBox alignment="TOP_CENTER" prefHeight="421.0" prefWidth="174.0" spacing="25.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleStaffHome" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="Home" />
-                        <Button mnemonicParsing="false" onAction="#handleDoctorProfile" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="My Profile" />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="Patients" />
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="Appointments" />
+                        <Button fx:id="DoctorHomePage" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="Home" />
+                        <Button fx:id="DoctorMyProfilePage" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="My Profile" />
+                        <Button fx:id="DoctorPatientsPage" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="Patients" />
+                        <Button fx:id="DoctorAppointmentsPage" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="Appointments" />
                     </children>
                     <padding>
                         <Insets top="50.0" />
