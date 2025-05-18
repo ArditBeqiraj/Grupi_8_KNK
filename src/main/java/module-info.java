@@ -12,8 +12,10 @@ module com.example.demo {
     exports services;
     exports utils;
 
+    opens model.MjekuSpecializimi to javafx.fxml,javafx.base;
+    opens model.Terminet to javafx.fxml,javafx.base;
     opens model.Pacientet to javafx.base;
-    opens model.Perdoruesi to javafx.base;
+    opens model.Perdoruesi to javafx.base,javafx.fxml;
     opens test to javafx.fxml;
     opens app to javafx.fxml;
     opens controllers to javafx.fxml;
