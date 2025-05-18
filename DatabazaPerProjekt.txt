@@ -127,3 +127,7 @@ CREATE TABLE Pagesa (
                         statusi VARCHAR(20),
                         krijuar DATE
 );
+-- Ndryshim i vogel per funksionalizim
+ALTER TABLE Pacientet
+ADD COLUMN mjeku_familjar_id INT REFERENCES Mjeket(id) ON DELETE SET NULL;
+

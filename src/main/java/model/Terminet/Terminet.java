@@ -8,31 +8,26 @@ public class Terminet {
     private int id;
     private int id_pacient;
     private int id_mjek;
+    private String mjeku;
     private int id_salle;
     private Date data;
     private String statusi;
     private String shenime;
 
-    private Terminet(int id, int id_pacient, int id_mjek, int id_salle, Date data, String statusi, String shenime) {
-        this.id = id;
-        this.id_pacient = id_pacient;
-        this.id_mjek = id_mjek;
-        this.id_salle = id_salle;
+    public Terminet(String mjeku,Date data, String statusi, String shenime) {
+        this.mjeku = mjeku;
         this.data = data;
         this.statusi = statusi;
         this.shenime = shenime;
     }
 
     public static Terminet getInstance(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt("id");
-        int id_pacient = resultSet.getInt("id_pacient");
-        int id_mjek = resultSet.getInt("id_mjek");
-        int id_salle = resultSet.getInt("id_salle");
+        String mjeku = resultSet.getString("id_mjek");
         Date data = resultSet.getDate("data");
         String statusi = resultSet.getString("statusi");
         String shenime = resultSet.getString("shenime");
 
-        return new Terminet(id, id_pacient, id_mjek, id_salle, data, statusi, shenime);
+        return new Terminet(mjeku,data, statusi, shenime);
     }
 
     public int getId() {
@@ -61,5 +56,8 @@ public class Terminet {
 
     public String getShenime() {
         return shenime;
+    }
+    public String getMjeku() {
+        return mjeku;
     }
 }
