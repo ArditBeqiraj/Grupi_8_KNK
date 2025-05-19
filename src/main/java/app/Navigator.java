@@ -18,6 +18,7 @@ public class Navigator {
     public final static String DOCTOR_PACIENTS_PAGE = "/app/DoctorPatientsPage.fxml";
     public final static String ADMIN_DASHBOARD="AdminHome_page.fxml";
     public final static String STAFF_HOME = "/app/StaffHome.fxml";
+    public final static String PATIENT_HOME = "PatientHome.fxml";
 
     public static void navigate(Stage stage, String page, String title) throws IOException {
         stage.centerOnScreen();

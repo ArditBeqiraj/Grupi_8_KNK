@@ -28,7 +28,7 @@
                             <children>
                                 <AnchorPane layoutX="366.0" layoutY="-30.0" prefHeight="120.0" prefWidth="1100.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                 <FontAwesomeIconView glyphName="USERS" layoutX="57.0" layoutY="41.0" scaleX="4.0" scaleY="4.0" />
-                                <Label layoutX="133.0" layoutY="26.0" text="Admin Dashboard">
+                                <Label layoutX="133.0" layoutY="26.0" text="%admin.dashboard">
                                     <font>
                                         <Font size="20.0" />
                                     </font>
@@ -45,19 +45,19 @@
                             <children>
                                 <AnchorPane layoutX="31.0" layoutY="54.0" prefHeight="400.0" prefWidth="231.0" styleClass="nav-form" stylesheets="@../css/admin_homepage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <Label layoutX="35.0" layoutY="114.0" text="Mire se vini Admin!" textFill="WHITE">
+                                        <Label layoutX="35.0" layoutY="114.0" text="%welcome.admin" textFill="WHITE">
                                             <font>
                                                 <Font size="20.0" />
                                             </font>
                                         </Label>
                                         <Line endX="100.0" layoutX="111.0" layoutY="152.0" startX="-100.0" stroke="WHITE" />
-                                        <Button fx:id="home_btn" layoutX="13.0" layoutY="166.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Home">
+                                        <Button fx:id="home_btn" layoutX="13.0" layoutY="166.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="%home">
                                             <graphic>
                                                 <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="1.5em" />
                                             </graphic>
                                         </Button>
                                         <FontAwesomeIconView fill="#fff9f9" glyphName="USER" layoutX="103.0" layoutY="64.0" scaleX="8.0" scaleY="8.0" />
-                                        <Button fx:id="shtoStaf_btn" layoutX="13.0" layoutY="227.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Stafi">
+                                        <Button fx:id="shtoStaf_btn" layoutX="13.0" layoutY="227.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="%staff">
                                             <graphic>
                                                 <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="1.5em" />
                                             </graphic>
@@ -71,12 +71,12 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                         </Button>
-                                        <Label layoutX="67.0" layoutY="466.0" text="Shkyçu" textFill="WHITE">
+                                        <Label layoutX="67.0" layoutY="466.0" text="%logout" textFill="WHITE">
                                             <font>
                                                 <Font size="16.0" />
                                             </font>
                                         </Label>
-                              <Button fx:id="shtoStaf_btn1" layoutX="13.0" layoutY="288.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="Pacientet">
+                              <Button fx:id="shtoStaf_btn1" layoutX="13.0" layoutY="288.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="%patients">
                                  <graphic>
                                     <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="1.5em" />
                                  </graphic>
@@ -110,7 +110,7 @@
                                                             </styleClass>
                                                             <children>
                                                                 <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="16.0" layoutY="67.0" size="4em" />
-                                                                <Label layoutX="108.0" layoutY="41.0" text="Nr. i stafit" textFill="WHITE">
+                                                                <Label layoutX="108.0" layoutY="41.0" text="%nr.staff" textFill="WHITE">
                                                                     <font>
                                                                         <Font size="17.0" />
                                                                     </font>
@@ -129,7 +129,7 @@
                                              </styleClass>
                                              <children>
                                                 <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="16.0" layoutY="67.0" size="4em" />
-                                                <Label layoutX="108.0" layoutY="41.0" text="Nr. i pacienteve" textFill="WHITE">
+                                                <Label layoutX="108.0" layoutY="41.0" text="%nr.patients" textFill="WHITE">
                                                    <font>
                                                       <Font size="17.0" />
                                                    </font>
@@ -165,53 +165,53 @@
                                                             <children>
                                                                 <TableView fx:id="shtoStaf_Tabela" layoutX="20.0" layoutY="49.0" onMouseClicked="#addEmployeeSelect" prefHeight="200.0" prefWidth="827.0">
                                                                     <columns>
-                                                                        <TableColumn fx:id="shtoStaf_col_userID" prefWidth="88.569580078125" text="User_ID" />
-                                                                        <TableColumn fx:id="shtoStaf_col_emri" prefWidth="94.430419921875" text="Emri" />
-                                                                        <TableColumn fx:id="shtoStaf_col_Mbiemri" prefWidth="87.43292236328125" text="Mbiemri" />
-                                                                        <TableColumn fx:id="shtoStaf_col_Email" prefWidth="205.72030639648438" text="Email" />
-                                                                        <TableColumn fx:id="shtoStaf_col_Telefoni" prefWidth="126.95196533203125" text="Telefoni" />
-                                                                        <TableColumn fx:id="shtoStaf_col_Roli" prefWidth="97.0089111328125" text="Roli" />
-                                                                        <TableColumn fx:id="shtoStaf_col_Krijuar" prefWidth="120.5" text="Krijuar_me" />
+                                                                        <TableColumn fx:id="shtoStaf_col_userID" prefWidth="88.569580078125" text="%userid" />
+                                                                        <TableColumn fx:id="shtoStaf_col_emri" prefWidth="94.430419921875" text="%name" />
+                                                                        <TableColumn fx:id="shtoStaf_col_Mbiemri" prefWidth="87.43292236328125" text="%surname" />
+                                                                        <TableColumn fx:id="shtoStaf_col_Email" prefWidth="205.72030639648438" text="%email" />
+                                                                        <TableColumn fx:id="shtoStaf_col_Telefoni" prefWidth="126.95196533203125" text="%phone" />
+                                                                        <TableColumn fx:id="shtoStaf_col_Roli" prefWidth="97.0089111328125" text="%role" />
+                                                                        <TableColumn fx:id="shtoStaf_col_Krijuar" prefWidth="120.5" text="%created" />
                                                                     </columns>
                                                                 </TableView>
-                                                                <TextField fx:id="shtoStaf_search" layoutX="29.0" layoutY="16.0" promptText="Kerko" styleClass="search" stylesheets="@../css/admin_homepage.css" />
+                                                                <TextField fx:id="shtoStaf_search" layoutX="29.0" layoutY="16.0" promptText="%search" styleClass="search" stylesheets="@../css/admin_homepage.css" />
                                                             </children>
                                                         </AnchorPane>
-                                                        <Label layoutX="106.0" layoutY="339.0" text="Emri:">
+                                                        <Label layoutX="106.0" layoutY="339.0" text="%name:">
                                                             <font>
                                                                 <Font size="17.0" />
                                                             </font>
                                                         </Label>
                                                         <TextField fx:id="shtoStaf_Emri" layoutX="181.0" layoutY="338.0" styleClass="text-field" stylesheets="@../css/admin_homepage.css" />
-                                                        <Label layoutX="105.0" layoutY="389.0" text="Mbiemri:">
+                                                        <Label layoutX="105.0" layoutY="389.0" text="%surname:">
                                                             <font>
                                                                 <Font size="17.0" />
                                                             </font>
                                                         </Label>
                                                         <TextField fx:id="shtoStaf_Mbiemri" layoutX="180.0" layoutY="388.0" styleClass="text-field" stylesheets="@../css/admin_homepage.css" />
-                                                        <Label layoutX="508.0" layoutY="288.0" text="Email:">
+                                                        <Label layoutX="508.0" layoutY="288.0" text="%email:">
                                                             <font>
                                                                 <Font size="17.0" />
                                                             </font>
                                                         </Label>
                                                         <TextField fx:id="shtoStaf_Email" layoutX="583.0" layoutY="287.0" styleClass="text-field" stylesheets="@../css/admin_homepage.css" />
-                                                        <Label layoutX="508.0" layoutY="339.0" text="Telefoni:">
+                                                        <Label layoutX="508.0" layoutY="339.0" text="%phone:">
                                                             <font>
                                                                 <Font size="17.0" />
                                                             </font>
                                                         </Label>
                                                         <TextField fx:id="shtoStaf_Telefoni" layoutX="583.0" layoutY="338.0" styleClass="text-field" stylesheets="@../css/admin_homepage.css" />
-                                                        <Label layoutX="511.0" layoutY="388.0" text="Roli:">
+                                                        <Label layoutX="511.0" layoutY="388.0" text="%role:">
                                                             <font>
                                                                 <Font size="17.0" />
                                                             </font>
                                                         </Label>
                                                         <ComboBox fx:id="shtoStaf_Roli" layoutX="584.0" layoutY="385.0" prefHeight="28.0" prefWidth="161.0" styleClass="text-field" stylesheets="@../css/admin_homepage.css" />
-                                                        <Button fx:id="shtoStaf_Shto" layoutX="763.0" layoutY="441.0" mnemonicParsing="false" onAction="#shtoNeDatabaz" prefHeight="39.0" prefWidth="75.0" styleClass="butoni-shto" stylesheets="@../css/admin_homepage.css" text="Shto" />
-                                                        <Button fx:id="shtoStaf_Perditeso" layoutX="678.0" layoutY="441.0" mnemonicParsing="false" onAction="#shtoStafUpdate" prefHeight="39.0" prefWidth="75.0" styleClass="butoni-perditeso" text="Perditeso" />
-                                                        <Button fx:id="shtoStaf_Fshij" layoutX="567.0" layoutY="440.0" mnemonicParsing="false" onAction="#shtoStafDelete" prefHeight="39.0" prefWidth="75.0" styleClass="butoni-fshij" stylesheets="@../css/admin_homepage.css" text="Fshij" />
-                                                        <Button fx:id="shtoStaf_Pastro" layoutX="482.0" layoutY="440.0" mnemonicParsing="false" onAction="#ResetData" prefHeight="39.0" prefWidth="75.0" styleClass="butoni-pastro" stylesheets="@../css/admin_homepage.css" text="Pastro" />
-                                                        <Label layoutX="106.0" layoutY="290.0" text="User ID: ">
+                                                        <Button fx:id="shtoStaf_Shto" layoutX="763.0" layoutY="441.0" mnemonicParsing="false" onAction="#shtoNeDatabaz" prefHeight="39.0" prefWidth="75.0" styleClass="butoni-shto" stylesheets="@../css/admin_homepage.css" text="%add" />
+                                                        <Button fx:id="shtoStaf_Perditeso" layoutX="678.0" layoutY="441.0" mnemonicParsing="false" onAction="#shtoStafUpdate" prefHeight="39.0" prefWidth="75.0" styleClass="butoni-perditeso" text="%update" />
+                                                        <Button fx:id="shtoStaf_Fshij" layoutX="567.0" layoutY="440.0" mnemonicParsing="false" onAction="#shtoStafDelete" prefHeight="39.0" prefWidth="75.0" styleClass="butoni-fshij" stylesheets="@../css/admin_homepage.css" text="%delete" />
+                                                        <Button fx:id="shtoStaf_Pastro" layoutX="482.0" layoutY="440.0" mnemonicParsing="false" onAction="#ResetData" prefHeight="39.0" prefWidth="75.0" styleClass="butoni-pastro" stylesheets="@../css/admin_homepage.css" text="%clear" />
+                                                        <Label layoutX="106.0" layoutY="290.0" text="%userid:">
                                                             <font>
                                                                 <Font size="17.0" />
                                                             </font>
@@ -240,20 +240,20 @@
                                              <children>
                                                 <TableView fx:id="shtoStaf_Tabela1" layoutX="20.0" layoutY="49.0" onMouseClicked="#addEmployeeSelect" prefHeight="424.0" prefWidth="827.0">
                                                    <columns>
-                                                      <TableColumn fx:id="shtoStaf_col_pacientID1" prefWidth="74.2459716796875" text="User_ID" />
-                                                      <TableColumn fx:id="shtoStaf_col_emri1" prefWidth="88.2540283203125" text="Emri" />
-                                                      <TableColumn fx:id="shtoStaf_col_Mbiemri1" prefWidth="81.03890991210938" text="Mbiemri" />
-                                                      <TableColumn fx:id="shtoStaf_col_Email1" prefWidth="114.1156005859375" text="Email" />
-                                                      <TableColumn fx:id="shtoStaf_col_Telefoni1" prefWidth="102.3843994140625" text="Telefoni" />
-                                                      <TableColumn fx:id="shtoStaf_col_Datelindja" prefWidth="88.97027587890625" text="Datelindja" />
-                                                      <TableColumn fx:id="shtoStaf_col_Gjinia" prefWidth="73.631591796875" text="Gjinia" />
-                                                       <TableColumn fx:id="shtoStaf_col_Adresa" prefWidth="82.01605224609375" text="Adresa" />
-                                                       <TableColumn fx:id="shtoStaf_col_Kontakti" prefWidth="119.54132080078125" text="Kontakti Emergjent" />
+                                                      <TableColumn fx:id="shtoStaf_col_pacientID1" prefWidth="74.2459716796875" text="%userid" />
+                                                      <TableColumn fx:id="shtoStaf_col_emri1" prefWidth="88.2540283203125" text="%name" />
+                                                      <TableColumn fx:id="shtoStaf_col_Mbiemri1" prefWidth="81.03890991210938" text="%surname" />
+                                                      <TableColumn fx:id="shtoStaf_col_Email1" prefWidth="114.1156005859375" text="%email" />
+                                                      <TableColumn fx:id="shtoStaf_col_Telefoni1" prefWidth="102.3843994140625" text="%phone" />
+                                                      <TableColumn fx:id="shtoStaf_col_Datelindja" prefWidth="88.97027587890625" text="%birthday" />
+                                                      <TableColumn fx:id="shtoStaf_col_Gjinia" prefWidth="73.631591796875" text="%gender" />
+                                                       <TableColumn fx:id="shtoStaf_col_Adresa" prefWidth="82.01605224609375" text="%address" />
+                                                       <TableColumn fx:id="shtoStaf_col_Kontakti" prefWidth="119.54132080078125" text="%emergency_contact" />
 
 
                                                    </columns>
                                                 </TableView>
-                                                <TextField fx:id="shtoStaf_search1" layoutX="29.0" layoutY="16.0" promptText="Kerko" styleClass="search" stylesheets="@../css/admin_homepage.css" />
+                                                <TextField fx:id="shtoStaf_search1" promptText="%search" layoutX="29.0" layoutY="16.0" styleClass="search" stylesheets="@../css/admin_homepage.css" />
                                              </children>
                                           </AnchorPane>
                                        </children>
