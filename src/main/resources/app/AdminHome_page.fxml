@@ -56,7 +56,7 @@
                                                 <FontAwesomeIconView fill="WHITE" glyphName="HOME" size="1.5em" />
                                             </graphic>
                                         </Button>
-                                        <FontAwesomeIconView fill="#fff9f9" glyphName="USER" layoutX="103.0" layoutY="64.0" scaleX="8.0" scaleY="8.0" />
+                                        <FontAwesomeIconView fill="#fff9f9" glyphName="USER" layoutX="104.0" layoutY="71.0" scaleX="8.0" scaleY="8.0" />
                                         <Button fx:id="shtoStaf_btn" layoutX="13.0" layoutY="227.0" mnemonicParsing="false" onAction="#switchform" prefHeight="51.0" prefWidth="196.0" styleClass="nav-butoni" stylesheets="@../css/admin_homepage.css" text="%staff">
                                             <graphic>
                                                 <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="1.5em" />
@@ -81,6 +81,7 @@
                                     <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="1.5em" />
                                  </graphic>
                               </Button>
+                              <FontAwesomeIconView fx:id="language" fill="WHITE" glyphName="LANGUAGE" layoutX="168.0" layoutY="489.0" onMouseClicked="#handleLanguageToggle" size="30" wrappingWidth="14.104130744934082" />
                                     </children>
                                 </AnchorPane>
                             </children>
@@ -253,7 +254,7 @@
 
                                                    </columns>
                                                 </TableView>
-                                                <TextField fx:id="shtoStaf_search1" promptText="%search" layoutX="29.0" layoutY="16.0" styleClass="search" stylesheets="@../css/admin_homepage.css" />
+                                                <TextField fx:id="shtoStaf_search1" layoutX="29.0" layoutY="16.0" promptText="%search" styleClass="search" stylesheets="@../css/admin_homepage.css" />
                                              </children>
                                           </AnchorPane>
                                        </children>

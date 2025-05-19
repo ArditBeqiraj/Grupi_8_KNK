@@ -4,6 +4,7 @@ import Database.DBConnector;
 import Repository.PacientetRepository;
 import Repository.PerdoruesiRepository;
 import app.Navigator;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -25,10 +26,8 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Date;
-import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import javafx.stage.Stage;
@@ -36,10 +35,15 @@ import javafx.stage.StageStyle;
 import model.Pacientet.Pacientet;
 import model.Perdoruesi.Perdoruesi;
 import model.Perdoruesi.PerdoruesiDTO.CreatePerdoruesiDTO;
+import services.LanguageManager;
 import services.PasswordHasher;
 import services.PerdoruesiService;
+import services.SceneManager;
 
 public class AdminHomeController implements Initializable {
+
+    @FXML
+    private FontAwesomeIconView language;
 
     @FXML
     private BarChart<?, ?> home_chart;
@@ -610,4 +614,18 @@ public class AdminHomeController implements Initializable {
         XYChart.Series chart = perdoruesiRepository.homeChart();
         home_chart.getData().add(chart);
     }
+
+    @FXML
+    private void handleLanguageToggle() throws Exception {
+        Locale current = LanguageManager.getInstance().getLocale();
+        if ("sq".equals(current.getLanguage())) {
+            LanguageManager.getInstance().setLocale(new Locale("en"));
+            Navigator.setCurrentLocale(new Locale("en"));
+        } else {
+            LanguageManager.getInstance().setLocale(new Locale("sq"));
+            Navigator.setCurrentLocale(new Locale("sq"));
+        }
+        Navigator.reload();
+    }
+
 }

@@ -2,13 +2,15 @@ package app;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import services.SceneManager;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Navigator.navigate(stage, Navigator.PATIENT_HOME, "Admin Dahboard");
+        Navigator.navigate(stage, Navigator.ADMIN_DASHBOARD, "Admin Dahboard");
     }
 
 //    public static void main(String[] args) {
