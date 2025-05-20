@@ -2,8 +2,10 @@ package app;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import services.SceneManager;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class HelloApplication extends Application {
     @Override

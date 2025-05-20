@@ -26,7 +26,7 @@
                                     <children>
                                         <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="270.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
-                                                <Label text="Name">
+                                                <Label text="%name">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
                                                 <TextField fx:id="nameField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
@@ -36,7 +36,7 @@
                                         </VBox>
                                         <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="270.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
-                                                <Label text="License Number">
+                                                <Label text="%license.number">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
                                                 <TextField fx:id="licenseNumberField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
@@ -46,7 +46,7 @@
                                         </VBox>
                                         <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="248.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
-                                                <Label text="Specializations">
+                                                <Label text="%specialization">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
                                                 <TextField fx:id="specializationsField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
@@ -64,7 +64,7 @@
                                     <children>
                                         <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="270.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
-                                                <Label text="Surname">
+                                                <Label text="%surname">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
                                                 <TextField fx:id="surnameField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
@@ -74,7 +74,7 @@
                                         </VBox>
                                         <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="270.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
-                                                <Label text="Phone Number">
+                                                <Label text="%phone">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
                                                 <TextField fx:id="phoneNumberField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
@@ -84,7 +84,7 @@
                                         </VBox>
                                         <VBox alignment="CENTER_LEFT" maxWidth="270.0" prefWidth="270.0" spacing="3.0" VBox.vgrow="ALWAYS">
                                             <children>
-                                                <Label text="Email">
+                                                <Label text="%email">
                                                     <font><Font size="18.0" /></font>
                                                 </Label>
                                                 <TextField fx:id="emailField" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E;">
@@ -102,9 +102,9 @@
 
                         <HBox alignment="CENTER" prefHeight="55.0" prefWidth="696.0" spacing="10.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                             <children>
-                                <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#handleEditButtonClick" prefHeight="30.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Change Password" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEditAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Edit" HBox.hgrow="ALWAYS" />
-                                <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmitAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="Submit" />
+                                <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#handleEditButtonClick" prefHeight="30.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="%change.password" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="editButton" mnemonicParsing="false" onAction="#handleEditAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="%edit" HBox.hgrow="ALWAYS" />
+                                <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmitAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3E8E7E; -fx-background-color: white;" text="%submit" />
                             </children>
                         </HBox>
                     </children>

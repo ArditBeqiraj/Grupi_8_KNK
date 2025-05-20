@@ -18,20 +18,20 @@
                <children>
                   <TableView fx:id="tableView"  layoutX="243.0" layoutY="124.0" prefHeight="226.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn fx:id="pacientID1" prefWidth="74.2459716796875" style="-fx-background-color: #3E8E7E;" text="User_ID" />
-                        <TableColumn fx:id="emri1" prefWidth="88.2540283203125" style="-fx-background-color: #3E8E7E;" text="Emri" />
-                        <TableColumn fx:id="mbiemri1" prefWidth="81.03890991210938" style="-fx-background-color: #3E8E7E;" text="Mbiemri" />
-                        <TableColumn fx:id="email1" prefWidth="114.1156005859375" style="-fx-background-color: #3E8E7E;" text="Email" />
-                        <TableColumn fx:id="telefoni1" prefWidth="102.3843994140625" style="-fx-background-color: #3E8E7E;" text="Telefoni" />
-                        <TableColumn fx:id="datelindja" prefWidth="88.97027587890625" style="-fx-background-color: #3E8E7E;" text="Datelindja" />
-                        <TableColumn fx:id="gjinia" prefWidth="73.631591796875" style="-fx-background-color: #3E8E7E;" text="Gjinia" />
-                        <TableColumn fx:id="adresa" prefWidth="82.01605224609375" style="-fx-background-color: #3E8E7E;" text="Adresa" />
-                        <TableColumn fx:id="kontakti" prefWidth="136.0000122070312" style="-fx-background-color: #3E8E7E;" text="Kontakti Emergjent" />
+                        <TableColumn fx:id="pacientID1" prefWidth="74.2459716796875" style="-fx-background-color: #3E8E7E;" text="%userid" />
+                        <TableColumn fx:id="emri1" prefWidth="88.2540283203125" style="-fx-background-color: #3E8E7E;" text="%name" />
+                        <TableColumn fx:id="mbiemri1" prefWidth="81.03890991210938" style="-fx-background-color: #3E8E7E;" text="%surname" />
+                        <TableColumn fx:id="email1" prefWidth="114.1156005859375" style="-fx-background-color: #3E8E7E;" text="%email" />
+                        <TableColumn fx:id="telefoni1" prefWidth="102.3843994140625" style="-fx-background-color: #3E8E7E;" text="%phone" />
+                        <TableColumn fx:id="datelindja" prefWidth="88.97027587890625" style="-fx-background-color: #3E8E7E;" text="%birthday" />
+                        <TableColumn fx:id="gjinia" prefWidth="73.631591796875" style="-fx-background-color: #3E8E7E;" text="%gender" />
+                        <TableColumn fx:id="adresa" prefWidth="82.01605224609375" style="-fx-background-color: #3E8E7E;" text="%address" />
+                        <TableColumn fx:id="kontakti" prefWidth="136.0000122070312" style="-fx-background-color: #3E8E7E;" text="%emergency_contact" />
                     </columns>
                   </TableView>
                </children>
                 </AnchorPane>
-            <TextField fx:id="searchField" layoutX="180.0" layoutY="25.0" promptText="Kerko" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="700.0" />
+            <TextField fx:id="searchField" layoutX="180.0" layoutY="25.0" promptText="%search" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="700.0" />
             </children>
         </AnchorPane>
     </children>
