@@ -371,7 +371,6 @@ public class AdminHomeController implements Initializable {
             shtoStaf_btn.setStyle("-fx-background-color:linear-gradient(to bottom right, #2b303c, #525969)");
             home_btn.setStyle("-fx-background-color: transparent");
             shtoStaf_btn1.setStyle("-fx-background-color: transparent");
-            shtoStaf_Roli.getItems().addAll("Doktor", "Moter", "Praktikant");
             ShtoStafListaData();
             addEmployeeSearch();
         } else if (actionEvent.getSource() == shtoStaf_btn1) {
@@ -381,7 +380,6 @@ public class AdminHomeController implements Initializable {
             shtoStaf_btn.setStyle("-fx-background-color: transparent");
             shtoStaf_btn1.setStyle("-fx-background-color:linear-gradient(to bottom right, #2b303c, #525969)");
             home_btn.setStyle("-fx-background-color: transparent");
-            shtoStaf_Roli.getItems().addAll("Doktor", "Moter", "Praktikant");
             ShtoStafListaData();
             addEmployeeSearch1();
         }

@@ -16,7 +16,7 @@
         <FontAwesomeIconView glyphName="LOCK" layoutX="181.0" layoutY="240.0" size="30" wrappingWidth="23.064461708068848" />
         <Label layoutX="214.0" layoutY="316.0" text="%no.account" textFill="#820000" />
         <Button fx:id="btnSignup" layoutX="327.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleCreateAccountClick" style="-fx-background-color: transparent; -fx-cursor: hand;" text="%sign.up" textFill="#820000" underline="true" />
-        <TextField id="text-field" fx:id="passwordtxt" layoutX="215.0" layoutY="185.0" prefHeight="26.0" prefWidth="226.0" style="-fx-text-fill: white;" stylesheets="@../css/Login_Signup.css" visible="false" />
+        <TextField id="text-field" fx:id="passwordtxt" layoutX="215.0" layoutY="217.0" prefHeight="26.0" prefWidth="226.0" style="-fx-text-fill: black;" stylesheets="@../css/Login_Signup.css" visible="false" />
         <FontAwesomeIconView fx:id="showPassword" glyphName="EYE" layoutX="415.0" layoutY="234.0" onMouseClicked="#changeVisibility" wrappingWidth="18.4305419921875" />
       <FontAwesomeIconView fx:id="language" fill="WHITE" glyphName="LANGUAGE" layoutX="556.0" layoutY="36.0" onMouseClicked="#handleLanguageToggle" size="20" />
     </children>

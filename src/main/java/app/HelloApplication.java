@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Navigator.navigate(stage, Navigator.LOGIN_PAGE, "Admin Dahboard");
+        Navigator.navigate(stage, Navigator.ADMIN_DASHBOARD, "Admin Dashboard");
     }
 
 //    public static void main(String[] args) {
