@@ -9,19 +9,20 @@ public class CreatePacientetDTO {
     private String gjinia;
     private String adresa;
     private String kontakti_emergjent;
+    private Integer mjeku_familjar_id;
 
 
-    public CreatePacientetDTO(int user_id, LocalDate datelindja, String gjinia, String adresa, String kontakti_emergjent) {
+    public CreatePacientetDTO(int user_id, LocalDate datelindja, String gjinia, String adresa, String kontakti_emergjent, Integer mjeku_familjar_id) {
         this.user_id = user_id;
         this.datelindja = datelindja;
         this.gjinia = gjinia;
         this.adresa = adresa;
         this.kontakti_emergjent = kontakti_emergjent;
+        this.mjeku_familjar_id = mjeku_familjar_id;
     }
 
     public CreatePacientetDTO(int user_id, String gjinia) {
         this.user_id = user_id;
-        this.datelindja = datelindja;
         this.gjinia = gjinia;
     }
 
@@ -69,4 +70,12 @@ public class CreatePacientetDTO {
         this.kontakti_emergjent = kontakti_emergjent;
     }
 
+    public Integer getMjeku_familjar_id() {
+        if (this.mjeku_familjar_id == null) return null;
+        return this.mjeku_familjar_id;
+    }
+
+    public void setMjeku_familjar_id(int mjeku_familjar_id) {
+        this.mjeku_familjar_id = mjeku_familjar_id;
+    }
 }

@@ -3,6 +3,7 @@ package model.Pacientet;
 import model.Perdoruesi.Perdoruesi;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -12,18 +13,18 @@ public class Pacientet {
     private LocalDate datelindja;
     private String gjinia;
     private String adresa;
-    private String kontaktiEmergjent;
-    private Integer mjekuFamiljarId;
+    private String kontakti_emergjent;
+    private Integer mjeku_familjar_id;
     private Perdoruesi perdoruesi;
 
-    private Pacientet(int id, int userId, LocalDate datelindja, String gjinia, String adresa, String kontaktiEmergjent, Integer mjekuFamiljarId) {
+    private Pacientet(int id, int userId, LocalDate datelindja, String gjinia, String adresa, String kontakti_emergjent, Integer mjeku_familjar_id) {
         this.id = id;
         this.userId = userId;
         this.datelindja = datelindja;
         this.gjinia = gjinia;
         this.adresa = adresa;
-        this.kontaktiEmergjent = kontaktiEmergjent;
-        this.mjekuFamiljarId = mjekuFamiljarId;
+        this.kontakti_emergjent = kontakti_emergjent;
+        this.mjeku_familjar_id = mjeku_familjar_id;
     }
 
     public static Pacientet getInstance(ResultSet resultSet) throws SQLException {
@@ -38,12 +39,13 @@ public class Pacientet {
         String adresa = resultSet.getString("adresa");
         if (resultSet.wasNull()) adresa = null;
 
-        String kontaktiEmergjent = resultSet.getString("kontakti_emergjent");
-        if (resultSet.wasNull()) kontaktiEmergjent = null;
+        String kontakti_emergjent = resultSet.getString("kontakti_emergjent");
+        if (resultSet.wasNull()) kontakti_emergjent = null;
 
-        Integer mjekuFamiljarId = resultSet.getObject("mjeku_familjar_id", Integer.class);
+        Integer mjeku_familjar_id = resultSet.getObject("mjeku_familjar_id", Integer.class);
+        if (resultSet.wasNull()) mjeku_familjar_id = null;
 
-        return new Pacientet(id, userId, datelindja, gjinia, adresa, kontaktiEmergjent, mjekuFamiljarId);
+        return new Pacientet(id, userId, datelindja, gjinia, adresa, kontakti_emergjent, mjeku_familjar_id);
     }
 
     // GETTERS
@@ -67,12 +69,12 @@ public class Pacientet {
         return adresa;
     }
 
-    public String getKontaktiEmergjent() {
-        return kontaktiEmergjent;
+    public String getKontakti_emergjent() {
+        return kontakti_emergjent;
     }
 
-    public Integer getMjekuFamiljarId() {
-        return mjekuFamiljarId;
+    public Integer getMjeku_familjar_id() {
+        return mjeku_familjar_id;
     }
 
     public Perdoruesi getPerdoruesi() {

@@ -57,7 +57,7 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
     public Perdoruesi create(CreatePerdoruesiDTO perdoruesiDTO) {
         String querySetSeq = "SELECT setval('id_seq', COALESCE((SELECT MAX(id) FROM perdoruesi), 230756100) + 1, false)";
         String queryInsert = """
-            INSERT INTO perdoruesi (emri, mbiemri, email, telefoni, roli, hashedpassword, salt, krijuar)
+            INSERT INTO perdoruesi (emri, mbiemri, email, telefoni, roli, salt, hashedpassword, krijuar)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """;
 
@@ -71,8 +71,8 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
             pstm.setString(3, perdoruesiDTO.getEmail());
             pstm.setString(4, perdoruesiDTO.getTelefoni());
             pstm.setString(5, perdoruesiDTO.getRoli());
-            pstm.setString(6, perdoruesiDTO.getPassword());
-            pstm.setString(7, perdoruesiDTO.getSalt());
+            pstm.setString(6, perdoruesiDTO.getSalt());
+            pstm.setString(7, perdoruesiDTO.getHashedpassword());
             pstm.setTimestamp(8, perdoruesiDTO.getKrijuar());
 
             pstm.executeUpdate();
@@ -212,6 +212,7 @@ public class PerdoruesiRepository extends BaseRepository<Perdoruesi, CreatePerdo
                 p.gjinia,
                 p.adresa,
                 p.kontakti_emergjent,
+                p.mjeku_familjar_id,
                 u.id,
                 u.emri,
                 u.mbiemri,

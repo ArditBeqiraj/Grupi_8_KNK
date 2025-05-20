@@ -277,7 +277,17 @@ public class AdminHomeController implements Initializable {
                 alert.setContentText("Ju lutemi futni një email të vlefshëm.");
                 alert.showAndWait();
             } else {
-                Perdoruesi perdoruesi = perdoruesiRepository.create(createPerdoruesiDTO);
+                Perdoruesi perdoruesi = new Perdoruesi(
+                        createPerdoruesiDTO.getEmri(),
+                        createPerdoruesiDTO.getMbiemri(),
+                        createPerdoruesiDTO.getEmail(),
+                        createPerdoruesiDTO.getTelefoni(),
+                        createPerdoruesiDTO.getRoli(),
+                        createPerdoruesiDTO.getSalt(),
+                        createPerdoruesiDTO.getHashedpassword(),
+                        createPerdoruesiDTO.getKrijuar()
+                );
+                Perdoruesi perdoruesi1 = perdoruesiService.create(perdoruesi);
                 shtoStafLista.add(perdoruesi);
                 shtoStaf_Tabela.setItems(shtoStafLista);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -579,7 +589,7 @@ public class AdminHomeController implements Initializable {
                 if (PacientData.getDatelindja() != null && PacientData.getDatelindja().toString().toLowerCase().contains(searchKey)) return true;
                 if (PacientData.getGjinia() != null && PacientData.getGjinia().toLowerCase().contains(searchKey)) return true;
                 if (PacientData.getAdresa() != null && PacientData.getAdresa().toLowerCase().contains(searchKey)) return true;
-                if (PacientData.getKontaktiEmergjent() != null && PacientData.getKontaktiEmergjent().toLowerCase().contains(searchKey)) return true;
+                if (PacientData.getKontakti_emergjent() != null && PacientData.getKontakti_emergjent().toLowerCase().contains(searchKey)) return true;
 
                 return false;
             });

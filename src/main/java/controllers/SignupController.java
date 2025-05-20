@@ -8,13 +8,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import services.LanguageManager;
 import services.LoginSignupService;
+import services.PasswordHasher;
 import services.PerdoruesiService;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Locale;
 
 public class SignupController {
+
+    @FXML
+    private FontAwesomeIconView language;
 
     @FXML
     private Button btnSIgnup;
@@ -121,6 +127,14 @@ public class SignupController {
 
     @FXML
     private void handleSignUp(ActionEvent ae) throws Exception {
+        // Sync visible text field values back into the hidden PasswordFields
+        if (!show) {
+            pwdPassword.setText(passwordtxt.getText());
+        }
+
+        if (!showconfirm) {
+            pwdConfirmPaswword.setText(confirmpasswordtxt.getText());
+        }
         loginSignupService.handleSignUp(ae,txtEmri, txtMbiemri, txtEmail, txtNumri, gjinia, pwdPassword, pwdConfirmPaswword);
     }
 
@@ -141,5 +155,18 @@ public class SignupController {
     @FXML
     public void gotoLoginPage(ActionEvent me) throws IOException {
         Navigator.navigate(me, Navigator.LOGIN_PAGE, "Login");
+    }
+
+    @FXML
+    private void handleLanguageToggle() throws Exception {
+        Locale current = LanguageManager.getInstance().getLocale();
+        if ("sq".equals(current.getLanguage())) {
+            LanguageManager.getInstance().setLocale(new Locale("en"));
+            Navigator.setCurrentLocale(new Locale("en"));
+        } else {
+            LanguageManager.getInstance().setLocale(new Locale("sq"));
+            Navigator.setCurrentLocale(new Locale("sq"));
+        }
+        Navigator.reload();
     }
 }

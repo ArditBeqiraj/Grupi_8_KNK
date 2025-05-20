@@ -1,6 +1,8 @@
 package controllers;
 
 import Database.DBConnector;
+import app.Navigator;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,12 +16,18 @@ import model.MjekuSpecializimi.MjekuSpecializimi;
 import model.Perdoruesi.Perdoruesi;
 import model.Terminet.Terminet;
 import app.SessionManager;
+import services.LanguageManager;
+
 import java.sql.*;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Locale;
 
 
 public class PacientHomeController {
+
+    @FXML
+    private FontAwesomeIconView language;
     @FXML
     private AnchorPane myProfile_form;
     @FXML
@@ -71,6 +79,8 @@ public class PacientHomeController {
     private TableColumn<Terminet, String> colStatusiAnulo;
     private int pacientId;
 
+    Connection conn = DBConnector.getConnection();
+
     public void initialize() {
         /*if (SessionManager.getPerdoruesi() == null) {
             System.out.println("Error: Nuk ka përdorues të kyçur në session!");
@@ -98,8 +108,7 @@ public class PacientHomeController {
         }
 
 
-        //pacientId = SessionManager.getPerdoruesi().getId();
-        pacientId = 1;
+        pacientId = SessionManager.getPerdoruesi().getId();
         shfaqTerminet();
         shfaqMjeket();
         mbushComboMjeket();
@@ -128,8 +137,8 @@ public class PacientHomeController {
 
     public void shfaqTerminet() {
         ObservableList<Terminet> lista = FXCollections.observableArrayList();
-        try (Connection connection = DBConnector.getConnection();
-             PreparedStatement stmt = connection.prepareStatement("SELECT t.data, t.statusi, t.shenime, m.emri, m.mbiemri FROM Terminet t JOIN Mjeket m ON t.id_mjek = m.id WHERE t.id_pacient = ?")) {
+        try (
+             PreparedStatement stmt = conn.prepareStatement("SELECT t.data, t.statusi, t.shenime, m.emri, m.mbiemri FROM Terminet t JOIN Mjeket m ON t.id_mjek = m.id WHERE t.id_pacient = ?")) {
             stmt.setInt(1, pacientId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -158,7 +167,7 @@ public class PacientHomeController {
     LEFT JOIN Specializimet s ON ms.specializimi_id = s.id
 """;
         ObservableList<MjekuSpecializimi> lista = FXCollections.observableArrayList();
-        try (Connection conn = DBConnector.getConnection();
+        try (
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
@@ -191,7 +200,7 @@ public class PacientHomeController {
     LEFT JOIN Specializimet s ON ms.specializimi_id = s.id
 """;
 
-        try (Connection conn = DBConnector.getConnection();
+        try (
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -227,7 +236,7 @@ public class PacientHomeController {
             return;
         }
 
-        try (Connection conn = DBConnector.getConnection();
+        try (
              PreparedStatement stmt = conn.prepareStatement("INSERT INTO Terminet (id_pacient, id_mjek, id_salle, data, statusi, shenime) VALUES (?, ?, ?, ?, 'Skeduluar', ?)")) {
             stmt.setInt(1, pacientId);
             stmt.setInt(2, mjeku.getId());
@@ -257,7 +266,7 @@ public class PacientHomeController {
         Terminet selected = tabelaAnuloTerminet.getSelectionModel().getSelectedItem();
         if (selected == null) return;
 
-        try (Connection conn = DBConnector.getConnection();
+        try (
              PreparedStatement stmt = conn.prepareStatement("UPDATE Terminet SET statusi = 'Anuluar' WHERE id_pacient = ? AND data = ? AND shenime = ?")) {
             stmt.setInt(1, pacientId);
             stmt.setDate(2, selected.getData());
@@ -288,12 +297,12 @@ public class PacientHomeController {
             return;
         }
 
-        try (Connection conn = DBConnector.getConnection()) {
-            // Mund të kesh një kolonë `mjeku_familjar_id` në tabelën Pacientet
-            String sql = "UPDATE Pacientet SET mjeku_familjar_id = ? WHERE id = ?";
+        try  {
+            String sql = "UPDATE pacientet SET mjeku_familjar_id = ? WHERE user_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, mjekuZgjedhur.getId());
             stmt.setInt(2, pacientId);
+            System.out.println("Pacient ID: " + pacientId);
 
             int rowsUpdated = stmt.executeUpdate();
             if (rowsUpdated > 0) {
@@ -316,7 +325,6 @@ public class PacientHomeController {
 
 
     private void shfaqTeDhenatEPacientit() {
-        Connection conn = DBConnector.getConnection();
         String query = """
         
                 SELECT p.emri, p.mbiemri, p.email, p.telefoni
@@ -351,7 +359,7 @@ public class PacientHomeController {
                 "JOIN Mjeket m ON p.mjeku_familjar_id = m.id " +
                 "WHERE p.user_id = ?";
 
-        try (Connection conn = DBConnector.getConnection();
+        try (
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, 1);
@@ -366,6 +374,17 @@ public class PacientHomeController {
 
         return emriMjekut;
     }
-
-
+    @FXML
+    private void handleLanguageToggle() throws Exception {
+        Locale current = LanguageManager.getInstance().getLocale();
+        if ("sq".equals(current.getLanguage())) {
+            LanguageManager.getInstance().setLocale(new Locale("en"));
+            Navigator.setCurrentLocale(new Locale("en"));
+        } else {
+            LanguageManager.getInstance().setLocale(new Locale("sq"));
+            Navigator.setCurrentLocale(new Locale("sq"));
+        }
+        Navigator.reload();
     }
+
+}

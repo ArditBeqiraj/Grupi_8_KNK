@@ -1,5 +1,7 @@
 package controllers;
 
+import app.Navigator;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,12 +9,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import services.LanguageManager;
 import services.SceneManager;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Locale;
 
 public class DoctorProfileController {
+
+    @FXML
+    private FontAwesomeIconView language;
 
     @FXML
     private TextField nameField;
@@ -99,5 +106,18 @@ public class DoctorProfileController {
         stage.show();
 
 
+    }
+
+    @FXML
+    private void handleLanguageToggle() throws Exception {
+        Locale current = LanguageManager.getInstance().getLocale();
+        if ("sq".equals(current.getLanguage())) {
+            LanguageManager.getInstance().setLocale(new Locale("en"));
+            Navigator.setCurrentLocale(new Locale("en"));
+        } else {
+            LanguageManager.getInstance().setLocale(new Locale("sq"));
+            Navigator.setCurrentLocale(new Locale("sq"));
+        }
+        Navigator.reload();
     }
 }

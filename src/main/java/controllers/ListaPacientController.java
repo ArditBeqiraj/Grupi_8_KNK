@@ -47,7 +47,7 @@ public class ListaPacientController {
         datelindja.setCellValueFactory(new PropertyValueFactory<>("datelindja"));
         gjinia.setCellValueFactory(new PropertyValueFactory<>("gjinia"));
         adresa.setCellValueFactory(new PropertyValueFactory<>("adresa"));
-        kontakti.setCellValueFactory(new PropertyValueFactory<>("kontaktiEmergjent"));
+        kontakti.setCellValueFactory(new PropertyValueFactory<>("kontakti_emergjent"));
 
         loadTableData();
 

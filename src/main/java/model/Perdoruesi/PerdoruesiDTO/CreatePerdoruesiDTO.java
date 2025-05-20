@@ -65,7 +65,8 @@ public class CreatePerdoruesiDTO {
         this.roli = roli;
     }
 
-    public String getPassword() {
+
+    public String getHashedpassword() {
         return hashedpassword;
     }
 

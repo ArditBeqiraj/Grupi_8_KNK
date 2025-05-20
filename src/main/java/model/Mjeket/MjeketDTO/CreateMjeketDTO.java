@@ -16,6 +16,13 @@ public class CreateMjeketDTO {
         this.specializimi_kryesor = specializimi_kryesor;
     }
 
+    public CreateMjeketDTO(String emri, String mbiemri, String nr_telefoni, String email) {
+        this.emri = emri;
+        this.mbiemri = mbiemri;
+        this.nr_telefoni = nr_telefoni;
+        this.email = email;
+    }
+
     public String getEmri() {
         return emri;
     }
