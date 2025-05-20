@@ -40,6 +40,7 @@ public class MjekuSpecializimi {
     public String getSpecializimi(){
         return specializimi_kryesor;
     }
+    @Override
     public String toString(){
         return emri+ " " + mbiemri;
     }

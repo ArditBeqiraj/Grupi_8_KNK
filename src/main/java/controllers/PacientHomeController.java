@@ -1,5 +1,6 @@
 package controllers;
 
+import Database.DBConnectoor;
 import Database.DBConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -98,8 +99,7 @@ public class PacientHomeController {
         }
 
 
-        //pacientId = SessionManager.getPerdoruesi().getId();
-        pacientId = 1;
+        pacientId = SessionManager.getPerdoruesi().getId();
         shfaqTerminet();
         shfaqMjeket();
         mbushComboMjeket();
@@ -128,7 +128,7 @@ public class PacientHomeController {
 
     public void shfaqTerminet() {
         ObservableList<Terminet> lista = FXCollections.observableArrayList();
-        try (Connection connection = DBConnector.getConnection();
+        try (Connection connection = DBConnectoor.getConnection();
              PreparedStatement stmt = connection.prepareStatement("SELECT t.data, t.statusi, t.shenime, m.emri, m.mbiemri FROM Terminet t JOIN Mjeket m ON t.id_mjek = m.id WHERE t.id_pacient = ?")) {
             stmt.setInt(1, pacientId);
             ResultSet rs = stmt.executeQuery();
@@ -158,7 +158,7 @@ public class PacientHomeController {
     LEFT JOIN Specializimet s ON ms.specializimi_id = s.id
 """;
         ObservableList<MjekuSpecializimi> lista = FXCollections.observableArrayList();
-        try (Connection conn = DBConnector.getConnection();
+        try (Connection conn = DBConnectoor.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
@@ -191,7 +191,7 @@ public class PacientHomeController {
     LEFT JOIN Specializimet s ON ms.specializimi_id = s.id
 """;
 
-        try (Connection conn = DBConnector.getConnection();
+        try (Connection conn = DBConnectoor.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -227,7 +227,7 @@ public class PacientHomeController {
             return;
         }
 
-        try (Connection conn = DBConnector.getConnection();
+        try (Connection conn = DBConnectoor.getConnection();
              PreparedStatement stmt = conn.prepareStatement("INSERT INTO Terminet (id_pacient, id_mjek, id_salle, data, statusi, shenime) VALUES (?, ?, ?, ?, 'Skeduluar', ?)")) {
             stmt.setInt(1, pacientId);
             stmt.setInt(2, mjeku.getId());
@@ -257,7 +257,7 @@ public class PacientHomeController {
         Terminet selected = tabelaAnuloTerminet.getSelectionModel().getSelectedItem();
         if (selected == null) return;
 
-        try (Connection conn = DBConnector.getConnection();
+        try (Connection conn = DBConnectoor.getConnection();
              PreparedStatement stmt = conn.prepareStatement("UPDATE Terminet SET statusi = 'Anuluar' WHERE id_pacient = ? AND data = ? AND shenime = ?")) {
             stmt.setInt(1, pacientId);
             stmt.setDate(2, selected.getData());
@@ -288,7 +288,7 @@ public class PacientHomeController {
             return;
         }
 
-        try (Connection conn = DBConnector.getConnection()) {
+        try (Connection conn = DBConnectoor.getConnection()) {
             // Mund të kesh një kolonë `mjeku_familjar_id` në tabelën Pacientet
             String sql = "UPDATE Pacientet SET mjeku_familjar_id = ? WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -316,7 +316,7 @@ public class PacientHomeController {
 
 
     private void shfaqTeDhenatEPacientit() {
-        Connection conn = DBConnector.getConnection();
+        Connection conn = DBConnectoor.getConnection();
         String query = """
         
                 SELECT p.emri, p.mbiemri, p.email, p.telefoni
@@ -351,7 +351,7 @@ public class PacientHomeController {
                 "JOIN Mjeket m ON p.mjeku_familjar_id = m.id " +
                 "WHERE p.user_id = ?";
 
-        try (Connection conn = DBConnector.getConnection();
+        try (Connection conn = DBConnectoor.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, 1);
