@@ -21,16 +21,13 @@ public class PacientetRepository extends BaseRepository<Pacientet, CreatePacient
 
     public Pacientet create(CreatePacientetDTO pacientetDto) {
         String query = """
-                INSERT INTO Pacientet (user_id, datelindja, gjinia, adresa, kontakti_emergjent)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO Pacientet (user_id, gjinia)
+                VALUES (?, ?)
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, pacientetDto.getUser_id());
             pstm.setDate(2, pacientetDto.getDatelindja());
-            pstm.setString(3, pacientetDto.getGjinia());
-            pstm.setString(4, pacientetDto.getAdresa());
-            pstm.setString(5, pacientetDto.getKontakti_emergjent());
             pstm.execute();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {

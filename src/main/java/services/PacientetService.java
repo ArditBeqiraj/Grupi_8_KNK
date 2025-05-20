@@ -21,8 +21,8 @@ public class PacientetService {
     }
 
     public Pacientet create(CreatePacientetDTO createPacientet) throws Exception{
-        if (!createPacientet.getGjinia().equals("Mashkull") && !createPacientet.getGjinia().equals("Femer")) {
-            System.out.println("gabim");
+        String gjinia = createPacientet.getGjinia().trim();
+        if (!gjinia.equalsIgnoreCase("Mashkull") && !gjinia.equalsIgnoreCase("Femër")) {
             throw new Exception("Information is not valid! ...");
         }
 

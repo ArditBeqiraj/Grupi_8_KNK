@@ -1,6 +1,7 @@
 package model.Mjeket;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 public class Mjeket {
@@ -25,7 +26,7 @@ public class Mjeket {
         int id = resultSet.getInt("id");
         String emri = resultSet.getString("emri");
         String mbiemri = resultSet.getString("mbiemri");
-        String nr_licences = resultSet.getString("nr_licences");
+        String nr_licences = resultSet.getString("nr_licenses");
         String nr_telefoni = resultSet.getString("nr_telefoni");
         String email = resultSet.getString("email");
         String specializimi_kryesor = resultSet.getString("specializimi_kryesor");

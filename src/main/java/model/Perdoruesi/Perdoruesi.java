@@ -29,6 +29,17 @@ public class Perdoruesi {
         this.krijuar = krijuar;
     }
 
+    public Perdoruesi(String emri, String mbiemri, String email, String telefoni, String roli, String salt, String hashedpassword, Timestamp krijuar) {
+        this.emri = emri;
+        this.mbiemri = mbiemri;
+        this.email = email;
+        this.telefoni = telefoni;
+        this.roli = roli;
+        this.salt = salt;
+        this.hashedpassword = hashedpassword;
+        this.krijuar = krijuar;
+    }
+
     public Perdoruesi() {
         return;
     }
@@ -71,9 +82,6 @@ public class Perdoruesi {
         return roli;
     }
 
-    public String getPassword() {
-        return hashedpassword;
-    }
 
     public Timestamp getKrijuar() {
         return krijuar;

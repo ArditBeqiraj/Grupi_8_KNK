@@ -9,7 +9,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupController">
     <children>
         <TextField id="text-field" fx:id="txtEmri" layoutX="191.0" layoutY="61.0" prefHeight="28.0" prefWidth="116.0" promptText="%name:" stylesheets="@../css/Login_Signup.css" />
         <TextField id="text-field" fx:id="txtMbiemri" layoutX="334.0" layoutY="61.0" prefHeight="28.0" prefWidth="116.0" promptText="%surname:" stylesheets="@../css/Login_Signup.css" />
@@ -22,19 +22,20 @@
         <RadioButton fx:id="radioFemer" layoutX="348.0" layoutY="191.0" mnemonicParsing="false" text="%female" textFill="#b5b5b5" toggleGroup="$gjinia" />
         <PasswordField id="label" fx:id="pwdPassword" layoutX="212.0" layoutY="225.0" prefHeight="26.0" prefWidth="226.0" promptText="%password:" stylesheets="@../css/Login_Signup.css" />
         <PasswordField fx:id="pwdConfirmPaswword" layoutX="211.0" layoutY="266.0" prefHeight="26.0" prefWidth="226.0" promptText="%confirm.password:" stylesheets="@../css/Login_Signup.css" />
-        <Button id="button" fx:id="btnSIgnup" layoutX="177.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="39.0" prefWidth="263.0" stylesheets="@../css/Login_Signup.css" text="%continue" />
-        <Button fx:id="btnSingIn" layoutX="337.0" layoutY="355.0" mnemonicParsing="false" onAction="#gotoLoginPage" style="-fx-background-color: transparent; -fx-cursor: hand;" text="%login" textFill="#03dac6" underline="true" />
-        <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="179.0" layoutY="129.0" selectionFill="BLACK" size="30" text="" wrappingWidth="23.064461708068848" />
-        <FontAwesomeIconView fill="WHITE" glyphName="LOCK" layoutX="179.0" layoutY="248.0" size="30" text="" wrappingWidth="23.064461708068848" />
-        <Label layoutX="206.0" layoutY="360.0" text="%have_account" textFill="WHITE" />
-        <FontAwesomeIconView fill="WHITE" glyphName="LOCK" layoutX="179.0" layoutY="289.0" size="30" text="" wrappingWidth="23.064461708068848" />
-        <FontAwesomeIconView fill="WHITE" glyphName="PHONE" layoutX="178.0" layoutY="166.0" size="30" text="" wrappingWidth="23.064461708068848" />
+        <Button id="button" fx:id="btnSIgnup" layoutX="177.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="39.0" prefWidth="263.0" style="-fx-background-color: linear-gradient(to bottom right, #272b3f, #820000);" stylesheets="@../css/Login_Signup.css" text="%continue" />
+        <Button fx:id="btnSingIn" layoutX="337.0" layoutY="355.0" mnemonicParsing="false" onAction="#gotoLoginPage" style="-fx-background-color: transparent; -fx-cursor: hand;" text="%login" textFill="#820000" underline="true" />
+        <FontAwesomeIconView glyphName="USER" layoutX="179.0" layoutY="129.0" selectionFill="BLACK" size="30" text="" wrappingWidth="23.064461708068848" />
+        <FontAwesomeIconView glyphName="LOCK" layoutX="179.0" layoutY="248.0" size="30" text="" wrappingWidth="23.064461708068848" />
+        <Label layoutX="206.0" layoutY="360.0" text="%have_account" textFill="#820000" />
+        <FontAwesomeIconView glyphName="LOCK" layoutX="179.0" layoutY="289.0" size="30" text="" wrappingWidth="23.064461708068848" />
+        <FontAwesomeIconView glyphName="PHONE" layoutX="178.0" layoutY="166.0" size="30" text="" wrappingWidth="23.064461708068848" />
         <TextField id="text-field" editable="false" layoutX="210.0" layoutY="143.0" prefHeight="28.0" prefWidth="55.0" stylesheets="@../css/Login_Signup.css" text="+383" />
-        <FontAwesomeIconView fill="WHITE" glyphName="MARS" layoutX="178.0" layoutY="210.0" size="30" wrappingWidth="23.064461708068848" />
+        <FontAwesomeIconView glyphName="MARS" layoutX="178.0" layoutY="210.0" size="30" wrappingWidth="23.064461708068848" />
         <FontAwesomeIconView fill="WHITE" glyphName="VENUS" layoutX="312.0" layoutY="210.0" size="30" wrappingWidth="23.064461708068848" />
         <TextField id="text-field" fx:id="passwordtxt" layoutX="213.0" layoutY="224.0" prefHeight="26.0" prefWidth="226.0" stylesheets="@../css/Login_Signup.css" visible="false" />
         <TextField id="text-field" fx:id="confirmpasswordtxt" layoutX="212.0" layoutY="265.0" prefHeight="26.0" prefWidth="226.0" stylesheets="@../css/Login_Signup.css" visible="false" />
-        <FontAwesomeIconView fx:id="showpassword" fill="WHITE" glyphName="EYE" layoutX="416.0" layoutY="242.0" onMouseClicked="#changeVisibility" />
-        <FontAwesomeIconView fx:id="showconfirmpassword" fill="WHITE" glyphName="EYE" layoutX="416.0" layoutY="284.0" onMouseClicked="#changeVisibilityConfirm" />
+        <FontAwesomeIconView fx:id="showpassword" glyphName="EYE" layoutX="416.0" layoutY="242.0" onMouseClicked="#changeVisibility" />
+        <FontAwesomeIconView fx:id="showconfirmpassword" glyphName="EYE" layoutX="416.0" layoutY="284.0" onMouseClicked="#changeVisibilityConfirm" />
+      <FontAwesomeIconView fx:id="language" fill="WHITE" glyphName="LANGUAGE" layoutX="559.0" layoutY="34.0" onMouseClicked="#handleLanguageToggle" size="20" />
     </children>
 </AnchorPane>

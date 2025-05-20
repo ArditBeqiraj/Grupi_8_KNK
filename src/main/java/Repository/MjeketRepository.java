@@ -20,18 +20,15 @@ public class MjeketRepository extends BaseRepository<Mjeket, CreateMjeketDTO, Up
     public Mjeket create(CreateMjeketDTO mjeketDto) {
         String query = """
                 INSERT INTO Mjeket (emri, mbiemri, nr_licenses, nr_telefoni, email, specializimi_kryesor)
-                VALUES (?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, null, ?, ?, null)
                 """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS /*1*/);
-            Statement statement = this.connection.createStatement();
             pstm.setString(1, mjeketDto.getEmri());
             pstm.setString(2, mjeketDto.getMbiemri());
-            pstm.setString(3, mjeketDto.getNr_licences());
-            pstm.setString(4, mjeketDto.getNr_telefoni());
-            pstm.setString(5, mjeketDto.getEmail());
-            pstm.setString(6, mjeketDto.getSpecializimi_kryesor());
-            pstm.execute();
+            pstm.setString(3, mjeketDto.getNr_telefoni());
+            pstm.setString(4, mjeketDto.getEmail());
+            pstm.executeUpdate();
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {
                 int id = resultSet.getInt(1);

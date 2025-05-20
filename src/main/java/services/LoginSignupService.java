@@ -32,11 +32,10 @@ public class LoginSignupService {
             if (user != null) {
                 if (user.getRoli().equals("Admin")) {
                     Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD, "Admin Dashboard");
-                    System.out.println("Po hapet admini");
                 } else if (user.getRoli().equals("Doktor")) {
-                    Navigator.navigate(ae, Navigator.DOCTOR_HOME, "Doktor");
-                } else {
-                    Navigator.navigate(ae, Navigator.STAFF_HOME, "Pacient");
+                    Navigator.navigate(ae, Navigator.DOCTOR_PROFILE, "Doktor");
+                } else if (user.getRoli().equals("Pacient")){
+                    Navigator.navigate(ae, Navigator.PATIENT_HOME, "Pacient");
                 }
             }
         }
@@ -120,14 +119,13 @@ public class LoginSignupService {
 
 
         String salt = PasswordHasher.generateSalt();
-        CreatePerdoruesiDTO createPerdoruesiDTO = new CreatePerdoruesiDTO(emri, mbiemri, email, numri, "Pacient", salt, PasswordHasher.generateSaltedHash(salt, password), new Timestamp(System.currentTimeMillis()));
+        CreatePerdoruesiDTO createPerdoruesiDTO = new CreatePerdoruesiDTO(emri, mbiemri, email, numri, "Pacient", salt, PasswordHasher.generateSaltedHash(password, salt), new Timestamp(System.currentTimeMillis()));
 
         PerdoruesiRepository perdoruesiRepository = new PerdoruesiRepository();
         Perdoruesi perdoruesi = perdoruesiRepository.create(createPerdoruesiDTO);
 
         CreatePacientetDTO createPacientetDTO = new CreatePacientetDTO(perdoruesi.getId(), gender);
 
-        System.out.println(gender);
         PacientetService pacientetService = new PacientetService();
         pacientetService.create(createPacientetDTO);
 
@@ -161,7 +159,7 @@ public class LoginSignupService {
         boolean isCorrectPassword = PasswordHasher.compareSaltedHash(
                 currentPassword,
                 currentUser.getSalt(),
-                currentUser.getPassword()
+                currentUser.getHashedpassword()
         );
 
         if (!isCorrectPassword) {
