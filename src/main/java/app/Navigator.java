@@ -29,7 +29,7 @@ public class Navigator {
     public static void navigate(Stage stage, String page, String title) throws IOException {
         stage.centerOnScreen();
 
-        ResourceBundle bundle = ResourceBundle.getBundle("languages.admin", currentLocale);
+        ResourceBundle bundle = ResourceBundle.getBundle("languages.messages", currentLocale);
 
         FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(page), bundle);
         Scene scene = new Scene(loader.load());

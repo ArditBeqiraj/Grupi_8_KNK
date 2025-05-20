@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LanguageManager {
-    private static final String BASE_NAME = "admin";
+    private static final String BASE_NAME = "messages";
     private static LanguageManager instance;
     private Locale locale;
     private LanguageManager(){
