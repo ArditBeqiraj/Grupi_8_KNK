@@ -1,0 +1,51 @@
+.nav-form {
+    -fx-background-color: linear-gradient(to bottom right, #272b3f, #820000);
+}
+
+.nav-butoni {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-text-fill: #fff;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.nav-butoni:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 5px;
+}
+
+.shkyqu {
+    -fx-background-color: grey;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.shkyqu:hover {
+    -fx-background-color: #e60000;
+}
+
+.shadow {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 0, 0);
+}
+
+.white-background {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+    -fx-padding: 20px;
+}
+
+.label-welcome {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.icon-style {
+    -fx-fill: white;
+}
+
+
+
+

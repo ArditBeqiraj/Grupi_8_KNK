@@ -1,5 +1,6 @@
 package controllers;
 
+import Database.DBConnectoor;
 import Database.DBConnector;
 import app.Navigator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -137,6 +138,7 @@ public class PacientHomeController {
 
     public void shfaqTerminet() {
         ObservableList<Terminet> lista = FXCollections.observableArrayList();
+
         try (
              PreparedStatement stmt = conn.prepareStatement("SELECT t.data, t.statusi, t.shenime, m.emri, m.mbiemri FROM Terminet t JOIN Mjeket m ON t.id_mjek = m.id WHERE t.id_pacient = ?")) {
             stmt.setInt(1, pacientId);
@@ -167,6 +169,7 @@ public class PacientHomeController {
     LEFT JOIN Specializimet s ON ms.specializimi_id = s.id
 """;
         ObservableList<MjekuSpecializimi> lista = FXCollections.observableArrayList();
+
         try (
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
