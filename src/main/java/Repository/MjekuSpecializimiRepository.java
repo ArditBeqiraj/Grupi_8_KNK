@@ -20,7 +20,7 @@ public class MjekuSpecializimiRepository extends BaseRepository<MjekuSpecializim
 
     public MjekuSpecializimi create(CreateMjekuSpecializimiDTO mjekuSpecializimiDto) {
         String query = """
-                INSERT INTO Terminet (mjeku_id, specializimi_id)
+                INSERT INTO mjekuspecializimi (mjeku_id, specializimi_id)
                 VALUES (?, ?)
                 """;
         try {

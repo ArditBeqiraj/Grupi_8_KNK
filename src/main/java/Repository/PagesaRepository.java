@@ -28,7 +28,7 @@ public class PagesaRepository {
         return list;
     }
     public Pagesa getById(int id) {
-        String query = "SELECT * FROM pagesa WHERE pagesa_id = ?";
+        String query = "SELECT * FROM pagesa WHERE id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, id);
             ResultSet resultSet = pstmt.executeQuery();
@@ -41,7 +41,7 @@ public class PagesaRepository {
         return null;
     }
     public Pagesa create(CreatePagesaDTO dto){
-        String query = "INSERT INTO pagesa (fatura_id, metoda_pageses, data_pageses) VALUES (?,?,?)";
+        String query = "INSERT INTO pagesa (fatura_id, menyra_pageses, krijuar) VALUES (?,?,?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setInt(1, dto.getPacient_id());
             if (dto.getFatura_id() != null) pstmt.setInt(2, dto.getFatura_id()); else pstmt.setNull(2, Types.INTEGER);
@@ -88,7 +88,7 @@ public class PagesaRepository {
         return null;
     }
     public boolean delete(int id){
-        String query = "DELETE FROM pagesa WHERE pagesa_id = ?";
+        String query = "DELETE FROM pagesa WHERE id = ?";
         try {
             PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setInt(1,id);

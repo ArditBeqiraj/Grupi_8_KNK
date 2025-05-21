@@ -162,9 +162,9 @@
 
                                         <Label layoutX="40" layoutY="180" text="%family.doctor:" />
                                         <Label fx:id="lblMjekuFamiljar" layoutX="150" layoutY="180" />
+                        <Button fx:id="changePassword" layoutX="41.0" layoutY="212.0" mnemonicParsing="false" onAction="#handleChangePasswordClick" text="Change Password" />
                                     </children>
                                 </AnchorPane>
-                        <Button fx:id="changePassword" layoutX="41.0" layoutY="212.0" mnemonicParsing="false" onAction="#handleChangePasswordClick" text="Change Password" />
 
                             </children>
                         </AnchorPane>

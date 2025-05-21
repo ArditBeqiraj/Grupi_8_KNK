@@ -11,6 +11,7 @@ module com.example.demo {
     exports Repository;
     exports services;
     exports utils;
+    exports model.Perdoruesi;
 
     opens model.MjekuSpecializimi to javafx.fxml,javafx.base;
     opens model.Terminet to javafx.fxml,javafx.base;
@@ -22,4 +23,5 @@ module com.example.demo {
     opens Repository to javafx.fxml;
     opens services to javafx.fxml;
     opens utils to javafx.fxml;
+
 }

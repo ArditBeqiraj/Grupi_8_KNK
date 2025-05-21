@@ -58,11 +58,12 @@ CREATE TABLE MjekuSpecializimi (
 );
 
 -- 6. Pacientet
+-- 6. Pacientet
 CREATE TABLE Pacientet (
                            id SERIAL PRIMARY KEY,
                            user_id INT UNIQUE REFERENCES Perdoruesi(id) ON DELETE CASCADE,
                            datelindja DATE,
-                           gjinia VARCHAR(10) CHECK (gjinia IN ('Mashkull', 'Femer')),
+                           gjinia VARCHAR(10),
                            adresa TEXT,
                            kontakti_emergjent VARCHAR(100),
                            mjeku_familjar_id INT REFERENCES Mjeket(id) ON DELETE SET NULL

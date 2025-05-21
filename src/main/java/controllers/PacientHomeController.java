@@ -336,11 +336,10 @@ public class PacientHomeController {
         }
 
         try  {
-            String sql = "UPDATE pacientet SET mjeku_familjar_id = ? WHERE user_id = ?";
+            String sql = "UPDATE pacientet SET mjeku_familjar_id = ? WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, mjekuZgjedhur.getId());
             stmt.setInt(2, pacientId);
-            System.out.println("Pacient ID: " + pacientId);
 
             int rowsUpdated = stmt.executeUpdate();
             if (rowsUpdated > 0) {
@@ -349,6 +348,7 @@ public class PacientHomeController {
                 alert.setHeaderText(null);
                 alert.setContentText("Mjeku familjar u ruajt me sukses!");
                 alert.showAndWait();
+                lblMjekuFamiljar.setText(mjekuZgjedhur.getEmri() + " " + mjekuZgjedhur.getMbiemri());
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Gabim");
@@ -360,7 +360,6 @@ public class PacientHomeController {
             e.printStackTrace();
         }
     }
-
 
     private void shfaqTeDhenatEPacientit() {
         String query = """
@@ -395,12 +394,12 @@ public class PacientHomeController {
         String sql = "SELECT m.emri, m.mbiemri " +
                 "FROM Pacientet p " +
                 "JOIN Mjeket m ON p.mjeku_familjar_id = m.id " +
-                "WHERE p.user_id = ?";
+                "WHERE p.id = ?";
 
         try (
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, 1);
+            stmt.setInt(1, pacientId);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
