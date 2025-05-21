@@ -21,10 +21,6 @@ public class CreatePacientetDTO {
         this.mjeku_familjar_id = mjeku_familjar_id;
     }
 
-    public CreatePacientetDTO(int user_id, String gjinia) {
-        this.user_id = user_id;
-        this.gjinia = gjinia;
-    }
 
     public int getUser_id() {
         return user_id;

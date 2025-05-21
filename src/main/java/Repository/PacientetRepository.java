@@ -21,14 +21,25 @@ public class PacientetRepository extends BaseRepository<Pacientet, CreatePacient
 
     public Pacientet create(CreatePacientetDTO pacientetDto) {
         String query = """
-                INSERT INTO Pacientet (user_id, gjinia)
-                VALUES (?, ?)
-                """;
+            INSERT INTO Pacientet (user_id, datelindja, gjinia, adresa, kontakti_emergjent, mjeku_familjar_id)
+            VALUES (?, ?, ?, ?, ?, ?)
+            """;
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, pacientetDto.getUser_id());
-            pstm.setDate(2, pacientetDto.getDatelindja());
-            pstm.execute();
+            pstm.setDate(2, pacientetDto.getDatelindja()); // mund të jetë null
+            pstm.setString(3, pacientetDto.getGjinia());
+            pstm.setString(4, pacientetDto.getAdresa());
+            pstm.setString(5, pacientetDto.getKontakti_emergjent());
+
+            if (pacientetDto.getMjeku_familjar_id() != null) {
+                pstm.setInt(6, pacientetDto.getMjeku_familjar_id());
+            } else {
+                pstm.setNull(6, java.sql.Types.INTEGER);
+            }
+
+            pstm.executeUpdate();
+
             ResultSet resultSet = pstm.getGeneratedKeys();
             if (resultSet.next()) {
                 int id = resultSet.getInt(1);
@@ -39,6 +50,7 @@ public class PacientetRepository extends BaseRepository<Pacientet, CreatePacient
         }
         return null;
     }
+
 
     public Pacientet update(UpdatePacientetDTO pacientDto) {
         String query = """
