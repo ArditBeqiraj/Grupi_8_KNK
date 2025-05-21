@@ -1,8 +1,11 @@
 package Repository;
 
+import app.SessionManager;
 import model.Mjeket.Mjeket;
 import model.Mjeket.MjeketDTO.CreateMjeketDTO;
 import model.Mjeket.MjeketDTO.UpdateMjeketDTO;
+import model.Perdoruesi.Perdoruesi;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,4 +60,62 @@ public class MjeketRepository extends BaseRepository<Mjeket, CreateMjeketDTO, Up
         }
         return this.getById(mjeketDto.getId());
     }
+
+    public Mjeket getByEmail(String email) {
+        String query = "SELECT * FROM mjeket WHERE email = ? LIMIT 1";
+        try (
+                PreparedStatement pst = this.connection.prepareStatement(query)) {
+
+            pst.setString(1, email);
+            ResultSet result = pst.executeQuery();
+
+            if (result.next()) {
+                return fromResultSet(result);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int totalPatientsfromDoctor() {
+        String sql = "SELECT COUNT(id) AS total FROM pacientet WHERE mjeku_familjar_id = ?";
+        int countData = 0;
+
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(sql);
+            statement.setInt(1, SessionManager.getMjeku().getId());
+
+            ResultSet result = statement.executeQuery();
+
+            if (result.next()) {
+                countData = result.getInt("total");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return countData;
+    }
+
+    public int totalAppointmentsfromDoctor() {
+        String sql = "SELECT COUNT(id) AS total FROM terminet WHERE id_mjek = ?";
+        int countData = 0;
+
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(sql);
+            statement.setInt(1, SessionManager.getMjeku().getId());
+
+            ResultSet result = statement.executeQuery();
+
+            if (result.next()) {
+                countData = result.getInt("total");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return countData;
+    }
+
 }

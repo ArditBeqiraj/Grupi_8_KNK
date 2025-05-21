@@ -1,5 +1,6 @@
 package controllers;
 
+import Repository.MjeketRepository;
 import Repository.PacientetRepository;
 import app.SessionManager;
 import javafx.collections.FXCollections;
@@ -55,7 +56,7 @@ public class ListaPacientController {
     }
 
     private void loadTableData() {
-        List<Pacientet> pacientetList = pacientetRepository.getAllWithPerdoruesiByDoctorId(SessionManager.getPerdoruesi().getId());
+        List<Pacientet> pacientetList = pacientetRepository.getAllWithPerdoruesiByDoctorId(SessionManager.getMjeku().getId());
         ObservableList<Pacientet> observableList = FXCollections.observableArrayList(pacientetList);
         tableView.setItems(observableList);
     }

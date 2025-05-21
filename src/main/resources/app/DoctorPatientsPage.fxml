@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListaPacientController">
+<StackPane stylesheets="@../css/admin_homepage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListaPacientController">
     <children>
         <AnchorPane maxHeight="600.0" maxWidth="1100.0" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #D1D9E6;">
             <children>
@@ -14,24 +14,24 @@
 
 
 
-                <AnchorPane layoutX="219.0" layoutY="52.0" prefHeight="496.0" prefWidth="734.0" style="-fx-background-color: #3E8E7E;" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="75.0">
+                <AnchorPane layoutX="219.0" layoutY="52.0" prefHeight="496.0" prefWidth="734.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="75.0">
                <children>
-                  <TableView fx:id="tableView"  layoutX="243.0" layoutY="124.0" prefHeight="226.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableView" layoutX="30.0" prefHeight="226.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="-30.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                        <TableColumn fx:id="pacientID1" prefWidth="74.2459716796875" style="-fx-background-color: #3E8E7E;" text="%userid" />
-                        <TableColumn fx:id="emri1" prefWidth="88.2540283203125" style="-fx-background-color: #3E8E7E;" text="%name" />
-                        <TableColumn fx:id="mbiemri1" prefWidth="81.03890991210938" style="-fx-background-color: #3E8E7E;" text="%surname" />
-                        <TableColumn fx:id="email1" prefWidth="114.1156005859375" style="-fx-background-color: #3E8E7E;" text="%email" />
-                        <TableColumn fx:id="telefoni1" prefWidth="102.3843994140625" style="-fx-background-color: #3E8E7E;" text="%phone" />
-                        <TableColumn fx:id="datelindja" prefWidth="88.97027587890625" style="-fx-background-color: #3E8E7E;" text="%birthday" />
-                        <TableColumn fx:id="gjinia" prefWidth="73.631591796875" style="-fx-background-color: #3E8E7E;" text="%gender" />
-                        <TableColumn fx:id="adresa" prefWidth="82.01605224609375" style="-fx-background-color: #3E8E7E;" text="%address" />
-                        <TableColumn fx:id="kontakti" prefWidth="136.0000122070312" style="-fx-background-color: #3E8E7E;" text="%emergency_contact" />
+                        <TableColumn fx:id="pacientID1" prefWidth="74.2459716796875" text="%userid" />
+                        <TableColumn fx:id="emri1" prefWidth="88.2540283203125" text="%name" />
+                        <TableColumn fx:id="mbiemri1" prefWidth="81.03890991210938" text="%surname" />
+                        <TableColumn fx:id="email1" prefWidth="114.1156005859375" text="%email" />
+                        <TableColumn fx:id="telefoni1" prefWidth="102.3843994140625" text="%phone" />
+                        <TableColumn fx:id="datelindja" prefWidth="88.97027587890625" text="%birthday" />
+                        <TableColumn fx:id="gjinia" prefWidth="73.631591796875" text="%gender" />
+                        <TableColumn fx:id="adresa" prefWidth="82.01605224609375" text="%address" />
+                        <TableColumn fx:id="kontakti" prefWidth="136.0000122070312" text="%emergency_contact" />
                     </columns>
                   </TableView>
                </children>
                 </AnchorPane>
-            <TextField fx:id="searchField" layoutX="180.0" layoutY="25.0" promptText="%search" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="700.0" />
+            <TextField fx:id="searchField" layoutX="210.0" layoutY="25.0" promptText="%search" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="670.0" />
             </children>
         </AnchorPane>
     </children>

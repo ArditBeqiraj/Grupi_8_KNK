@@ -1,5 +1,6 @@
 package app;
 
+import model.Mjeket.Mjeket;
 import model.Pacientet.Pacientet;
 import model.Perdoruesi.Perdoruesi;
 
@@ -7,12 +8,16 @@ import java.util.Locale;
 
 public class SessionManager {
     private static Perdoruesi perdoruesi;
-    private static Pacientet pacient;
+    private static Mjeket mjeku;
     private static Locale currentLocale = Locale.getDefault();
 
     public static void setPerdoruesi(Perdoruesi newPerdoruesi) {
         perdoruesi = newPerdoruesi;
     }
+
+    public static void setMjeku(Mjeket newmjeku) {mjeku = newmjeku;}
+
+    public static Mjeket getMjeku() {return mjeku;}
 
     public static Perdoruesi getPerdoruesi() {
         return perdoruesi;

@@ -1,5 +1,6 @@
 package services;
 
+import Repository.MjeketRepository;
 import Repository.PacientetRepository;
 import Repository.PerdoruesiRepository;
 import app.Navigator;
@@ -29,13 +30,15 @@ public class LoginSignupService {
         LoginPerdoruesiDto loginPerdoruesiData = new LoginPerdoruesiDto(email, password);
         if (PerdoruesiService.login(loginPerdoruesiData)) {
             PerdoruesiRepository repo = new PerdoruesiRepository();
+            MjeketRepository mjeketRepository = new MjeketRepository();
             SessionManager.setPerdoruesi(repo.getByEmail(email));
             Perdoruesi user = SessionManager.getPerdoruesi();
             if (user != null) {
                 if (user.getRoli().equals("Admin")) {
                     Navigator.navigate(ae, Navigator.ADMIN_DASHBOARD, "Admin Dashboard");
                 } else if (user.getRoli().equals("Doktor")) {
-                    Navigator.navigate(ae, Navigator.DOCTOR_PROFILE, "Doktor");
+                    SessionManager.setMjeku(mjeketRepository.getByEmail(email));
+                    Navigator.navigate(ae, Navigator.DOCTOR_HOME, "Doktor");
                 } else if (user.getRoli().equals("Pacient")){
                     Navigator.navigate(ae, Navigator.PATIENT_HOME, "Pacient");
                 }

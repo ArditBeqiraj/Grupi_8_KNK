@@ -1,5 +1,6 @@
 package Repository;
 
+import app.SessionManager;
 import model.Pacientet.Pacientet;
 import model.Pacientet.PacientetDTO.CreatePacientetDTO;
 import model.Pacientet.PacientetDTO.UpdatePacientetDTO;
@@ -74,7 +75,6 @@ public class PacientetRepository extends BaseRepository<Pacientet, CreatePacient
 
     public List<Pacientet> getAllWithPerdoruesiByDoctorId(int doctorId) {
         List<Pacientet> pacientetList = new ArrayList<>();
-
         String query = """
         SELECT pa.*, 
                p.emri, p.mbiemri, p.email, p.telefoni
@@ -84,7 +84,7 @@ public class PacientetRepository extends BaseRepository<Pacientet, CreatePacient
         """;
 
         try (PreparedStatement pstm = connection.prepareStatement(query)) {
-            pstm.setInt(1, doctorId);
+            pstm.setInt(1, SessionManager.getMjeku().getId());
             try (ResultSet rs = pstm.executeQuery()) {
                 while (rs.next()) {
                     Pacientet pacient = Pacientet.getInstance(rs);
