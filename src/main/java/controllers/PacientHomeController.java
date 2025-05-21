@@ -2,6 +2,7 @@ package controllers;
 
 import Database.DBConnectoor;
 import Database.DBConnector;
+import Repository.PerdoruesiRepository;
 import app.Navigator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
@@ -18,11 +19,14 @@ import model.Perdoruesi.Perdoruesi;
 import model.Terminet.Terminet;
 import app.SessionManager;
 import services.LanguageManager;
+import services.PerdoruesiService;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Locale;
+import java.util.Optional;
 
 
 public class PacientHomeController {
@@ -109,13 +113,31 @@ public class PacientHomeController {
         }
 
 
-        pacientId = SessionManager.getPerdoruesi().getId();
+        pacientId = getPacientIdByPerdoruesiId(SessionManager.getPerdoruesi().getId());
         shfaqTerminet();
         shfaqMjeket();
         mbushComboMjeket();
         shfaqTerminetAnulim();
         shfaqTeDhenatEPacientit();
     }
+
+    public int getPacientIdByPerdoruesiId(int perdoruesiId) {
+        String query = "SELECT id FROM pacientet WHERE user_id = ?";
+        try (PreparedStatement pstm = conn.prepareStatement(query)) {
+            pstm.setInt(1, perdoruesiId);
+            try (ResultSet rs = pstm.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id");
+                } else {
+                    throw new IllegalStateException("Pacient not found for perdoruesiId: " + perdoruesiId);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Database error while fetching pacient_id", e);
+        }
+    }
+
+
 
     @FXML
     void switchform(ActionEvent event) {
@@ -282,9 +304,21 @@ public class PacientHomeController {
         shfaqTerminetAnulim();
     }
 
+    PerdoruesiService perdoruesiService = new PerdoruesiService();
+
     @FXML
-    public void shkyqu(ActionEvent event) {
-        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+    public void shkyqu(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Konfirmimi");
+        alert.setHeaderText(null);
+        alert.setContentText("A jeni të sigurt se doni të shkyçeni?");
+
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.isPresent() && option.get() == ButtonType.OK) {
+            perdoruesiService.LogOut();
+            Navigator.navigate(event, Navigator.LOGIN_PAGE, "Login");
+        }
     }
 
     @FXML
@@ -337,7 +371,7 @@ public class PacientHomeController {
         """;
 
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, 1);
+            stmt.setInt(1, SessionManager.getPerdoruesi().getId());
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {

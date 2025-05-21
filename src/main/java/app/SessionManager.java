@@ -1,11 +1,13 @@
 package app;
 
+import model.Pacientet.Pacientet;
 import model.Perdoruesi.Perdoruesi;
 
 import java.util.Locale;
 
 public class SessionManager {
     private static Perdoruesi perdoruesi;
+    private static Pacientet pacient;
     private static Locale currentLocale = Locale.getDefault();
 
     public static void setPerdoruesi(Perdoruesi newPerdoruesi) {

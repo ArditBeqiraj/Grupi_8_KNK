@@ -12,6 +12,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -27,7 +29,6 @@
                         <AnchorPane prefHeight="0.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
                             <children>
                                 <AnchorPane layoutX="366.0" layoutY="-30.0" prefHeight="120.0" prefWidth="1100.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                <FontAwesomeIconView glyphName="USERS" layoutX="57.0" layoutY="41.0" scaleX="4.0" scaleY="4.0" />
                                 <Label layoutX="133.0" layoutY="26.0" text="%admin.dashboard">
                                     <font>
                                         <Font size="20.0" />
@@ -37,6 +38,11 @@
                                 <Button layoutX="943.0" layoutY="16.0" mnemonicParsing="false" onAction="#minimizo" prefHeight="34.0" prefWidth="65.0" styleClass="minimizo" stylesheets="@../css/admin_homepage.css" />
                                 <FontAwesomeIconView glyphName="CLOSE" layoutX="1032.0" layoutY="38.0" size="1.2em" />
                                 <FontAwesomeIconView glyphName="MINUS" layoutX="970.0" layoutY="40.0" size="1.2em" />
+                        <ImageView fitHeight="87.0" fitWidth="98.0" layoutX="26.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@LogoOrdinancaRED.png" />
+                           </image>
+                        </ImageView>
                             </children>
                         </AnchorPane>
                     </top>

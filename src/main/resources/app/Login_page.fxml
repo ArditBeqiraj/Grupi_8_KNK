@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
@@ -19,5 +21,10 @@
         <TextField id="text-field" fx:id="passwordtxt" layoutX="215.0" layoutY="217.0" prefHeight="26.0" prefWidth="226.0" style="-fx-text-fill: black;" stylesheets="@../css/Login_Signup.css" visible="false" />
         <FontAwesomeIconView fx:id="showPassword" glyphName="EYE" layoutX="415.0" layoutY="234.0" onMouseClicked="#changeVisibility" wrappingWidth="18.4305419921875" />
       <FontAwesomeIconView fx:id="language" fill="WHITE" glyphName="LANGUAGE" layoutX="556.0" layoutY="36.0" onMouseClicked="#handleLanguageToggle" size="20" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="232.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@LogoOrdinancaRED.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

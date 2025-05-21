@@ -3,6 +3,7 @@ package controllers;
 import Database.DBConnector;
 import Repository.PerdoruesiRepository;
 import app.Navigator;
+import app.SessionManager;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

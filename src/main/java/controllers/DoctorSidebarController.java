@@ -6,13 +6,17 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import services.LanguageManager;
+import services.PerdoruesiService;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Optional;
 
 public class DoctorSidebarController {
 
@@ -33,6 +37,8 @@ public class DoctorSidebarController {
 
     @FXML
     private Label drFullName;
+
+    PerdoruesiService perdoruesiService = new PerdoruesiService();
 
     @FXML
     public void initialize() {
@@ -76,5 +82,20 @@ public class DoctorSidebarController {
             Navigator.setCurrentLocale(new Locale("sq"));
         }
         Navigator.reload();
+    }
+
+    @FXML
+    private void handleLogOut(ActionEvent me) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Konfirmimi");
+        alert.setHeaderText(null);
+        alert.setContentText("A jeni të sigurt se doni të shkyçeni?");
+
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.isPresent() && option.get() == ButtonType.OK) {
+            perdoruesiService.LogOut();
+            Navigator.navigate(me, Navigator.LOGIN_PAGE, "Login");
+        }
     }
 }

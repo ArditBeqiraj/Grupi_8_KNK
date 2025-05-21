@@ -118,7 +118,6 @@ public class LoginSignupService {
         Perdoruesi createdUser = perdoruesiRepository.create(createPerdoruesiDTO);
 
         if (createdUser == null) {
-            System.out.println("Perdoruesi nuk u krijua!");
             showError("User creation failed!");
             return;
         } else {
@@ -136,7 +135,11 @@ public class LoginSignupService {
             );
 
             pacientetRepo.create(pacientDTO);
-            System.out.println("Pacienti u krijua!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Account registered successfully!");
+            alert.showAndWait();
         }
 
         Navigator.navigate(ae, Navigator.LOGIN_PAGE, "Login");

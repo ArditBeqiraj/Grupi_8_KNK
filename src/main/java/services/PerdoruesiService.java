@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Mjeket.Mjeket;
@@ -61,8 +62,14 @@ public class PerdoruesiService {
         if (result) {
             SessionManager.setPerdoruesi(perdoruesi);
             return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Wrong email or password!");
+            alert.showAndWait();
+            return false;
         }
-        return false;
     }
 
 
@@ -108,6 +115,6 @@ public class PerdoruesiService {
 
 
     public void LogOut() {
-        SessionManager.setPerdoruesi(null);
+        SessionManager.logout();
     }
 }
