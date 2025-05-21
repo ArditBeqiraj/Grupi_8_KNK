@@ -10,6 +10,14 @@ CREATE TABLE Perdoruesi (
     salt TEXT NOT NULL,
     krijuar TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+--Krijimi i sekuences per ID
+CREATE SEQUENCE id_seq
+  START WITH 230756101
+  INCREMENT BY 1
+  MINVALUE 230756101
+  MAXVALUE 930756100;
+
+ALTER TABLE perdoruesi ALTER COLUMN id SET DEFAULT nextval('id_seq');
 
 -- 2. Tabela tjera
 CREATE TABLE Pacientet (
@@ -128,7 +136,4 @@ CREATE TABLE Pagesa (
                         statusi VARCHAR(20),
                         krijuar DATE
 );
--- Ndryshim i vogel per funksionalizim
-ALTER TABLE Pacientet
-ADD COLUMN mjeku_familjar_id INT REFERENCES Mjeket(id) ON DELETE SET NULL;
 
