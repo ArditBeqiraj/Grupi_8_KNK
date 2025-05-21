@@ -127,7 +127,6 @@ public class SignupController {
 
     @FXML
     private void handleSignUp(ActionEvent ae) throws Exception {
-        // Sync visible text field values back into the hidden PasswordFields
         if (!show) {
             pwdPassword.setText(passwordtxt.getText());
         }

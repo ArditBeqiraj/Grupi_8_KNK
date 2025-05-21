@@ -21,6 +21,7 @@ public class Navigator {
     public final static String ADMIN_DASHBOARD="AdminHome_page.fxml";
     public final static String STAFF_HOME = "/app/StaffHome.fxml";
     public final static String PATIENT_HOME = "PatientHome.fxml";
+    public final static String CHANGE_PASSWORD = "/app/ChangePassword.fxml";
 
     private static String lastLoadedPage = null;
     private static Stage currentStage = null;

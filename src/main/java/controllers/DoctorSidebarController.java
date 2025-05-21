@@ -3,8 +3,10 @@ package controllers;
 import app.Navigator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import services.LanguageManager;
 
 import java.io.IOException;
@@ -26,6 +28,7 @@ public class DoctorSidebarController {
 
     @FXML
     private Button DoctorAppointmentsPage;
+    
 
     @FXML
     public void initialize() {
