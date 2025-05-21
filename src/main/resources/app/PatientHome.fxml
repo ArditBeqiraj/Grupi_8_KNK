@@ -83,7 +83,7 @@
                     <center>
                         <AnchorPane>
                             <children>
-                                <AnchorPane fx:id="home_form" styleClass="white-background shadow" stylesheets="@../css/pacient_homepage.css">
+                                <AnchorPane fx:id="home_form" styleClass="white-background shadow" stylesheets="@../css/pacient_homepage.css" visible="false">
                                     <children>
                                         <Label layoutX="40.0" layoutY="20.0" text="%your.appointments:" />
 
@@ -144,7 +144,7 @@
                                         <Button layoutX="40" layoutY="370" onAction="#anuloTermin" text="%cancel.appointment" />
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="myProfile_form" styleClass="white-background shadow" stylesheets="@../css/pacient_homepage.css" visible="false">
+                                <AnchorPane fx:id="myProfile_form" styleClass="white-background shadow" stylesheets="@../css/pacient_homepage.css">
                                     <children>
                                         <Label layoutX="40" layoutY="20" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="%patient.profile" />
 
@@ -164,6 +164,7 @@
                                         <Label fx:id="lblMjekuFamiljar" layoutX="150" layoutY="180" />
                                     </children>
                                 </AnchorPane>
+                        <Button fx:id="changePassword" layoutX="41.0" layoutY="212.0" mnemonicParsing="false" onAction="#handleChangePasswordClick" text="Change Password" />
 
                             </children>
                         </AnchorPane>

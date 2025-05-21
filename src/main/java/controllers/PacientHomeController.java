@@ -8,6 +8,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -422,6 +423,11 @@ public class PacientHomeController {
             Navigator.setCurrentLocale(new Locale("sq"));
         }
         Navigator.reload();
+    }
+
+    @FXML
+    private void handleChangePasswordClick(Event event) throws IOException {
+        Navigator.navigate(event, Navigator.CHANGE_PASSWORD, "Change Password");
     }
 
 }
