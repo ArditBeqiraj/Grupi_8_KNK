@@ -2,6 +2,7 @@ package controllers;
 
 import app.Navigator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -96,16 +97,8 @@ public class DoctorProfileController {
     }
 
     @FXML
-    private void handleEditButtonClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/app/ChangePassword.fxml"));
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setTitle("Change Password");
-        stage.setScene(new Scene(root));
-        stage.setResizable(false);
-        stage.show();
-
-
+    private void handleEditButtonClick(Event event) throws IOException {
+        Navigator.navigate(event, Navigator.CHANGE_PASSWORD, "Change Password");
     }
 
     @FXML
