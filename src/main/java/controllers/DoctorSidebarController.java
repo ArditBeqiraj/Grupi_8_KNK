@@ -1,12 +1,14 @@
 package controllers;
 
 import app.Navigator;
+import app.SessionManager;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.control.Label;
 import services.LanguageManager;
 
 import java.io.IOException;
@@ -31,11 +33,21 @@ public class DoctorSidebarController {
     
 
     @FXML
+    private Label drFullName;
+
+    @FXML
     public void initialize() {
         DoctorHomePage.setOnAction(this::handleNavigation);
         DoctorMyProfilePage.setOnAction(this::handleNavigation);
         DoctorPatientsPage.setOnAction(this::handleNavigation);
         DoctorAppointmentsPage.setOnAction(this::handleNavigation);
+
+        // Merr doktorin nga sesioni dhe vendos emrin
+        if (SessionManager.getPerdoruesi() != null) {
+            String emri = SessionManager.getPerdoruesi().getEmri();
+            String mbiemri = SessionManager.getPerdoruesi().getMbiemri();
+            drFullName.setText(emri + " " + mbiemri);
+        }
     }
 
     private void handleNavigation(ActionEvent event) {

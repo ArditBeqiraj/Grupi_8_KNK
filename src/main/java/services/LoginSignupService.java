@@ -1,5 +1,6 @@
 package services;
 
+import Repository.PacientetRepository;
 import Repository.PerdoruesiRepository;
 import app.Navigator;
 import app.SessionManager;
@@ -19,6 +20,7 @@ import model.Perdoruesi.PerdoruesiDTO.LoginPerdoruesiDto;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class LoginSignupService {
     private Stage stage;
@@ -70,68 +72,77 @@ public class LoginSignupService {
         pwdConfirmPassword.clear();
     }
 
-    public void handleSignUp(ActionEvent ae, TextField txtEmri, TextField txtMbeimri, TextField txtEmail, TextField txtnumri, ToggleGroup gjinia, PasswordField pwdPassword, PasswordField pwdConfirmPassword) throws Exception {
-        String emri = txtEmri.getText();
-        String mbiemri = txtMbeimri.getText();
-        String email = txtEmail.getText();
-        String numri = txtnumri.getText();
-        RadioButton selectedRadioButton = (RadioButton) gjinia.getSelectedToggle();
-        String gender = selectedRadioButton.getText();
+    public void handleSignUp(ActionEvent ae,
+                             TextField txtEmri,
+                             TextField txtMbiemri,
+                             TextField txtEmail,
+                             TextField txtNumri,
+                             ToggleGroup gjinia,
+                             PasswordField pwdPassword,
+                             PasswordField pwdConfirmPassword) throws Exception {
+
+        String emri = txtEmri.getText().trim();
+        String mbiemri = txtMbiemri.getText().trim();
+        String email = txtEmail.getText().trim();
+        String numri = txtNumri.getText().trim();
         String password = pwdPassword.getText();
         String confirmPassword = pwdConfirmPassword.getText();
 
-        if (emri.isEmpty() || mbiemri.isEmpty() || email.isEmpty() || numri.isEmpty() || gender.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            try {
-                FXMLLoader loader = new FXMLLoader(PerdoruesiService.class.getResource("/app/fill.fxml"));
-                Parent root = loader.load();
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setResizable(false);
-                stage.setTitle("Fill all fields");
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Toggle selectedToggle = gjinia.getSelectedToggle();
+        if (selectedToggle == null) {
+            showError("Please select a gender.");
             return;
         }
+        String gender = ((RadioButton) selectedToggle).getText();
 
+        if (emri.isEmpty() || mbiemri.isEmpty() || email.isEmpty() || numri.isEmpty()
+                || password.isEmpty() || confirmPassword.isEmpty()) {
+            showError("Please fill in all fields.");
+            return;
+        }
 
         if (!password.equals(confirmPassword)) {
-            try {
-                FXMLLoader loader = new FXMLLoader(PerdoruesiService.class.getResource("/app/fill.fxml"));
-                Parent root = loader.load();
-
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setResizable(false);
-                stage.setTitle("Password do NOT match");
-                stage.initModality(Modality.APPLICATION_MODAL);
-
-
-                stage.showAndWait();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            showError("Passwords do not match.");
             return;
         }
 
-
         String salt = PasswordHasher.generateSalt();
-        CreatePerdoruesiDTO createPerdoruesiDTO = new CreatePerdoruesiDTO(emri, mbiemri, email, numri, "Pacient", salt, PasswordHasher.generateSaltedHash(password, salt), new Timestamp(System.currentTimeMillis()));
+        String hashedPassword = PasswordHasher.generateSaltedHash(password, salt);
+
+        CreatePerdoruesiDTO createPerdoruesiDTO = new CreatePerdoruesiDTO(
+                emri, mbiemri, email, numri, "Pacient", salt, hashedPassword,
+                new Timestamp(System.currentTimeMillis())
+        );
 
         PerdoruesiRepository perdoruesiRepository = new PerdoruesiRepository();
-        Perdoruesi perdoruesi = perdoruesiRepository.create(createPerdoruesiDTO);
+        Perdoruesi createdUser = perdoruesiRepository.create(createPerdoruesiDTO);
 
-        CreatePacientetDTO createPacientetDTO = new CreatePacientetDTO(perdoruesi.getId(), gender);
+        if (createdUser == null) {
+            System.out.println("Perdoruesi nuk u krijua!");
+            showError("User creation failed!");
+            return;
+        } else {
+            System.out.println("Perdoruesi u krijua!");
 
-        PacientetService pacientetService = new PacientetService();
-        pacientetService.create(createPacientetDTO);
+            // Shto pacientin në tabelën `pacientet`
+            PacientetRepository pacientetRepo = new PacientetRepository();
+            CreatePacientetDTO pacientDTO = new CreatePacientetDTO(
+                    createdUser.getId(),
+                    null,
+                    gender,
+                    null,
+                    numri,
+                    null
+            );
 
+            pacientetRepo.create(pacientDTO);
+            System.out.println("Pacienti u krijua!");
+        }
 
         Navigator.navigate(ae, Navigator.LOGIN_PAGE, "Login");
     }
+
+
 
     private void showError(String message) {
         try {
