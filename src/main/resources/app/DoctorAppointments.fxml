@@ -1,40 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<StackPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.DoctorAppointmentsController"
-            prefHeight="400.0" prefWidth="1100.0">
+<StackPane prefHeight="400.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorAppointmentsController">
     <children>
         <AnchorPane maxHeight="600.0" maxWidth="1100.0" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #D1D9E6;">
             <children>
                 <fx:include source="DoctorSidebar.fxml" />
-
-
-
                 <AnchorPane layoutX="219.0" layoutY="52.0" prefHeight="496.0" prefWidth="734.0" style="-fx-background-color: #3E8E7E;" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="75.0">
                     <children>
-                        <TableView fx:id="tableView"  layoutX="243.0" layoutY="124.0" prefHeight="226.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="appointmentsTable" prefHeight="496.0" prefWidth="734.0" style="-fx-background-color: #e9ebee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn  prefWidth="74.2459716796875" style="-fx-background-color: #3E8E7E;" text="%userid" />
-                                <TableColumn  prefWidth="88.2540283203125" style="-fx-background-color: #3E8E7E;" text="%name" />
-                                <TableColumn  prefWidth="81.03890991210938" style="-fx-background-color: #3E8E7E;" text="%surname" />
-                                <TableColumn  prefWidth="114.1156005859375" style="-fx-background-color: #3E8E7E;" text="%email" />
-                                <TableColumn  prefWidth="102.3843994140625" style="-fx-background-color: #3E8E7E;" text="%phone" />
-                                <TableColumn  prefWidth="88.97027587890625" style="-fx-background-color: #3E8E7E;" text="%birthday" />
-                                <TableColumn  prefWidth="73.631591796875" style="-fx-background-color: #3E8E7E;" text="%gender" />
-                                <TableColumn  prefWidth="82.01605224609375" style="-fx-background-color: #3E8E7E;" text="%address" />
-                                <TableColumn  prefWidth="136.0000122070312" style="-fx-background-color: #3E8E7E;" text="%emergency_contact" />
+                                <TableColumn fx:id="patientFirstNameColumn" prefWidth="100.0" style="-fx-background-color: #3E8E7E;" text="%name" />
+                                <TableColumn fx:id="patientLastNameColumn" prefWidth="100.0" style="-fx-background-color: #3E8E7E;" text="%surname" />
+                                <TableColumn fx:id="appointmentDateColumn" prefWidth="120.0" style="-fx-background-color: #3E8E7E;" text="%date" />
+                                <TableColumn fx:id="appointmentStatusColumn" prefWidth="100.0" style="-fx-background-color: #3E8E7E;" text="%status" />
+                                <TableColumn fx:id="roomNameColumn" prefWidth="100.0" style="-fx-background-color: #3E8E7E;" text="%room" />
+                                <TableColumn fx:id="notesColumn" prefWidth="214.0" style="-fx-background-color: #3E8E7E;" text="%notes" />
                             </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
                         </TableView>
                     </children>
                 </AnchorPane>
-                <TextField fx:id="searchField" layoutX="180.0" layoutY="25.0" promptText="%search" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="700.0" />
+                <TextField fx:id="filterField" layoutX="180.0" layoutY="25.0" promptText="%filter" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="700.0" />
             </children>
         </AnchorPane>
     </children>
