@@ -1,7 +1,6 @@
 package controllers;
 
 import Database.DBConnector;
-import Repository.PacientetRepository;
 import Repository.PerdoruesiRepository;
 import app.Navigator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
