@@ -12,49 +12,43 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="174.0" style="-fx-background-color: #F5F7FA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DoctorSidebarController">
     <children>
-        <VBox alignment="BOTTOM_CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
+
+        <VBox alignment="TOP_CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
 
-                <ImageView fitHeight="178.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="160.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@LogoOrdinancaRED.png" />
                     </image>
                 </ImageView>
 
-                <VBox alignment="CENTER">
+                <Label fx:id="drFullName">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+
+                <FontAwesomeIconView glyphName="USER" size="90" />
+
+                <VBox alignment="TOP_CENTER" prefWidth="174.0" spacing="20.0">
                     <children>
-                        <Label fx:id="drFullName">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </VBox>
+                        <Button fx:id="DoctorHomePage" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="%home" />
 
-                <FontAwesomeIconView fill="#820000" glyphName="USER" size="100" />
+                        <Button fx:id="DoctorMyProfilePage" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="%my.profile" />
 
-                <VBox alignment="TOP_CENTER" prefHeight="330.0" prefWidth="174.0" spacing="15.0">
-                    <children>
-                        <Button fx:id="DoctorHomePage" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="%home" />
+                        <Button fx:id="DoctorPatientsPage" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="%patients" />
 
-                        <Button fx:id="DoctorMyProfilePage" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="%my.profile" />
+                        <Button fx:id="DoctorAppointmentsPage" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="%appointments" />
 
-                        <Button fx:id="DoctorPatientsPage" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="%patients" />
-
-                        <Button fx:id="DoctorAppointmentsPage" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: white; -fx-border-color: #3E8E7E; -fx-border-radius: 10;" text="%appointments" />
-
-                        <Button fx:id="shkyqu" layoutX="25.0" layoutY="463.0" onAction="#handleLogOut" style="-fx-background-color: #ba0000;" stylesheets="@../css/pacient_homepage.css" textFill="WHITE">
-
+                        <Button fx:id="shkyqu" onAction="#handleLogOut" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #ba0000;" stylesheets="@../css/pacient_homepage.css" textFill="WHITE">
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="1.7em" wrappingWidth="18.942855834960938" />
+                                <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="1.7em" />
                             </graphic>
-
                             <styleClass>
                                 <String fx:value="shkyqu" />
                                 <String fx:value="shadow" />
                             </styleClass>
-
                         </Button>
                     </children>
                 </VBox>

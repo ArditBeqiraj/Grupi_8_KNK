@@ -51,7 +51,7 @@ public class DoctorSidebarController {
         if (SessionManager.getPerdoruesi() != null) {
             String emri = SessionManager.getPerdoruesi().getEmri();
             String mbiemri = SessionManager.getPerdoruesi().getMbiemri();
-            drFullName.setText(emri + " " + mbiemri);
+            drFullName.setText("Dr. " + emri + " " + mbiemri);
         }
     }
 
@@ -64,7 +64,7 @@ public class DoctorSidebarController {
             } else if (event.getSource() == DoctorPatientsPage) {
                 Navigator.navigate(event, Navigator.DOCTOR_PACIENTS_PAGE, "Patients");
             } else if (event.getSource() == DoctorAppointmentsPage) {
-                Navigator.navigate(event, "/app/DoctorAppointments.fxml", "Appointments");
+                Navigator.navigate(event, Navigator.DOCTOR_APPOINTMENTS, "Appointments");
             }
         } catch (IOException e) {
             e.printStackTrace();

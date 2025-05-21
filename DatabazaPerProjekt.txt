@@ -108,6 +108,9 @@ CREATE TABLE Sallat (
                         statusi VARCHAR(20)
 );
 
+INSERT INTO sallat (id, emri_salles, tipi, kapaciteti, statusi)
+                VALUES (1, 'Salla 1', null, 40, 'E gatshme')
+
 CREATE TABLE PajisjetMjekesore (
                                    id SERIAL PRIMARY KEY,
                                    emri_pajisjes VARCHAR(50),

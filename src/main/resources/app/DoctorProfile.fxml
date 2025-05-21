@@ -110,7 +110,7 @@
                         </HBox>
                     </children>
                 </AnchorPane>
-            <FontAwesomeIconView fx:id="language" glyphName="LANGUAGE" layoutX="1058.0" layoutY="31.0" size="20" />
+            <FontAwesomeIconView fx:id="language" glyphName="LANGUAGE" layoutX="1058.0" layoutY="31.0" onMouseClicked="#handleLanguageToggle" size="20" wrappingWidth="18.14285659790039" />
             </children>
         </AnchorPane>
     </children>
