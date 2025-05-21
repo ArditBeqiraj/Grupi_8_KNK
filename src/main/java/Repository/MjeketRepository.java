@@ -118,4 +118,24 @@ public class MjeketRepository extends BaseRepository<Mjeket, CreateMjeketDTO, Up
         return countData;
     }
 
+    public boolean update(Mjeket mjeku) {
+        String query = "UPDATE mjeket SET emri = ?, mbiemri = ?, nr_licenses = ?, nr_telefoni = ?, email = ?, specializimi_kryesor = ? WHERE ID = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, mjeku.getEmri());
+            stmt.setString(2, mjeku.getMbiemri());
+            stmt.setString(3, mjeku.getNr_licences());
+            stmt.setString(4, mjeku.getNr_telefoni());
+            stmt.setString(5, mjeku.getEmail());
+            stmt.setString(6, mjeku.getSpecializimi_kryesor());
+            stmt.setInt(7, mjeku.getId());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }

@@ -22,6 +22,7 @@ public class Mjeket {
         this.email = email;
         this.specializimi_kryesor = specializimi_kryesor;
     }
+    public Mjeket() {}
     public static Mjeket getInstance(ResultSet resultSet) throws SQLException{
         int id = resultSet.getInt("id");
         String emri = resultSet.getString("emri");
@@ -62,4 +63,31 @@ public class Mjeket {
         return specializimi_kryesor;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setEmri(String emri) {
+        this.emri = emri;
+    }
+
+    public void setMbiemri(String mbiemri) {
+        this.mbiemri = mbiemri;
+    }
+
+    public void setNr_licences(String nr_licences) {
+        this.nr_licences = nr_licences;
+    }
+
+    public void setNr_telefoni(String nr_telefoni) {
+        this.nr_telefoni = nr_telefoni;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSpecializimi_kryesor(String specializimi_kryesor) {
+        this.specializimi_kryesor = specializimi_kryesor;
+    }
 }

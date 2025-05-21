@@ -1,5 +1,6 @@
 package Repository;
 
+import model.Terminet.AppointmentFullView;
 import model.Terminet.Terminet;
 import model.Terminet.TerminetDTO.CreateTerminetDTO;
 import model.Terminet.TerminetDTO.UpdateTerminetDTO;
@@ -8,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TerminetRepository extends BaseRepository<Terminet, CreateTerminetDTO, UpdateTerminetDTO>{
     public TerminetRepository () {
@@ -62,4 +65,38 @@ public class TerminetRepository extends BaseRepository<Terminet, CreateTerminetD
         }
         return this.getById(terminetDto.getId());
     }
+
+    public List<AppointmentFullView> getAllAppointmentsByMjekId(int mjekId) {
+        List<AppointmentFullView> list = new ArrayList<>();
+
+        String sql = """
+        SELECT p.emri, p.mbiemri, t.data, t.statusi, t.shenime
+        FROM terminet t
+        JOIN pacientet pa ON t.id_pacient = pa.id
+        JOIN perdoruesi p ON pa.user_id = p.id
+        WHERE t.id_mjek = ?
+        ORDER BY t.data DESC
+    """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, mjekId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                list.add(new AppointmentFullView(
+                        rs.getString("emri"),
+                        rs.getString("mbiemri"),
+                        rs.getDate("data"),
+                        rs.getString("statusi"),
+                        null,
+                        rs.getString("shenime")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 }
