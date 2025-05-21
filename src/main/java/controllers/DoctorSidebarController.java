@@ -30,13 +30,9 @@ public class DoctorSidebarController {
 
     @FXML
     private Button DoctorAppointmentsPage;
-    
 
-<<<<<<< Updated upstream
     @FXML
     private Label drFullName;
-=======
->>>>>>> Stashed changes
 
     @FXML
     public void initialize() {
